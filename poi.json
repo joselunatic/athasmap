@@ -2,18 +2,54 @@
   "world": "dark_sun_tablelands_2e",
   "version": 1,
   "categories": [
-    { "id": "city_state", "label": "Ciudad-estado" },
-    { "id": "city", "label": "Ciudad" },
-    { "id": "town", "label": "Pueblo / asentamiento grande" },
-    { "id": "village", "label": "Aldea / asentamiento menor" },
-    { "id": "fortress", "label": "Fortaleza / fuerte" },
-    { "id": "oasis", "label": "Oasis" },
-    { "id": "ruin", "label": "Ruinas" },
-    { "id": "outpost", "label": "Puesto avanzado / caravansar" },
-    { "id": "region", "label": "Región / área amplia" },
-    { "id": "natural_feature", "label": "Rasgo natural (montañas, llanuras…)" },
-    { "id": "water_body", "label": "Mar / lago / estuario" },
-    { "id": "route", "label": "Ruta / carretera" }
+    {
+      "id": "city_state",
+      "label": "Ciudad-estado"
+    },
+    {
+      "id": "city",
+      "label": "Ciudad"
+    },
+    {
+      "id": "town",
+      "label": "Pueblo / asentamiento grande"
+    },
+    {
+      "id": "village",
+      "label": "Aldea / asentamiento menor"
+    },
+    {
+      "id": "fortress",
+      "label": "Fortaleza / fuerte"
+    },
+    {
+      "id": "oasis",
+      "label": "Oasis"
+    },
+    {
+      "id": "ruin",
+      "label": "Ruinas"
+    },
+    {
+      "id": "outpost",
+      "label": "Puesto avanzado / caravansar"
+    },
+    {
+      "id": "region",
+      "label": "Región / área amplia"
+    },
+    {
+      "id": "natural_feature",
+      "label": "Rasgo natural (montañas, llanuras…)"
+    },
+    {
+      "id": "water_body",
+      "label": "Mar / lago / estuario"
+    },
+    {
+      "id": "route",
+      "label": "Ruta / carretera"
+    }
   ],
   "pois": [
     {
@@ -23,7 +59,10 @@
       "region": "Tablelands occidental",
       "importance": 5,
       "confidence": 3,
-      "tags": ["capital", "ciudad-libre"],
+      "tags": [
+        "capital",
+        "ciudad-libre"
+      ],
       "description": "Ciudad-estado situada al pie de las Ringing Mountains, punto de partida clásico de campañas.",
       "coordinates": null
     },
@@ -34,7 +73,10 @@
       "region": "Norte de las Tablelands",
       "importance": 5,
       "confidence": 3,
-      "tags": ["ciudad-estado", "templos"],
+      "tags": [
+        "ciudad-estado",
+        "templos"
+      ],
       "description": "Ciudad-estado fortificada al norte de las Tablelands, conocida por su disciplina militar.",
       "coordinates": null
     },
@@ -45,7 +87,11 @@
       "region": "Este de las Tablelands",
       "importance": 5,
       "confidence": 3,
-      "tags": ["ciudad-estado", "templos", "bosques de piedra"],
+      "tags": [
+        "ciudad-estado",
+        "templos",
+        "bosques de piedra"
+      ],
       "description": "La Ciudad de la Espina, oculta entre formaciones rocosas al este de la región central.",
       "coordinates": null
     },
@@ -56,7 +102,11 @@
       "region": "Sureste de las Tablelands",
       "importance": 5,
       "confidence": 3,
-      "tags": ["ciudad-estado", "bosque", "tribal"],
+      "tags": [
+        "ciudad-estado",
+        "bosque",
+        "tribal"
+      ],
       "description": "Ciudad-estado enclavada en un bosque de madera viva, gobernada por la Oba.",
       "coordinates": null
     },
@@ -67,7 +117,10 @@
       "region": "Noreste de las Tablelands",
       "importance": 5,
       "confidence": 3,
-      "tags": ["ciudad-estado", "inestabilidad"],
+      "tags": [
+        "ciudad-estado",
+        "inestabilidad"
+      ],
       "description": "Gran ciudad-estado al borde de la Sea of Silt, famosa por su caos interno.",
       "coordinates": null
     },
@@ -78,7 +131,10 @@
       "region": "Noreste extremo",
       "importance": 5,
       "confidence": 3,
-      "tags": ["ciudad-estado", "sacrificios"],
+      "tags": [
+        "ciudad-estado",
+        "sacrificios"
+      ],
       "description": "Ciudad-estado guerrera al extremo noreste de las Tablelands, ligada a sacrificios rituales.",
       "coordinates": null
     },
@@ -89,11 +145,14 @@
       "region": "Sur del Estuario de la Lengua Bifurcada",
       "importance": 5,
       "confidence": 3,
-      "tags": ["ciudad-estado", "puerto", "mercantil"],
+      "tags": [
+        "ciudad-estado",
+        "puerto",
+        "mercantil"
+      ],
       "description": "Ciudad-estado portuaria sobre el Estuary of the Forked Tongue, centro de comercio marítimo de la región.",
       "coordinates": null
     },
-
     {
       "id": "altaruk",
       "name": "Altaruk",
@@ -101,7 +160,10 @@
       "region": "Entre Tyr y Balic",
       "importance": 4,
       "confidence": 3,
-      "tags": ["puesto-comercial", "caravanas"],
+      "tags": [
+        "puesto-comercial",
+        "caravanas"
+      ],
       "description": "Importante puesto comercial y fortaleza a mitad de camino entre Tyr y Balic.",
       "coordinates": null
     },
@@ -112,7 +174,10 @@
       "region": "Cerca de Tyr",
       "importance": 3,
       "confidence": 3,
-      "tags": ["enano", "tradicional"],
+      "tags": [
+        "enano",
+        "tradicional"
+      ],
       "description": "Poblado enano ancestral situado al norte de Tyr.",
       "coordinates": null
     },
@@ -123,7 +188,10 @@
       "region": "Estuary of the Forked Tongue",
       "importance": 3,
       "confidence": 3,
-      "tags": ["puente", "caravanas"],
+      "tags": [
+        "puente",
+        "caravanas"
+      ],
       "description": "Asentamiento al norte del estuario, uno de los dos extremos del gran puente de Ledopolus.",
       "coordinates": null
     },
@@ -134,7 +202,10 @@
       "region": "Estuary of the Forked Tongue",
       "importance": 3,
       "confidence": 3,
-      "tags": ["puente", "caravanas"],
+      "tags": [
+        "puente",
+        "caravanas"
+      ],
       "description": "Asentamiento al sur del estuario, conectado a su gemelo por el puente de Ledopolus.",
       "coordinates": null
     },
@@ -145,7 +216,10 @@
       "region": "Entre Raam y Urik",
       "importance": 3,
       "confidence": 3,
-      "tags": ["oasis", "mercado"],
+      "tags": [
+        "oasis",
+        "mercado"
+      ],
       "description": "Pequeña ciudad alrededor de un oasis, punto habitual de paso entre Raam y Urik.",
       "coordinates": null
     },
@@ -156,7 +230,10 @@
       "region": "Sur de las Tablelands",
       "importance": 3,
       "confidence": 2,
-      "tags": ["asentamiento", "frontera"],
+      "tags": [
+        "asentamiento",
+        "frontera"
+      ],
       "description": "Asentamiento meridional en el borde de las Endless Sand Dunes.",
       "coordinates": null
     },
@@ -167,11 +244,13 @@
       "region": "Suroeste de las Tablelands",
       "importance": 3,
       "confidence": 2,
-      "tags": ["minería", "aislado"],
+      "tags": [
+        "minería",
+        "aislado"
+      ],
       "description": "Población relativamente aislada en el suroeste de la región.",
       "coordinates": null
     },
-
     {
       "id": "bodach",
       "name": "Bodach",
@@ -179,7 +258,10 @@
       "region": "Sur de las Tablelands",
       "importance": 4,
       "confidence": 3,
-      "tags": ["ruinas", "ciudad-muerta"],
+      "tags": [
+        "ruinas",
+        "ciudad-muerta"
+      ],
       "description": "Ruinas de una antigua ciudad, asociada a la historia más oscura de Athas.",
       "coordinates": null
     },
@@ -190,11 +272,13 @@
       "region": "Sur del Estuary of the Forked Tongue",
       "importance": 4,
       "confidence": 3,
-      "tags": ["ruinas", "ciudad-hundida"],
+      "tags": [
+        "ruinas",
+        "ciudad-hundida"
+      ],
       "description": "Ruinas de la ciudad de Giustenal, parcialmente hundida y ligada a criaturas del Mar de Cieno.",
       "coordinates": null
     },
-
     {
       "id": "oasis_tyr",
       "name": "Oasis of Tyr",
@@ -202,7 +286,10 @@
       "region": "Al sureste de Tyr",
       "importance": 3,
       "confidence": 2,
-      "tags": ["agua", "caravanas"],
+      "tags": [
+        "agua",
+        "caravanas"
+      ],
       "description": "Oasis situado al sureste de Tyr, escala habitual de caravanas.",
       "coordinates": null
     },
@@ -213,7 +300,10 @@
       "region": "Cerca de Kled",
       "importance": 3,
       "confidence": 2,
-      "tags": ["agua", "enanos"],
+      "tags": [
+        "agua",
+        "enanos"
+      ],
       "description": "Oasis relacionado con las historias de Kemalok y los enanos de la región.",
       "coordinates": null
     },
@@ -224,7 +314,10 @@
       "region": "Sur de las Tablelands",
       "importance": 3,
       "confidence": 2,
-      "tags": ["oculto", "aventuras"],
+      "tags": [
+        "oculto",
+        "aventuras"
+      ],
       "description": "Oasis aislado en las arenas del sur, de ubicación y acceso peligrosos.",
       "coordinates": null
     },
@@ -235,7 +328,10 @@
       "region": "Entorno de Ledopolus",
       "importance": 2,
       "confidence": 2,
-      "tags": ["agua", "caravanas"],
+      "tags": [
+        "agua",
+        "caravanas"
+      ],
       "description": "Oasis cercano al complejo de Ledopolus y su puente.",
       "coordinates": null
     },
@@ -246,11 +342,13 @@
       "region": "Dragon's Bowl",
       "importance": 3,
       "confidence": 2,
-      "tags": ["cráter", "agua"],
+      "tags": [
+        "cráter",
+        "agua"
+      ],
       "description": "Pequeño oasis en el interior o entorno del cráter conocido como Dragon's Bowl.",
       "coordinates": null
     },
-
     {
       "id": "fort_inix",
       "name": "Fort Inix",
@@ -258,7 +356,10 @@
       "region": "Sur de Tyr",
       "importance": 3,
       "confidence": 2,
-      "tags": ["caravanas", "defensa"],
+      "tags": [
+        "caravanas",
+        "defensa"
+      ],
       "description": "Fuerte situado al sur de Tyr, protegiendo una ruta transitada por caravanas.",
       "coordinates": null
     },
@@ -269,7 +370,9 @@
       "region": "Entre Tyr y Urik",
       "importance": 2,
       "confidence": 2,
-      "tags": ["militar"],
+      "tags": [
+        "militar"
+      ],
       "description": "Fortificación de tamaño medio en una de las rutas entre Tyr y Urik.",
       "coordinates": null
     },
@@ -280,7 +383,10 @@
       "region": "Rutas comerciales centrales",
       "importance": 3,
       "confidence": 2,
-      "tags": ["casa-mercantil", "caravanas"],
+      "tags": [
+        "casa-mercantil",
+        "caravanas"
+      ],
       "description": "Fortaleza vinculada a una poderosa casa mercantil, vigilando el comercio caravanero.",
       "coordinates": null
     },
@@ -291,7 +397,9 @@
       "region": "Zona central de las Tablelands",
       "importance": 2,
       "confidence": 2,
-      "tags": ["defensa"],
+      "tags": [
+        "defensa"
+      ],
       "description": "Fuerte estratégico en la región central, vigilando rutas en el desierto.",
       "coordinates": null
     },
@@ -302,7 +410,9 @@
       "region": "Sur de la región central",
       "importance": 2,
       "confidence": 2,
-      "tags": ["guarnición"],
+      "tags": [
+        "guarnición"
+      ],
       "description": "Pequeña fortaleza que protege un cruce de rutas en la región meridional.",
       "coordinates": null
     },
@@ -313,7 +423,10 @@
       "region": "Suroeste",
       "importance": 2,
       "confidence": 2,
-      "tags": ["defensa", "minas"],
+      "tags": [
+        "defensa",
+        "minas"
+      ],
       "description": "Fortificación próxima a la población de Walis.",
       "coordinates": null
     },
@@ -324,11 +437,12 @@
       "region": "Este de las Tablelands",
       "importance": 2,
       "confidence": 2,
-      "tags": ["frontera"],
+      "tags": [
+        "frontera"
+      ],
       "description": "Fuerte que vigila los movimientos hacia el este y la Sea of Silt.",
       "coordinates": null
     },
-
     {
       "id": "forest_ridge",
       "name": "Forest Ridge",
@@ -336,7 +450,10 @@
       "region": "Oeste de las Tablelands",
       "importance": 4,
       "confidence": 3,
-      "tags": ["bosque", "región"],
+      "tags": [
+        "bosque",
+        "región"
+      ],
       "description": "Gran cordillera cubierta de vegetación al oeste de las Tablelands.",
       "coordinates": null
     },
@@ -347,7 +464,9 @@
       "region": "Oeste",
       "importance": 4,
       "confidence": 3,
-      "tags": ["montañas"],
+      "tags": [
+        "montañas"
+      ],
       "description": "Cordillera montañosa que separa las Tablelands de las tierras exteriores.",
       "coordinates": null
     },
@@ -358,7 +477,9 @@
       "region": "Este",
       "importance": 5,
       "confidence": 3,
-      "tags": ["mar-de-cieno"],
+      "tags": [
+        "mar-de-cieno"
+      ],
       "description": "Enorme mar de ceniza y polvo al este de las Tablelands.",
       "coordinates": null
     },
@@ -369,7 +490,10 @@
       "region": "Sur-este de la región central",
       "importance": 4,
       "confidence": 3,
-      "tags": ["estuario", "comercio"],
+      "tags": [
+        "estuario",
+        "comercio"
+      ],
       "description": "Estuario que conecta el interior de las Tablelands con la Sea of Silt, junto a Balic.",
       "coordinates": null
     },
@@ -380,7 +504,9 @@
       "region": "Sur-este de la Tablelands central",
       "importance": 3,
       "confidence": 3,
-      "tags": ["llanura"],
+      "tags": [
+        "llanura"
+      ],
       "description": "Amplia llanura clara que ocupa gran parte del cuadrante suroriental del mapa.",
       "coordinates": null
     },
@@ -391,7 +517,9 @@
       "region": "Centro-sur",
       "importance": 3,
       "confidence": 3,
-      "tags": ["desierto"],
+      "tags": [
+        "desierto"
+      ],
       "description": "Región de arenas profundas al sur de la zona central.",
       "coordinates": null
     },
@@ -402,7 +530,10 @@
       "region": "Sur de la Great Ivory Plain",
       "importance": 2,
       "confidence": 2,
-      "tags": ["desierto", "tormentas"],
+      "tags": [
+        "desierto",
+        "tormentas"
+      ],
       "description": "Área de tormentas de arena constante al sur de la Great Ivory Plain.",
       "coordinates": null
     },
@@ -413,7 +544,9 @@
       "region": "Sur extremo",
       "importance": 3,
       "confidence": 3,
-      "tags": ["desierto"],
+      "tags": [
+        "desierto"
+      ],
       "description": "Mares interminables de dunas en el extremo sur del mapa.",
       "coordinates": null
     },
@@ -424,7 +557,9 @@
       "region": "Norte de la Great Ivory Plain",
       "importance": 4,
       "confidence": 3,
-      "tags": ["cráter"],
+      "tags": [
+        "cráter"
+      ],
       "description": "Enorme cráter circular visible en el centro-norte del mapa.",
       "coordinates": null
     },
@@ -435,7 +570,9 @@
       "region": "Este de la Sea of Silt interior",
       "importance": 2,
       "confidence": 2,
-      "tags": ["terreno-mutado"],
+      "tags": [
+        "terreno-mutado"
+      ],
       "description": "Región deformada por la magia y el sol, de terreno extraño.",
       "coordinates": null
     },
@@ -446,11 +583,13 @@
       "region": "Sea of Silt",
       "importance": 2,
       "confidence": 2,
-      "tags": ["islas", "cieno"],
+      "tags": [
+        "islas",
+        "cieno"
+      ],
       "description": "Grupo de islas y bancos de ceniza dentro de la Sea of Silt.",
       "coordinates": null
     },
-
     {
       "id": "great_road",
       "name": "The Great Road",
@@ -458,7 +597,9 @@
       "region": "Eje Tyr–Urik–Raam",
       "importance": 4,
       "confidence": 3,
-      "tags": ["caravanas"],
+      "tags": [
+        "caravanas"
+      ],
       "description": "Ruta principal en rojo que conecta las grandes ciudades-estado del norte y centro.",
       "coordinates": null
     },
@@ -469,7 +610,9 @@
       "region": "Eje Tyr–Altaruk–Balic",
       "importance": 3,
       "confidence": 3,
-      "tags": ["comercio"],
+      "tags": [
+        "comercio"
+      ],
       "description": "Ruta caravanera que une Tyr con Balic pasando por Altaruk.",
       "coordinates": null
     },
@@ -480,9 +623,1163 @@
       "region": "Alrededor de Raam",
       "importance": 2,
       "confidence": 2,
-      "tags": ["caravanas"],
+      "tags": [
+        "caravanas"
+      ],
       "description": "Red de rutas que conectan Raam con Draj, Nibenay y el interior.",
       "coordinates": null
+    },
+    {
+      "id": "awthuuk",
+      "name": "Awthuuk",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "Awthuuk is a satellite village of the kreen city L'rax.  Similar to its parent city, Awthuuk is dominated by the slightly evil j'hol.  The blood red tohr-kreen use this village as a place to extend L'rax's influence around Kano Swamp.<br><br>Like other tohr-kreen dwellings, Awthuuk was built using the amber-like secretions of z'ock'n.  Visitors will note that the structures are much more subdued than one will find in L'rax or Thaythilor, with the intricate buildings staying much closer to the ground in a complex web of domes.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.101 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "azeth-s-rest",
+      "name": "Azeth's Rest",
+      "type": "oasis",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "oasis",
+        "crónica-wanderer"
+      ],
+      "description": "Azeth's Rest is a client village of House Azeth, the merchant house of Kurn.  It is built around a lush oasis along the trade road that connects the north to the south, and serves a stop-over point for caravans going to and coming from the Tyr region.  This walled village features a sizeable legion of mercenaries to guard against the frequent raids from the west.  Raiders from the Bandit States often target caravans traveling on the road, and even strike at the village when their need is particularly great.  Azeth's Rest welcomes all other travelers - provided they can pay the fees for using its services.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.90 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "bartigar",
+      "name": "Bartigar",
+      "type": "ruin",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "ruinas",
+        "crónica-wanderer"
+      ],
+      "description": "The Wanderer has not explored this location, so no information is available.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.No entries available — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "bav-rem",
+      "name": "Bav-rem",
+      "type": "ruin",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "ruinas",
+        "crónica-wanderer"
+      ],
+      "description": "Bav-rem is now an empty ruin of abandoned basement pits and discarded articles.  Once this was a small but thriving halfling community in the north, near the water falls of the same name.  Just a few months ago, a group of climbers carrying messages and provisions to Bav-rem found something very startling.  All of the inhabitants, including the villages buildings, had completely vanished.<br><br>Subsequent expeditions determined that something large and amorphous strayed through the village.  Disturbingly, according to the tracks it had left, it seemed to grow larger as it slithered through the community.  Everything organic - halflings, buildings, life-shaped creations, and even the wild plants nearby - were no more.  One of the explorers noticed that there were no insects in the area.  Only inorganic materials and objects remained.  The exact cause of the Bav-rem disaster is still unknown, and it haunts many of the denizens of the Jagged Cliffs.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.68 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "blue-shrine",
+      "name": "Blue Shrine",
+      "type": "ruin",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "ruinas",
+        "crónica-wanderer"
+      ],
+      "description": "The Wanderer has not explored this location, so no information is available.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.No entries available — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "buried-city",
+      "name": "Buried City",
+      "type": "ruin",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "ruinas",
+        "crónica-wanderer"
+      ],
+      "description": "The Buried City is a collection of ruins tucked into the dunes of the sandy wastes north of the White Mountains. Little is known about the origins of the ruins, but it is believed to be haunted by terrible sprits and undead creatures. A dark intelligence pervades this place, and sometimes attracts those looking for forbidden power, especially related to the mystical arts. Small raiding parties from the bandit state of Spoil are often found near the Buried City, as their leader Densis seeks to discover the secrets of the ruins and add to his ever growing defiling power.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.105 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "bvanen-cave-city",
+      "name": "Bvanen Cave City",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "The bvanen are a race of intelligent and benevolent amphibians that dwell in the swamp at the base of the Jagged Cliffs.  The Bvanen Cave City is the largest settlement that these creatures call home, tucked away in the partially submerged caves below the halflings above them.  The bvanen make simple structures out of wood, grass, and secretions from their bodies.  Every member of bvanen society takes on the role of caretaker or hunter/warriors.  The caretakers look after small flocks of animals and tend to the needs of the settlements, whereas the hunters patrol the swamps looking for game.<br><br>The bvanen are generally a kind and gentle race, but can be very reclusive and suspicious of strangers.  Their mistrust can often lead them into unexpected conflicts, which has damaged their reputation with outside races.  The halflings on the Jagged Cliffs see the bvanen as neither friend nor foe, and have no official protocols in dealing with the amphibians.  No conflicts have occurred between the two races for centuries, although very little friendly diplomatic contact has occurred either.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.70 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "city-of-1000-dead",
+      "name": "City of 1000 Dead",
+      "type": "ruin",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "ruinas",
+        "crónica-wanderer"
+      ],
+      "description": "There is a massive city on the eastern side of the obsidian plain that stretches for a mile in every direction from its center. Countless hordes of undead wander the city, sometimes mindless and sometimes following the commands of the more powerful undead who reside with the city walls. All manner of undead can be found in the city, from kaishargas to raaigs, and there are rumored to be some types of undead found nowhere else in Athas.<br><br>Prior to the Cleansing Wars, it is speculated that this city was a thriving metropolis where members of all races could live together in peace. This idea enraged Rajaat, and therefore was one of the first places to suffer his wrath.  Very few living creatures have ventured into the city since the crusades of Rajaat and his Champions, so there is a wealth of ancient treasure and knowledge buried beneath the black obsidian shell. The undead protect these secrets with unwavering vigilance, making it extremely dangerous to penetrate the cities gates. In the rare instances where treasures have made their way out of the city, tales of terrible curses follow.<br><br>One legend claims that the leaders of the city created an immense and powerful monster to battle Rajaat and the Champions in the final days of the Cleansing Wars.  This creature was never unleashed into battle as the city fell before its power could be harnessed.  In the aftermath of the city's demise, it became another of the city's cursed undead.  The stories also say that in undeath the creature has gained free will, and it resides captive beneath the city.  It waits for a chance to be released into the world above, where it has its own agenda that could spell destruction for the city and disaster for the lands beyond.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.121 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "crimson-monolith",
+      "name": "Crimson Monolith",
+      "type": "natural_feature",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "rasgo natural",
+        "crónica-wanderer"
+      ],
+      "description": "Rising from the eastern dunes, the Crimson Monolith is a blood-red needle-like structure made of an unknown stone.  It is smooth and warm to the touch, and some claim it pulses like a living thing.  It's base is about 15 feet around, tapering to a point some 40 feet into the air.  It has no seams, doors or windows, and no apparent function.<br><br>Some travelers claim that on nights when the twin moons are high in the sky, strange creatures simply step out of the monolith to explore the nearby dunes.  No doors ever appear to announce their presence.  When the moonlight begins to wane, the beings step back into the monolith just as mysteriously.  Accounts of these beings vary wildly.  Some stories paint these visitors as extra-planar travelers, some as ghosts from an ancient age, and some as denizens traveling from remote and hidden parts of Athas.  The truth remains a puzzle, very much like the Monolith itself.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.117 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "dezig",
+      "name": "Dezig",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "Dezig is a satellite village of the kreen city L'rax.  Similar to its parent city, Dezig is dominated by the slightly evil j'hol.  The blood red tohr-kreen use this village as a place to extend L'rax's influence towards the jagged cliffs.<br><br>Like other tohr-kreen dwellings, Dezig was built using the amber-like secretions of z'ock'n.  Visitors will note that the structures are much more subdued than one will find in L'rax or Thaythilor, with the intricate buildings staying much closer to the ground in a complex web of domes.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.101 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "dragon-s-crown",
+      "name": "Dragon's Crown",
+      "type": "natural_feature",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "rasgo natural",
+        "crónica-wanderer"
+      ],
+      "description": "The Dragon's Crown mountains rise out of the Hinterlands, shrouded in black cinders spewed out of an ages old volcano.  Most of the races that live near the monolithic mountain have stories that serve as warnings to potential explorers.  The local people believe that a great and timeless power exists inside the volcano, and that it is indeed something to be feared.  Standing as a lonely sentinel, the steep slopes are broken up only by the jagged flow of lava left from an ancient river of magma.<br><br>At the end of the broken ground of this river, lies a beautiful pine forest, filled with gentle creatures.  Deep within the forest lies an alabaster fortress.  The fortress lies quiet, although the hints of a great and recent battle lie upon the air.  Strangely, those who utilize the Way find it very difficult to focus while close to this structure, and even those who lack psionic talent experience sharp headaches if they linger in the area too long.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.21 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "durg-s-puddle",
+      "name": "Durg's Puddle",
+      "type": "oasis",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "oasis",
+        "crónica-wanderer"
+      ],
+      "description": "Located in the western portion of the Endless Sand Dunes, to the southwest of Celik, Durg's Puddle is a tiny oasis with a small but clean pond at its center.  The place wouldn't deserve mention if not for the fact that the trade caravans from Celik use it as a resting point on the route that House Mareneth maintains to the southwest.  Though an independent facility, the merchant house and other travelers provide the tribe that runs it with plenty of supplies and enough wealth to pay for the troops that defend it.<br><br>The half-giant Durg leads the small band that runs the oasis.  Though he never talks about where he comes from, Durg is otherwise friendly and outgoing.  Like all half-giants, he tends to emulate the attitudes and customs of those that stop at the oasis for a visit.  Durg, as a water cleric, has chosen this site as his temple and his home.  The friendly, he can become savage when called upon to defend the oasis.<br><br>Durg's followers never number more than 20, and they're mostly ex-gladiators who escaped from arenas to the north.  The half-giant also keeps an additional 20 hired warriors on hand to help protect the oasis.  Even though the Puddle's defenders aren't numerous, most of the raiders and predatory tribes in the area know that troops loyal to House Mareneth also watch over the oasis.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.117 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "eldaarich",
+      "name": "Eldaarich",
+      "type": "city_state",
+      "region": "",
+      "importance": 4,
+      "confidence": 1,
+      "tags": [
+        "ciudad-estado",
+        "crónica-wanderer"
+      ],
+      "description": "Eldaarich occupies a small island in the Sea of Silt, just off the mainland.  Here, isolated and protected from the rest of Athas, the people of Eldaarich huddle under the paranoid delusions of their mad sorcerer-king.  Daskinor, ruler of Eldaarich, believes that unknowable forces are trying to destroy him.  The names of these opponents change with the winds, but Daskinor does his best to destroy these imagined enemies until the next nameless terror comes for him.<br><br>Daskinor has never been a stable ruler, and Eldaarich was constructed to protect him from the outside world.  Fortified walls, a strong military, devoted templars, retractable bridges, a series of keeps and forts - the entire city state and surrounding area was secured against outside invaders.  Daskinor completely sealed himself and his citizens off from the rest of the world, only recently resuming limited trade with House Azeth of Kurn.<br><br>Today, Eldaarich remains an isolated prison of a city.  Daskinor's fears have become the fears of his citizenry, making everyone who lives under his rule as paranoid as he is.  No one ever leaves Eldaarich, and no one enters its massive gates.  It's a closed society -- figuratively and literally.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.93 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "euripis",
+      "name": "Euripis",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "Euripis is a society of ukoven, or half-elementals.  Like the lesser genies of other planes, the half-elementals of Euripis have abilities and powers that give them an edge over the other races of Athas.  These abilities, however, can only be used if the ukoven maintain contact with the element that sustains them.  In addition, if they range far from their island home, the ukoven slowly die.  If any ukoven fails to return to the elemental springs of Euripis after more than ten days, he or she risks death and the permanent loss of his abilities.<br><br>The inhabitants of Euripis are philosophers and artisans.  They welcome friendly visitors who truly want to admire the half-elementals' work or learn whatever knowledge they feel like teaching at the time.  They aren't a violent people, but will use their powers to defend themselves against attacks.  Currently, the half-elementals are establishing peaceful relations with their neighbors to the north.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.113 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "fort-holz",
+      "name": "Fort Holz",
+      "type": "fortress",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "fortaleza",
+        "crónica-wanderer"
+      ],
+      "description": "Fort Holz lies to the east of Kurn, protecting Silt Side from incursions originating in the Sea of Silt. It's primary function is to keep a trade route open between the merchants of House Azeth and Eldaarich, so visitors will find sparse comforts and little hospitality. The forces here are particularly adept at dealing with giants, and have special gear designed for combat and mobility across the silt. Fort Holz is routinely supported by large patrols coming from Fort Protector to the north.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.90 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "fort-protector",
+      "name": "Fort Protector",
+      "type": "fortress",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "fortaleza",
+        "crónica-wanderer"
+      ],
+      "description": "Fort Protector lies at the end of a secluded road leading northward from Kurn.  It is a huge fortress with towering walls, built right into the stone facing of the White Mountains.  The fortress guards the lush paradise found in the valley beyond its gates, and also serves as a base for large patrols which provide protection to both Kurn and Silt Side.  No unauthorized visitors are allowed through the walls of Fort Protector, and only a very foolish or desperate force would attempt to attack the nearly impenetrable fortification.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.90 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "foul-puddle",
+      "name": "Foul Puddle",
+      "type": "oasis",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "oasis",
+        "crónica-wanderer"
+      ],
+      "description": "The Wanderer has not explored this location, so no information is available.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.No entries available — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "galth-s-spring",
+      "name": "Galth's Spring",
+      "type": "oasis",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "oasis",
+        "crónica-wanderer"
+      ],
+      "description": "The Wanderer has not explored this location, so no information is available.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.No entries available — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "godshold",
+      "name": "Godshold",
+      "type": "ruin",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "ruinas",
+        "crónica-wanderer"
+      ],
+      "description": "The ruins of Godshold lie near the Somber Woods, on the western side of the Lava Gorge.  The ancient temple and its surrounding buildings date back to the middle of the Green Age.  Forgotten gods were gathered into a pantheon by the domains of the lawmakers, and one northern domain was dedicated to preserving this pantheon.  All that remains of the domain is the jumbled ruins of Godshold.<br><br>The temple is mostly intact, with gold-covered walls and ornately carved icons that almost glow with the beliefs of a long-dead society.  A powerful raaig guards the temple, keeping its secrets from all but the most stubborn and able adventurers.  It's said that the mysteries of the Green Age and the ancient gods lie in the temple's depths, waiting to be discovered.  To retrieve them, adventurers must get past the spirit who guards the site - and past whatever other traps and defenses wait within.<br><br>The surrounding buildings aren't in wonderful condition.  These have been looted and explored mercilessly over the centuries, and natural disasters have added to the damage and decay.  Little of worth remains in these structures, but who knows what small treasure might be hidden beneath a pile of rubble or on the other side of a secret door?",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.107 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "hidden-village",
+      "name": "Hidden Village",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "The Hidden Village lies at the bottom of a crater within the foothills of the Great Alluvial Sand Wastes, in the shadow of the Ringing Mountains. Within the crater, the village lies on a raised stone platform surrounded by sturdy brick walls and heavy gates. Here live the Free, a tribe of ex-slaves that now form a well-to-do trading house. Liberty and freedom are the most valuable commodities in the Hidden Village, as every member has roots as an ex-slave. All members of the Hidden Village are free to come and go as they please, with their many talents aiding in communal trade or defense. The members of the Hidden Village supplement their trading income with raids against caravans that are carrying slaves, recruiting those that they free. Each raid allows the village's ranks and capabilities to swell.<br><br>The leader of the Free is human fighter named Trade Master Bartras. He is a charismatic and clever man, and sees himself as the leader in a war against the slave owners. He battles them in the deserts with his raiding parties, and in the marketplaces with his trading house. Bartras is supported by Governor Drog, a dwarf fighter known for his strict but fair administration of the village's day-to-day operations. He is a reluctant leader in the village as he considers himself above no other, and he secretly wishes for Bartras to abolish all positions of command. The two work together to strengthen their trade routes with the free city of Tyr, and to open new trade routes to the west.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.67; Slave Tribes p22 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "hogalay",
+      "name": "Hogalay",
+      "type": "ruin",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "ruinas",
+        "crónica-wanderer"
+      ],
+      "description": "The Wanderer has not explored this location, so no information is available.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.No entries available — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "j-eztere",
+      "name": "J'eztere",
+      "type": "city_state",
+      "region": "",
+      "importance": 4,
+      "confidence": 1,
+      "tags": [
+        "ciudad-estado",
+        "crónica-wanderer"
+      ],
+      "description": "J'eztere is a large kreen city on the edges of the Kreen Empire, called the G'lathuk, controlled by black chitined j'ez.  J'eztere extends its influence throughout the savanna south of Kano Swamp, with its two satellite villages Ko'teg and Z'aythar acting as bases for pack activity.  The city rises out of the plains, using the amber-like secretions of z'ock'n.  Domes and towers reach to the sky, while walkways and ramps stretch around and between structures.  Most non-kreen find the appearance of the city rather macabre, almost disturbing, with its spires, walkways, and domes, the membranes stretching between some structures, and the presence of overwhelming numbers of black and glistening kreen.<br><br>J'ez tend to be the most lawful of the tohr-kreen, often acting as the bureaucrats and diplomats for the G'lathuk.  It would be best for non-kreen travelers to avoid J'eztere or any of its villages as the kreen do not always respond favorably with others.  In most cases, races from the south and east will be captured and taken as slaves for the empire.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.100 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "kakikix",
+      "name": "Kakikix",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "The Wanderer has not explored this location, so no information is available.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.No entries available — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "kalidnay",
+      "name": "Kalidnay",
+      "type": "ruin",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "ruinas",
+        "crónica-wanderer"
+      ],
+      "description": "Kalidnay is the ruins of a city-state, felled several centuries ago by a long forgotten disaster. Ruled by the sorcerer-king Kalid-Ma, it was one of the richest cities of the Tyr Region. Today the ruins have been taken over by a variety of raiding tribes and dangerous monsters, which makes exploration of the devastated city a dangerous endeavor.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.69 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "kano-swamp",
+      "name": "Kano Swamp",
+      "type": "natural_feature",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "rasgo natural",
+        "crónica-wanderer"
+      ],
+      "description": "Kano Swamp divides the known portion of the Crimson Savana.  The name comes from the Kreen word for cold that also has connotations relating to the kreen's cold hell.  A mighty river cascades out of western mountain range toward the Jagged Cliffs, and on its way southward it drains into the depression that is Kano Swamp.  The kreen of this area avoid this swamp, for its excessive wetness can cause a variety of illnesses in the insectoids, not the least of which is chitin rot.<br><br>Kano swamp houses a vast collection of reptiles not found anywhere else in the savanna.  Travelers can escape some of the insectoid terrors of the grasslands by plunging into Kano Swamp.  However, the predators in its dark interior are as deadly - or deadlier - than most of the predators stalking through the tall grass outside.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.86 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "kazin-s-head",
+      "name": "Kazin's Head",
+      "type": "natural_feature",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "rasgo natural",
+        "crónica-wanderer"
+      ],
+      "description": "Located on a northern rise, Kazin's Heads (Kazin's Chak'sas in kreen) features a series of stone edifices shaped liked giant kreen heads.  The origin of these formations in unknown, but considered to be sacred by the tohr-kreen nation.  The zik-chil have ordered this place off limits to the general public and has an elite guard force of to'ksa gladiators in place to protect it.  All beings who are spotted near Kazin's Chak'sas are given one warning to leave.  Failure to do so means facing the claws of the to'ksa.<br><br>Unknown to the zik-chil, a group of kreen dissidents has managed to gather among the ruins, out of site of the to'ksa.  They call themselves the Kazin'tek and their numbers are unclear.  The Kazin'tek believe that the empire has been corrupted by the current lifestyle of the kreen. For the Kazin'tek, the time has come to return to a simpler way of life, like the one embraced by the nomadic thri-kreen to the south.  They believe that this is the only way the tohr-kreen can survive.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.102 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "kel-s-lot",
+      "name": "Kel's Lot",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "Kel's Lot is the westernmost oasis village in the Glowing Desert.  This Bandit State is unique as it is the only one that isn't simply a glorified slave tribe.  In fact, with the exception of a few individuals, the members of this community have never known the bonds of slavery.  Kel's Lot's members are all dwarves who settled this village decades ago.  The village was already in place when the slave tribes of the other Bandit States began to move in, and it has a long history of using raiding as a means to survive.<br><br>The ancient dwarf named Kel serves as the leader of this Bandit State.  To Kel and his followers, dwarves are the greatest of all races, worthy of ruling the entire world.  Of all the other bandit lords, Kel most closely understands the mul leader Talid of Ravage.  Muls, however, have been rendered impure by their mixed heritage and are considered less than dwarves.  The fact that Talid's tribe prospers above Kel's makes the dwarf bandit lord even more spiteful towards the mul.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.104 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "ket",
+      "name": "Ket",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "The remote village of Ket lies in a dust basin along the trade road that connects Draj to Kurn. Ket is a client village of Draj, sitting on a mud flat completely surrounded by silt. A long narrow causeway provides the only access to the village. The mud flats around Ket make it a lucrative place for farming, and this allows the village to export surplus produce both north and south. A relatively large garrison of soldiers has been stationed here from Draj, and those soldiers protect the village from giants and raiders.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.111 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "ko-teg",
+      "name": "Ko'teg",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "Ko'teg is a satellite village of the kreen city J'eztere.  Similar to its parent city, Ko'teg is dominated by the lawful j'ez.  The black-shelled tohr-kreen use this village as a place to extend J'eztere's influence around Kano Swamp.<br><br>Like other tohr-kreen dwellings, Ko'teg was built using the amber-like secretions of z'ock'n.  Visitors will note that the structures are much more subdued than one will find in J'eztere or Thaythilor, with the intricate buildings staying much closer to the ground in a complex web of domes.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.100 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "koschak-mountains",
+      "name": "Koschak Mountains",
+      "type": "natural_feature",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "rasgo natural",
+        "crónica-wanderer"
+      ],
+      "description": "The Koschak Mountains are one of the only truly dominant ranges in the Crimson Savanna.  The river that runs through the Kano Swamps starts in the heights of these barren thrusts of rock.  The name comes from the kreen language and means \"holder of knowledge in the sky.\"<br><br>The kreen tend to avoid these mountains as they have difficulty with the cold temperatures and heavy moisture that surround the peaks.  Other visitors are welcomed by the roar of the mighty mountain river as soon as they enter the stony peaks.  It is a very difficult climb to reach the mouth of the mountain river, and there are many rumors about what awaits at the end of such a journey.  Some say that it is not only the river that can shake the earth with its mighty roar.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.86 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "kurn",
+      "name": "Kurn",
+      "type": "city_state",
+      "region": "",
+      "importance": 4,
+      "confidence": 1,
+      "tags": [
+        "ciudad-estado",
+        "crónica-wanderer"
+      ],
+      "description": "Kurn sits in a lush meadow on the eastern side of the White Mountains.  The trade route running north out of Draj connects Kurn to the Tyr region, and the city welcomes trade from the south. The city has a successful merchant house called House Azeth, which does trade with aarakocra from Winter Nest, ssurran from Tradenest, and House Tsalaxa from Draj.<br><br>Strangely, much of the city of Kurn is deserted, and very few nobles and templars live in the city nowadays.  Only the merchant quarters and markets seem to hold any life anymore.  The sorcerer-king, Oronis, still holds a position of power within the city, but does not seem to be as involved with affairs of state as the leaders to the south are.  Many inhabitants say that the city is dying, and that without House Azeth, the city would have disappeared long ago.  Dying or not, the city is far from defenseless.  More than one raiding tribe has attempted to take advantage of the \"dying\" city, only to find that its defenders are more than capable of driving them off.<br><br>Dune travelers are common through Kurn, especially since the neighboring state of Eldaarich allows no visitors.  For most travelers, Kurn is the last \"civilized\" stop before heading to the wild lands of the north.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.88 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "l-rax",
+      "name": "L'rax",
+      "type": "city_state",
+      "region": "",
+      "importance": 4,
+      "confidence": 1,
+      "tags": [
+        "ciudad-estado",
+        "crónica-wanderer"
+      ],
+      "description": "L'rax is a large kreen city on the edges of the Kreen Empire, called the G'lathuk, controlled by red chitined j'hol.  L'rax extends its influence throughout the savanna north of Kano Swamp, with its two satellite villages Awthuuk and Dezig acting as bases for pack activity.  The city rises out of the plains, using the amber-like secretions of z'ock'n.  Domes and towers reach to the sky, while walkways and ramps stretch around and between structures.  Most non-kreen find the appearance of the city rather macabre, almost disturbing, with its spires, walkways, and domes, the membranes stretching between some structures, and the presence of overwhelming numbers of blood red kreen.<br><br>J'hol tend to have a slightly evil lifestyle, often acting as military leaders of the G'lathuk.  They also make very competent builders and workers, although other kreen species find them difficult to manage.  It would be best for non-kreen travelers to avoid J'hol or any of its villages as the kreen do not always respond favorably with others.  In most cases, races from the south and east will be captured and taken as slaves for the empire.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.100 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "last-drink",
+      "name": "Last Drink",
+      "type": "oasis",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "oasis",
+        "crónica-wanderer"
+      ],
+      "description": "The oasis village of Last Drink lies in the eastern portion of the Endless Sand Dunes. A pleasant bubbling spring creates a small patch of fertile land, extremely uncommon in the endless sandy waste.  Unfortunately, a tribe of giants have claimed the oasis as their home and prevent any other creature from approaching.<br><br>The chief of the giant clan is named Ogflo, and he led his tribe to this oasis just a few years ago. Driving out the dwarves that used to call it home, Ogflo's tribe are combative and quick to conflict.  They are more likely to attack an approaching group outright than participate in any discussions.<br><br>However, Ogflo respects strength and has been known to open discussions with anyone strong enough to survive his initial attacks.  Under such circumstances, he has been known to be a fair trader for goods and materials. He has no use for coins or other wealth, so purchasing goods is very unlikely. The giants are willing to exchange food and water for materials that align with their current needs, and those needs vary day-to-day.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.117 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "lava-gorge",
+      "name": "Lava Gorge",
+      "type": "natural_feature",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "rasgo natural",
+        "crónica-wanderer"
+      ],
+      "description": "To the east of the Somber Woods, Lava Gorge is a deep depression with sheer cliffs that drop almost 1,500 feet to a lake of molten lava.  The heat rising from the gorge keeps most creatures away from its jagged edges, but those who stray too close often find themselves riding crumbling stone into the boiling rock below.<br><br>Travelers need to avoid getting too close to the gorge. Temperatures within half a mile of the lave lake can be almost double the normal air temperature.  This increase in temperature is not always gradual, and an errant breeze can feel like a blast furnace if it blows across the burning lake of rock.  The intense heat can blister exposed flesh, burn the lungs, and cause even the strongest half-giant to be knocked unconscious.  Only the stout ssurrans can withstand the raging heat of the Lave Gorge, as high temperatures do not seem to bother the reptilian traders.  The ssurrans often use proximity to the  gorge as a means of protection while traveling to and from their common village, Trade Nest.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.82 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "lost-scale",
+      "name": "Lost Scale",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "Lost Scale is the second largest pterran settlement in the Hinterlands.  Originally split from Pterran Vale because of a religious disagreement, Lost Scale now has excellent relations with its neighboring pterran village.<br><br>The pterrans live in lodges that are built over hollowed out pits.  The lodges are made using bones and hides taken from larger the larger creatures wandering the Hinterlands, including mekillots and inixes.  The pterrans farm, hunt, and raise herds.  They are also fine crafters, making some of the best bone weapons in the known world.<br><br>The people of Lost Scale are recognized for their legion of pterrax riders.  The best warriors of the village must travel far to the southeast where the flying creatures reside.  There, they search for pterrax eggs.  Each warrior is responsible for securing one egg, and for raising and training the pterrax that eventually emerges.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.114 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "magehome",
+      "name": "Magehome",
+      "type": "ruin",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "ruinas",
+        "crónica-wanderer"
+      ],
+      "description": "The Wanderer has not explored this location, so no information is available.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.No entries available — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "mak-gyth",
+      "name": "Mak'gyth",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "The Wanderer has not explored this location, so no information is available.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.No entries available — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "malthy",
+      "name": "Malthy",
+      "type": "ruin",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "ruinas",
+        "crónica-wanderer"
+      ],
+      "description": "The Wanderer has not explored this location, so no information is available.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.No entries available — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "moon-runner-s-rest",
+      "name": "Moon Runner's Rest",
+      "type": "oasis",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "oasis",
+        "crónica-wanderer"
+      ],
+      "description": "The Moon Runners are the largest tribe of elves in the Scorched Plateau.  They are led by Jesiv Moonsong, and engage in two major activities: they hunt and they raise kanks.  All of the inhabitants of the area know of the Moon Runners, and most respect them as neighbors who never try to take advantage of a situation.  Some might consider this judicious behavior to be non-elflike, but it fits with Jesiv's philosophy.  He only cares that his hunters have prey and his herders have grazing land and water.  Beyond that, his tribe is more interested in festivals and fun than in raiding or stealing.<br><br>Moon Runner's Rest is an oasis found near the cost of the Silt Sea.  It is held as a holy place by the elven tribe, and the Moom Runners make regular pilgrimages to the site to stock up on water and relax.  As long as the oasis is not harmed or abused, anyone may use it while the Moon Runners are away.  When they return, anyone found at the lush site is attacked and driven off or killed.  This custom relates to the legend of the tribe's founder.  When Moon Runner finished his race across the desert, the oasis was waiting for him.  It was a gift of a water elemental, promised specially to him.  When he arrived, a herder and his animals were watering at the site.  Moon Runner was outraged that the oasis had been used before he could slake his thirst, and he killed them all.  To this day, the tribe continues this tradition, although most of those familiar with the area know this and leave before the tribe returns.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.83 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "new-kurn",
+      "name": "New Kurn",
+      "type": "city_state",
+      "region": "",
+      "importance": 4,
+      "confidence": 1,
+      "tags": [
+        "ciudad-estado",
+        "crónica-wanderer"
+      ],
+      "description": "New Kurn lies in a fertile valley hidden among the White Mountains.  The high, sturdy walls of Fort Protector block the eastern entrance to the hidden valley, while the tall, steep peaks of the White Mountains make other directions inaccessible.  The only approach that might be open is by air, though flying creatures loyal to the king of New Kurn nest in the in the vertical peaks.  The city resembles a vision of utopia.  Airy buildings with tall, elegant spires grace wide, open streets paved with white stone.  Slavery has been abolished, and everyone in the city has the right to participate in a democratic government.  No one goes hungry of thirsty in New Kurn, and no creatures are over-hunted or plants over-harvested.  It is strictly against the laws of New Kurn to practice defiling magic.<br><br>Oronis, the king of New Kurn, is responsible for this magnificent and secret city.  Oronis is a powerful avangion, acting as a force for good in a very harsh world.  He was once a sorcerer-king like the other despots throughout the Tyr region, but he has since changed his path.  He is not yet ready to open the gates of New Kurn to the entire world yet, so his paradise remains a secret for he and his people.  Most of the population has been moved there from Kurn, although a small percentage remain in the old city to maintain the illusion that it still exists.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.88 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "nexus",
+      "name": "Nexus",
+      "type": "ruin",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "ruinas",
+        "crónica-wanderer"
+      ],
+      "description": "Nexus is an academy of the Way located high within a small range of mountains northeast of Kurn.  The hidden site is hard to reach and well-protected by a group of powerful psionicists and their students.  A dwarf named Gulem the Gray runs the academy.  It is said that he constantly scans the reaches of Athas for psionicists worthy to study at Nexus, and that these hopefuls receive mental summons to come to the hidden facility.<br><br>Built within the mountains themselves, Nexus appears as a gray monolith beneath the crimson sun.  Due to safeguards put in place by psionicists who serve the academy, no one can find the actual location if they aren't permitted to.  In fact, making it up the mountain is one of the first tests used to determine the worth of a perspective student.  Everyone that enters Nexus is sworn to absolute secrecy concerning its location and true function.  While studying with Gulem and the other psionic masters, the neophytes must immerse themselves in the principles of the Will and the Way, mind, body and soul.<br><br>It is rumored that Gulem has binding ties to the mysterious Order.  How deep those ties go, if they indeed exist at all, are a known only to Gulem and the Order.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.105 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "nirik",
+      "name": "Nirik",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "Nirik is a small kreen village located just outside the influence of the city of J'eztere.  Nirik is a free city that belongs to no particular kreen nation, so visitors are very likely to find nearly all the species of kreen represented here.  The population is mostly J'ez and To'ksa, which makes for a very interesting blend of lawful and chaotic tendencies, but the settlement has found a way to make the most of pack diversity.<br><br>Like other tohr-kreen dwellings, Nirik was built using the amber-like secretions of z'ock'n.  Visitors will note that the structures are much more subdued than one will find in J'eztere or Thaythilor, with the intricate buildings staying much closer to the ground in a complex web of domes.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.101 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "obsidian-citadel",
+      "name": "Obsidian Citadel",
+      "type": "ruin",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "ruinas",
+        "crónica-wanderer"
+      ],
+      "description": "The Obsidian Citadel lies at the centre of the obsidian plains, a bleak tower rising out of the blackened glass landscape.  It is a terrifying site, a monolithic and spiked structure that rises in defiance of the very land itself.  Very little is known about this place, but stories speak of a powerful undead creature that is patiently amassing an army of undead and other unspeakable horrors.  One day it will turn its gaze outward from the Dead Land, and march upon the living world.  The living are the object of its hatred, and revenge is its only desire.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.120 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "pareth",
+      "name": "Pareth",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "The second largest community of halflings is much smaller than Thamasku, and nearly as old.  In the rhulisti tongue, its name means \"hidden\", which is a fine description for the secluded village.  It is recessed back from the ledge that lies between two large, vertical outcroppings of rock and built even further to the rear, into a wide and shallow cave.<br><br>The village's administrator, Bal-olech, is a retired windrider yearning for the old days.  Since this cannot be because of his advanced age, he lives vicariously through other windriders. Because of this, Pareth has become particularly attractive to windriders.  Bal-olech's administrations have given merchants, safehome keepers, and others encouragement to offer special incentives and services to windriders.  Since this attracts new commerce, the har-etuil of the local clans does not oppose Bal-olech's mandate.<br><br>Pareth is also home to a small, but unique shrine dedicated to the element of air.  A single cleric, named Fen-adan, maintains a wonderous structure that acts as a massive wind organ.  Fen-adan keeps to herself mainly, but welcomes those who wish to listen to the beautiful music that drifts on the air throughout the shrine.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.56 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "pillage",
+      "name": "Pillage",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "The village of Pillage surrounds an oasis located north of the Troll Grave Chasm, in the portion of the Barrier Wastes known as the Scorpion Plains.  While most raiding tribes contain members from a variety of races, the people of Pillage are mostly humanoids, with only a few humans and demihumans thrown in the mix.  A tarek named Chilod leads this Bandit State, commanding a community of tareks, ssurrans, thri-kreen, nikaal, silt runners, some humans and dwarves, a couple of braxat, and a few b'rohgs.  All classes except wizards are welcome among Chilod's ranks, as the tarek has no tolerance for defilers or preservers.<br><br>Only Chilod's intimidating presence holds Pillage together.  The mixture of races makes a volatile brew, but Chilod turns his followers' angry flames outward instead of allowing them to explode within the village.  To accomplish this, the leader has declared war on the nearby village of Plunder, making it a target for his tribe's natural aggressive tendencies.  The raiders from Pillage make periodic excursions into the Scorched Plateau.  There, they seek out ssurran caravans to attack.  The ssurran traders have gone so far as to make a practice of leaving a small caravan behind for raiders while their primary caravan continues on its appointed route.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.103 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "plunder",
+      "name": "Plunder",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "Plunder is a raiding tribe located in the Scorpion Plains, just east of Pillage.  The tribe consists mainly of elves who have been cast out of their tribes for a variety of transgressions, though there are also the assorted collection of muls, humans, and a few humanoids.  The tribe calls itself Evartu's Ghosts, because according to elven tradition those who are cast out of the elf community are dead.<br><br>Evartu leads the Ghosts of Plunder in terrifying, often violent, fashion.  While the tribe attacks any travelers it comes across for sport, the Ghosts especially enjoy striking at the elf tribes of the Scorched Plateau.  When they go on a raid, they wear the trappings of the elven death myths - tattered clothing, burial paint, and weapons decorated with blood.  This adds to their frightful image and often unnerves even the strongest elf warriors.<br><br>When targets are scarce, the raiders of Plunder don't hesitate to attack the dwarf fortress at the nearby oasis of Foul Puddle.  While the mud fortress is formidable, the dwarves usually \"pay tribute\" to Evartu's raiders after a short and bloody battle.  The Ghosts of Plunder are also at war with the neighboring Bandit State of Pillage, so even when the desert is empty of caravans, a battle is always close at hand.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.103 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "pterran-vale",
+      "name": "Pterran Vale",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "Pterran Vale is the largest pterran settlement in southern Athas.  Although the lifestyle of the pterrans can appear primitive to outsiders, they have a very rich culture of traditions which makes them one of the proudest races on Athas.  Each terran village is lead by a Triumvirate, comprised of the eldest tribe member from each of the primary Life Paths (Warrior, Druid, or Psionicist).  Important decisions are brought before the Triumvirate so that their counsel and experience may be used to best guide the village.<br><br>The pterrans live in lodges that are built over hollowed out pits.  The lodges are made using bones and hides taken from larger the larger creatures wandering the Hinterlands, including mekillots and inixes.  The pterrans farm, hunt, and raise herds.  They are also fine crafters, making some of the best bone weapons in the known world.<br><br>Pterran Vale has recently become more involved in matter to the east, as the Great Earthquake and subsequent aftershocks are believed to a call to the pterrans to make contact with the other civilized races.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.114 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "pyreen-grove",
+      "name": "Pyreen Grove",
+      "type": "oasis",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "oasis",
+        "crónica-wanderer"
+      ],
+      "description": "A particularly lush oasis in the scrub plains east of the Thamasku Ledge goes by the name of the Pyreen Grove.  Here, amid a sparkling blue lake and clumps of long-leafed crying trees, legends claim that the pyreen gather to discuss the plight of the world.  If these mysterious beings can truly call a single location in all of Athas \"home\", then this oasis is the place.<br><br>Animals of all type live within the grove, though no intelligent or malignant beings shelter here for long.  Some unseen force drives them out, keeping the oasis pure and pristine.  Visitors who do make a brief stop at the grove are encouraged to treat every living thing there with their utmost respect.  After all, it is said that the pyreen can take any form.<br><br>One of the truly amazing things about the grove is that no defiler is ever permitted to step within its boundaries.  The land twists, heaves, and even cracks open to prevent the defiler from getting closer.  If that fails, powerful creatures emerge from the grove to drive the offending wizard off.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.106 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "ral",
+      "name": "Ral",
+      "type": "ruin",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "ruinas",
+        "crónica-wanderer"
+      ],
+      "description": "The Wanderer has not explored this location, so no information is available.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.No entries available — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "ravage",
+      "name": "Ravage",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "Ravage is one of the largest, best organized, and wealthiest of the Bandit States.  It resembles a large trade village more than a struggling ex-slave community.  Its leader, Talid the bandid lord, has a vision that keeps Ravage on a path of growth and could mean big things for all the Bandit states.  However, few of his fellow bandit lords are willing to cooperate at the level necessary for the mul's plans to succeed.<br><br>Talid wants to unite the Bandit States into one nation that stretches across the entire Barrier Wastes.  Of course, the ex-gladiator from Raam sees himself as the head of the nation of outlaws, a vision that causes other bandit lords lots of trouble.  They don't trust Talid or his grand promises of wealth and power.  When the mul calls for a conclave of bandit lords, most of the tribal leaders answer.  These meetings routinely break down as each leader tries to get the best deal for his or her own tribe.  Talid is never able to get them to understand the value of cooperation or the strength a united front would give the tribes.<br><br>Though all the other Bandit States distrust Ravage in the extreme and are jealous of its wealth, none of the competing tribes are willing to attack the village directly.  As it's extremely well-fortified, direct attacks against the village often end in victory for the defenders and loss of life for the attackers.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.104 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "ravish",
+      "name": "Ravish",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "Ravish is one of the five oasis villages located south of the Troll Grave Chasm, in the section of the Barrier Wastes called the Glowing Desert.  The community based in the village is a typical tribe of raiders -- all ex-slaves from Draj.  The tribe is ruled by Akive, a powerful mul with no leadership abilities beyond great strength, excellent combat prowess, and the ability to intimidate and bully her subordinates.  The village is the poorest, least organized of the Bandit States, and its raiders blunder their attacks as often as they successfully gain plunder.  The targets they strike with most frequency are the halfling villages of the White Mountain forests and Kurn's client villages.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.104 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "sahr-tosh",
+      "name": "Sahr-tosh",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "Known as the city of storms, bitter winds and inclement weather often besiege this village.  The reasons for the savagery of the storms here is simply that this is the most exposed ledge settlement of the rhul-thaun.  Nevertheless, storms are more frequent in this part of the cliffs, and Sahr-tosh was built in an unfortunate location.  The population remains steadfast despite the danger, continuing to brave the harsh weather with each generation.<br><br>Because of an odd effect of Rajaat's Curse from the swamp below, the mist near Sahr-tosh often takes on a rainbow cast.  Colors cascade, pulsing and scintillating for hours at a time, day or night, in patternless, random intervals.<br><br>Rel-anir is the city's administrator and chief life-shaper.  In Sahr-tosh more than anywhere else, the shapers are in complete control.  With Rel-anir as their superior, they wield absolute economic and political power.  Pterrans dwell dangerously close to Sahr-tosh, and villagers require protection as do windriders, climbers, and travelers.  Therefore, many of its citizens follow the warrior trade.  Mercenaries are easy to find here, as well as other less savory freelancers -- many of them seeking less than reputable employment.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.61 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "saragar",
+      "name": "Saragar",
+      "type": "city_state",
+      "region": "",
+      "importance": 4,
+      "confidence": 1,
+      "tags": [
+        "ciudad-estado",
+        "crónica-wanderer"
+      ],
+      "description": "Saragar is a huge city, containing about three times the population of all the other settlements around Marnita combined.  The city is completely automated, and all the drudge work that would normally be completed by lower classes in other cities is taken care of by the minds of ancient criminals trapped forever in shiny obsidian spheres.  Everything from garbage removal to crop tending is completed by the obsidian minions.  The city is ruled by a mysterious group of three called the Mind Lords.  They are revered, and feared, as gods.  The Mind Lords provide everything their people need, and the only price that they ask in return is that everyone must remain happy.<br><br>The Mind Lords are fanatical in their beliefs, and they have persons called lawkeepers to help them maintain order with Saragar and the entire Last Sea region.  Few will speak against the Mind Lords, and the majority of Saragar's citizens are thankful that they have such great leaders.  Without them, Saragar would have succumbed to the Cleansing Wars in the same way that all other cities had fallen.<br><br>In truth, Saragar is not the haven that the Mind Lords would have their citizens believe.  Control is absolute, and personal liberties are secondary to the laws of the state.  A group called the Underground has gathered to oppose the Mind Lords, and their influence is growing.  It is unclear how much longer Saragar will remain the jewel of Marnita, but it seems that change may finally be coming with the tides of the Last Sea.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.13 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "silt-side",
+      "name": "Silt Side",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "Silt Side is a village on the coast of the Sea of Silt.  It belongs to House Azeth, the merchant house of Kurn, and falls under the protection of the city state.  Few raiders enter the area because of frequent patrols sent out by Fort Protector, so the villagers don't worry about attacks from the west.  Giants from the silt aren't even a problem because, as nearby Fort Holz keeps them at bay.  Silt Side handles trade with Eldaarich, which doesn't have a merchant house of its own.  In fact, this village is the only connection with the outside world that Eldaarich maintains.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.90 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "small-home",
+      "name": "Small Home",
+      "type": "ruin",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "ruinas",
+        "crónica-wanderer"
+      ],
+      "description": "Small Home is a set of ruins located on the western edge of the obsidian plain. It is a strange place filled with small buildings covered in tiny decorations. Before the Cleansing Wars, this was the home of beings called gnomes. Now the place has been covered by the same black glass that blankets everything in the Dead Land.  If any living beings approach Small Home, their life forces attracts hordes of short undead creatures.  Most are zombies and skeletons, but there are a few very powerful and unique undead that are not to be trifled with.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.120 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "small-water",
+      "name": "Small Water",
+      "type": "oasis",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "oasis",
+        "crónica-wanderer"
+      ],
+      "description": "The Small Water oasis is home to a savage halfing raiding tribe.  They are just as savage and dangerous as the halflings of the Forest Ridge, actively stalking even intelligent creatures for food and plunder.  These raiders deserve the same levels of fear and respect that travelers in the south give the Black Sand Raiders and the Silt Stalkers, for they revel in mayhem and bloodshed.  It doesn't pay to reason with the Small Water halflings.  They would have the same reaction as a merchant lord would if his erdlu egg suddenly begged for mercy -- they'd eat you anyway.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.83 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "somber-woods",
+      "name": "Somber Woods",
+      "type": "natural_feature",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "rasgo natural",
+        "crónica-wanderer"
+      ],
+      "description": "The Somber Woods clings to the eastern side of a small mountain range and serves as home to related tribes of hunter-gatherers.  This forest is a dark, brooding place shrouded in an ancient cloak of antiquity.  There are, it seems, as many dead or dying trees as there are vibrant, living ones.  Old beyond imagining and twisted with the weight of their years, these trees press in upon themselves, creating a claustrophobic maze.<br><br>Adding to the feeling of desolation, most the creatures and insects living in the forest are nocturnal.  During the day, the woods appear to be deserted and eerily silent.  Travelers could wander for hours without seeing or hearing another living thing.  At night, the opposite is true, and many strange and pale creatures emerge to hunt, prowling the forest with vigor.<br><br>The tribes who live in the Somber Woods have customs similar with Gulg's, focused around the hunt and the forest.  Because of their strange activity cycle, their wilderness skills, and their savage customs, many outlanders fear that the tribe is really a gathering of ancient forest ghosts.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.82 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "south-guard",
+      "name": "South Guard",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "Eldaarich grows the majority of its food in South Guard, as well as in the farms set up around the city-state.  South Guard is protected by regular patrols and permanently stationed templars from Eldaarich, and it also serves as the only conduit into the city-state from the west.  No outsiders are allowed into the village, and the Bandit States have learned to give it a wide berth, lest they become the focus of the delusional and paranoid Daskinor, sorcerer-king of Eldaarich.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.93 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "spoil",
+      "name": "Spoil",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "Spoil, the oasis village located in the southmost corner of the Glowing Desert, is a community of ex-slaves who use the village as a base from which to launch raids on nearby trade routes.  A powerful defiler named Densis leads the tribe.  He's protected by Gorzu and Urtke, two half-giants devoted to the defiler.<br><br>Densis hates Talid of Ravage with a passion.  Talid wishes to unit the Bandit States under one nation, with himself as the leader.  Densis believes that if anyone is going to rule a united bandit nation, it should be him and not some muscle-bound half-breed.  Densis doesn't dare send his smaller and weaker tribe against Talid's, but someday he plans to destroy the mul and take command of the wealthy Ravage.<br><br>While his tribe conducts raids or ambushes members of the other Bandit States, Densis travels north to the ruins of the Buried City.  He has been exploring this site for almost three years, and each time he returns to Spoil, he has a bit more power at his command.  Few of his followers will accompany him to the ruins, for they believe that the place is haunted by terrible spirits and undead creatures.  The fact that Densis regularly communes with these beings makes him more important in their eyes -- and that much more frightening.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.105 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "star-rock",
+      "name": "Star Rock",
+      "type": "natural_feature",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "rasgo natural",
+        "crónica-wanderer"
+      ],
+      "description": "The Wanderer has not explored this location, so no information is available.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.No entries available — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "steaming-water",
+      "name": "Steaming Water",
+      "type": "oasis",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "oasis",
+        "crónica-wanderer"
+      ],
+      "description": "The Wanderer has not explored this location, so no information is available.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.No entries available — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "ter-omak",
+      "name": "Ter-omak",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "The Ter-omak was named for a great warrior, whose name meant day hunter.  When an earthquake weakened the ledges where two halfling villages were located, threatening to destroy them both, Ter-omak led the people to a site he had found while hunting -- a place for a new village.  He coordinated the mass exodus while the har-etuils of the concerned clans were still debating what should be done.  So great was the gratitude of the people that they named the new consolidated community after him.<br><br>Today Ter-omak is a village nicely placed in the center of the settled portion of the Jagged Cliffs.  The community is a hub of climber and windrider traffic, and also supports several safehomes to indulge the needs of non-halfling travelers.<br><br>Strife exists in Ter-omak, as the two major clans in the village, the Flahd and the Bein, continue to feud.  The reasons for conflict are diverse and number in the hundreds, and keep the lawkeepers constantly on guard.  Although most the time the feud restrains itself to arguments and petty vandalism, occasionally more serious violence erupts.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.65 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "thamasku",
+      "name": "Thamasku",
+      "type": "city_state",
+      "region": "",
+      "importance": 4,
+      "confidence": 1,
+      "tags": [
+        "ciudad-estado",
+        "crónica-wanderer"
+      ],
+      "description": "Thamasku is the single exception to many of the rhul-thaun rules.  While most halfling communities are villages on the ledges and in the crevices along the cliff side, Thamasku is a bustling lakeside city, sheltered within a mighty forest.  Thamasku is extremely ancient, built when the world was young.  The name Thamasku is an ancient rhulisti word, so archaic that the meaning has long been forgotten.  Most of the buildings are organically grown towers, although there are some structures made of stone and wood.<br><br>Thamasku features the strongest economy of the halfing settlements along the Jagged Cliffs, and the center of rhul-thaun society.  The size and location of the city has provided it with great protection, and the life-shapers have created some incredible systems to deal with water, waste, and transportation.  The city boasts three market-places that sell all kinds of wares, and two large elemental temples.  Because of the comforts that the city affords them, the halflings of Thamasku have more time to devote to the theater and the arts.  The city is also the home of the greatest life-shapers, and it is said that the Sanctuary of Thamasku holds some of the most powerful and ancient artifacts on all of Athas.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.50 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "thaythilor",
+      "name": "Thaythilor",
+      "type": "city_state",
+      "region": "",
+      "importance": 4,
+      "confidence": 1,
+      "tags": [
+        "ciudad-estado",
+        "crónica-wanderer"
+      ],
+      "description": "Thaythilor is a rather small city of tohr-kreen located just north of the Tyr region.  It is where the zik-trin are created.  Like other tohr-kreen cities, Thaythilor was built using the amber-like secretions of z'ock'n.  Some buildings are a hundred feet tall or more, and the translucent amber reflects the sun in patterns on the sand.  Domes and towers reach to the sky, while walkways and ramps stretch around and between structures.  Most non-kreen find the appearance of the city rather macabre, almost disturbing, with its spires, walkways, and domes, the membranes stretching between some structures, and the presence of overwhelming numbers of kreen in a variety of colors.  The sight of such a city triggers racial memories in the thri-kreen, however, causing them to recognize it as a safe haven, a home.<br><br>Thaythilor is a free city that belongs to no particular kreen nation.  The population is mostly Jeral and To'ksa, but has elements of each of the other kreen species.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.82 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "the-battle-wall",
+      "name": "The Battle Wall",
+      "type": "natural_feature",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "rasgo natural",
+        "crónica-wanderer"
+      ],
+      "description": "A few miles into the Great Rift, the kreen have built a fortified wall and stronghold that they call Si'jidzak.  Literally translated as \"the Battle Wall\", the Si'jidzak is made of sand and the exuded resins of insect slaves.  The wall is nearly 500 feet tall.  The sand has been piled and shaped, then coated with a hard, smooth, crystalline material.  A rounded building constructed in the same fashion stands against the wall.  It's about 40 feet tall, serving as a sentry beside a pair of massive gates.<br><br>The Si'jidzak serves two functions.  First, it allows the kreen to monitor what gets to enter the Rift, thereby keeping the creatures of the swamp from migrating into the highlands.  Second, it serves as a base for exploration teams sent into the highlands to discover the lay of the land.  Additionally, the warriors assigned to protect the Battle Wall are also on hand to keep highlanders from invading the Crimson Savanna.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.115 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "trade-nest",
+      "name": "Trade Nest",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "The ssurrans maintain a common village called Trade Nest, that's governed by the ancient OverChief of all ssurran tribes.  The OverChief Ssuss'ess is as proud of his traders as any merchant house patriarch, though he takes great offense to anyone who calls his people \"primitive\".  If travelers don't mind being bombarded by hagglers and deal-makers, then Trade Nest can be a welcome respite from the harshness of the Scorch Plateau.  For a price, supplies, information, and even guides can be acquired in this ramshackle village.<br><br>Ssurran guides make excellent companions for travelers crossing the Scorched Plateau, and ssurran caravans can be life-savers when all other options have been exhausted.  They can appear at any time, emerging from a canyon or walking out of sandstorm with a load of wares. The quality might not be what those from the Tyr Region are used to, but the water and food they carry can sustain thirsty and hungry travelers until they reach their destination.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.85 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "vanishing-lake",
+      "name": "Vanishing Lake",
+      "type": "water_body",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "masa de agua",
+        "crónica-wanderer"
+      ],
+      "description": "The Vanishing Lake is more than 20 miles long and 5 miles wide at the peak of its cycle.  The lake, as its name implies, actually vanishes as time goes by.  Then, when conditions come full circle, it returns.  The open water of the lake is surrounded by a silty mire that seems to consume the lake as the cycle progresses.  Even when the water disappears, the silty mire remains, forming one of the most fertile mud flats on all of Athas.<br><br>Parts of the mud flat have a crust solid enough to support villages and crop fields.  Humans, dwarves, and giants live in the region, and the druid known only as the Old One guards the lake from defilers seeking to spoil the land.  The humans and dwarves have mastered the use of silt skimmers to navigate between the silt islands, whereas the giants prefer to wade.  Balic has many small trade routes to the Vanishing Lake, especially when it is at the peak of its cycle.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.112 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "vir-rath",
+      "name": "Vir-rath",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "The halfling village of Vir-rath is named for the odd shape of the ledge on which it is built.  In fact, it really isn't built upon a ledge at all, but rather at the top of a pinnacle of rock that thrusts upward from the cliff slope.  The pinnacle top consists of three separate levels and the village is built on these.<br><br>One of the greatest demands on the villagers of Vir-rath is the accessability to water.  Windriders and climbers need to haul water up from nearby pools and waterfalls.  Thousands of years ago, life-shaped engines pumped water up to the top peak in huge, organic pipes.  Now, however, the pool has long since dried up and the engines have fallen into disrepair.  No living shaper remembers how to repair them and new ones are just too expensive.<br><br>No where else in rhul-thaun society are class distinctions as apparent as in Vir-rath.  The three levels of the village are inhabited by the poor, the middle class, and the wealthy in ascending order.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.66 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "winter-nest",
+      "name": "Winter Nest",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "Winter Nest is the village home of a large tribe of aarakocra, nestled among the frozen peaks of the White Mountains.  The village is a mixture of ice, stone, and shaped bricks.  The combination creates an amazing spectacle that is unlike any other place in Athas.  The use of ice alone makes it a fascinating place.  Similarly to the settlements of the halfings along the Jagged Cliffs, Winter Nest is constructed more vertically than horizontally.  As a home to flying creatures, it doesn't matter where doors are placed, and walkways and ladders are not necessary.<br><br>The aarakocra call themselves \"silvaarak\", the people of the silver wing.  These bird people consider themselves to be superior to all other creatures due to their ability to fly above the world.  Only rarely do they leave Winter Nest, usually on trade missions to Kurn.  The threat of the Bandit States and Eldaarich seem to make this a prudent strategy, but many of the young bird-people want to explore the world beyond the snowy peaks.  The leader, Traaka, prefers to keep the village separate from the lower lands, but the voices of the young aarakocra are persistent.  She is desperately trying to find a policy that allows such exploration without endangering the whole community.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.107 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "wrath",
+      "name": "Wrath",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "The village of Wrath, led by Lady Cesti, features a mix of humans and demihumans living in a fantasy of their leader's construction.  Cesti, an ex-gladiator from Urik, grew up enamored with the nobles who owned her.  Even in the slave pens of Urik, she withdrew into dreams of being a noble to escape the tribulations of the arena.  When she gained her freedom and established Wrath, she did so with the illusion that she was of noble birth.<br><br>The village is set up along the lines of a noble house - or at least Cesti's version of one.  All of her advisors and raiding captains have noble titles, and the parties that follow a successful raid look more like a noble festival than a slave tribe celebration.  Most of Cesti's followers enjoy the illusion that the ex-gladiator has created, though a few sometimes wonder about her sanity.  Lady Cesti (as she prefers to be addressed) can often be heard talking about returning to Urik to participate in one noble function or another, and she appears to believe that Hamanu himself will grant her an audience if she so desires.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.104 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "yihn-tol",
+      "name": "Yihn-tol",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "The halfling village of Yihn-tol gained the name Climber's Home in times past when it was the center for the climbing profession.  While that role has diminished, Yihn-tol is still a successful village boasting a proud and robust population.  It is further situated down the cliff side than any other halfling settlement on the Jagged Cliffs.  This presents two challenges to the community, both emanating from the dark swamp at the base of the cliffs: the evil magics of Rajaat's Curse, and the monsters that call the swamp home.  Because of these threats, Yihn-tol is the only truly fortified halfling community.  Walls of stone and other defenses protect the village.  A large, well-armed garrison of vher-elus stands vigilant and ready to repel any attack.<br><br>There is no life-shaper sanctuary in Yihn-tol.  The shapers refuse to risk either themselves of their grow chambers to the tender mercies of Rajaat's Curse and swamp-born monsters.  Life-shapers are flown in when a new building is to be created, and leave immediately upon completion.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.63 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
+    },
+    {
+      "id": "z-aythar",
+      "name": "Z'aythar",
+      "type": "village",
+      "region": "",
+      "importance": 2,
+      "confidence": 1,
+      "tags": [
+        "aldea",
+        "crónica-wanderer"
+      ],
+      "description": "Z'aythar is a satellite village of the kreen city J'eztere.  Similar to its parent city, Z'aythar is dominated by the lawful j'ez.  The black-shelled tohr-kreen use this village as a place to extend J'eztere's influence and maintain a relationship with the non-imperial city of Thaythilor.<br><br>Like other tohr-kreen dwellings, Z'aythar was built using the amber-like secretions of z'ock'n.  Visitors will note that the structures are much more subdued than one will find in J'eztere or Thaythilor, with the intricate buildings staying much closer to the ground in a complex web of domes.",
+      "coordinates": null,
+      "source": "The Wanderer's Chronicle (Athas.org), p.100 — vía DigitalWanderer DarkSun Atlas",
+      "provenance": "catalogue"
     }
   ]
 }

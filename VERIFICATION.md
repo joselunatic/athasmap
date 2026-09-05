@@ -54,3 +54,10 @@ Los snapshots, archivos JSON de prueba y capturas de QA están ignorados para co
 No hay coordenadas canónicas inventadas, red curada ni algoritmo de navegación. La escala y los ritmos son supuestos de campaña editables. El intercambio es JSON propio, no GeoJSON terrestre. Persistencia local por navegador/origen, sin sincronización, cifrado o servicio offline. Las condiciones de viaje se aplican globalmente al trayecto. No se ha realizado auditoría de lector de pantalla ni validación en Safari/Firefox o dispositivos físicos.
 
 La navegación con flechas y Enter está implementada para colocar el centro del mapa con teclado; no se ha realizado una auditoría integral de todos los recorridos de foco.
+
+## Ampliación del catálogo (6 de septiembre de 2026)
+
+- `poi.json` pasa de 42 a **114 POIs**: se añaden 72 registros de *The Wanderer's Chronicle* (Athas.org) extraídos del DarkSun Atlas de Digital Wanderer. Los 42 originales no se modifican; las entradas nuevas citan su fuente en `source` y entran como Pendientes (`coordinates: null`). Extracción y criterios en `output/dw-extract/README.md` (carpeta ignorada por git).
+- `npm test`: 15 pruebas superadas con el nuevo conteo (114).
+- `npm run typecheck`, `npm run lint`, `npm run build`: sin errores.
+- Backup de la fusión: `poi.json.bak-20260906-005551`.

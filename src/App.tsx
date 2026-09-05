@@ -1063,7 +1063,7 @@ export default function App() {
                 </label>
                 <h3>Datos y procedencia</h3>
                 <p className="description">
-                  Los 42 registros iniciales proceden de poi.json. Sus
+                  Los 114 registros iniciales proceden de poi.json. Sus
                   posiciones están vacías. Las ubicaciones y notas que añadas
                   pertenecen a tu campaña.
                 </p>

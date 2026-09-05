@@ -19,9 +19,9 @@ import {
 } from "./domain";
 
 describe("Catálogo y validación", () => {
-  it("migra los 42 registros sin fabricar posiciones ni perder metadatos", () => {
+  it("migra los 114 registros sin fabricar posiciones ni perder metadatos", () => {
     const state = initialState();
-    expect(state.pois).toHaveLength(42);
+    expect(state.pois).toHaveLength(114);
     expect(state.pois.every((p) => p.coordinates === null)).toBe(true);
     const tyr = state.pois.find((p) => p.id === "tyr")!;
     expect(tyr.tags).toContain("ciudad-libre");

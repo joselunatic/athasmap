@@ -34,7 +34,7 @@ En móvil, «Abrir herramientas» muestra el panel y «Ver mapa» lo oculta. Ini
 
 ## Procedencia y coordenadas
 
-Los originales `poi.json`, `routes.geojson`, `tiles/`, `tiles_new/` y `scripts/` no se modifican. `initialState()` migra determinísticamente los **42 POIs**, conserva sus campos y añade valores por defecto. Todos empiezan sin coordenadas. Ninguna posición de campaña se presenta como canónica. «Catálogo original» indica procedencia, no verificación editorial independiente.
+Los originales `routes.geojson`, `tiles/`, `tiles_new/` y `scripts/` no se modifican. El catálogo `poi.json` conserva sus 42 registros iniciales y añade 72 más procedentes de *The Wanderer's Chronicle* (Athas.org), extraídos del DarkSun Atlas de Digital Wanderer (5 de septiembre de 2026; ver `output/dw-extract/`). `initialState()` migra determinísticamente los **114 POIs**, conserva sus campos y añade valores por defecto. Todos empiezan sin coordenadas. Ninguna posición de campaña se presenta como canónica. «Catálogo original» indica procedencia, no verificación editorial independiente; las entradas de la remesa citan su fuente en el campo `source`.
 
 El composite mide 4608 × 3328 píxeles; la caja no vacía ocupa **4589 × 3080** desde la esquina superior izquierda. El resto es relleno.
 
