@@ -78,7 +78,7 @@ export default function AtlasMap(props: Props) {
     m.fitBounds(bounds, { padding: [18, 18] });
     L.control
       .zoom({
-        position: "topright",
+        position: "bottomright",
         zoomInTitle: "Acercar",
         zoomOutTitle: "Alejar",
       })

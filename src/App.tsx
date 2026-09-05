@@ -268,6 +268,18 @@ export default function App() {
   return (
     <div className="app">
       <header className="topbar">
+        <button
+          className="sheet-toggle"
+          aria-expanded={mobileOpen}
+          aria-controls="atlas-sheet"
+          onClick={() => setMobileOpen((v) => !v)}
+        >
+          <span aria-hidden="true" className="sheet-toggle-icon">
+            {mobileOpen ? "✕" : "☰"}
+          </span>
+          <span className="sheet-toggle-label">Lugares</span>
+          <b className="sheet-toggle-count">{state.pois.length}</b>
+        </button>
         <a
           className="brand"
           href="#"
@@ -283,9 +295,6 @@ export default function App() {
             ATHAS<small>ATLAS DEL SOL OSCURO</small>
           </span>
         </a>
-        <div className="edition">
-          TABLELANDS <span>/</span> CUADERNO DE CAMPAÑA
-        </div>
         <div className="header-actions">
           <span className="save-status" role="status">
             <i
@@ -303,16 +312,11 @@ export default function App() {
           >
             Datos <span aria-hidden="true">↗</span>
           </button>
-          <button
-            className="mobile-toggle"
-            onClick={() => setMobileOpen((v) => !v)}
-          >
-            {mobileOpen ? "Ver mapa" : "Abrir herramientas"}
-          </button>
         </div>
       </header>
       <div className="workspace">
         <aside
+          id="atlas-sheet"
           className={`sidebar ${mobileOpen ? "open" : ""}`}
           aria-label="Herramientas del atlas"
         >
@@ -1144,10 +1148,6 @@ export default function App() {
             onSelect={select}
             onError={setError}
           />
-          <div className="map-title">
-            <span className="eyebrow">EL MAR DE ARENA Y MÁS ALLÁ</span>
-            <strong>Las Tablelands</strong>
-          </div>
           <div className="map-tools">
             <button
               title="Volver a vista general"
@@ -1222,7 +1222,7 @@ export default function App() {
             </div>
           )}
           <div className="map-bottom">
-            <span>◈ MAPA ILUSTRADO DE ATHAS</span>
+            <span>◈ MAPA ILUSTRADO DE ATHAS · LAS TABLELANDS</span>
             <span>
               {experimental
                 ? "TRAZOS EXPERIMENTALES · SIN NAVEGACIÓN"
