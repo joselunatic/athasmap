@@ -1,0 +1,9 @@
+node_modules/
+dist/
+*.tsbuildinfo
+output/
+.playwright-cli/
+# Legado sin uso por build/dev ni por src/scripts
+tiles/
+# Composite de referencia (33 MB, no entra en dist/ ni lo usa el código)
+tiles_new/zoom5_composite.png

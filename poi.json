@@ -1,0 +1,488 @@
+{
+  "world": "dark_sun_tablelands_2e",
+  "version": 1,
+  "categories": [
+    { "id": "city_state", "label": "Ciudad-estado" },
+    { "id": "city", "label": "Ciudad" },
+    { "id": "town", "label": "Pueblo / asentamiento grande" },
+    { "id": "village", "label": "Aldea / asentamiento menor" },
+    { "id": "fortress", "label": "Fortaleza / fuerte" },
+    { "id": "oasis", "label": "Oasis" },
+    { "id": "ruin", "label": "Ruinas" },
+    { "id": "outpost", "label": "Puesto avanzado / caravansar" },
+    { "id": "region", "label": "Región / área amplia" },
+    { "id": "natural_feature", "label": "Rasgo natural (montañas, llanuras…)" },
+    { "id": "water_body", "label": "Mar / lago / estuario" },
+    { "id": "route", "label": "Ruta / carretera" }
+  ],
+  "pois": [
+    {
+      "id": "tyr",
+      "name": "Tyr",
+      "type": "city_state",
+      "region": "Tablelands occidental",
+      "importance": 5,
+      "confidence": 3,
+      "tags": ["capital", "ciudad-libre"],
+      "description": "Ciudad-estado situada al pie de las Ringing Mountains, punto de partida clásico de campañas.",
+      "coordinates": null
+    },
+    {
+      "id": "urik",
+      "name": "Urik",
+      "type": "city_state",
+      "region": "Norte de las Tablelands",
+      "importance": 5,
+      "confidence": 3,
+      "tags": ["ciudad-estado", "templos"],
+      "description": "Ciudad-estado fortificada al norte de las Tablelands, conocida por su disciplina militar.",
+      "coordinates": null
+    },
+    {
+      "id": "nibenay",
+      "name": "Nibenay",
+      "type": "city_state",
+      "region": "Este de las Tablelands",
+      "importance": 5,
+      "confidence": 3,
+      "tags": ["ciudad-estado", "templos", "bosques de piedra"],
+      "description": "La Ciudad de la Espina, oculta entre formaciones rocosas al este de la región central.",
+      "coordinates": null
+    },
+    {
+      "id": "gulg",
+      "name": "Gulg",
+      "type": "city_state",
+      "region": "Sureste de las Tablelands",
+      "importance": 5,
+      "confidence": 3,
+      "tags": ["ciudad-estado", "bosque", "tribal"],
+      "description": "Ciudad-estado enclavada en un bosque de madera viva, gobernada por la Oba.",
+      "coordinates": null
+    },
+    {
+      "id": "raam",
+      "name": "Raam",
+      "type": "city_state",
+      "region": "Noreste de las Tablelands",
+      "importance": 5,
+      "confidence": 3,
+      "tags": ["ciudad-estado", "inestabilidad"],
+      "description": "Gran ciudad-estado al borde de la Sea of Silt, famosa por su caos interno.",
+      "coordinates": null
+    },
+    {
+      "id": "draj",
+      "name": "Draj",
+      "type": "city_state",
+      "region": "Noreste extremo",
+      "importance": 5,
+      "confidence": 3,
+      "tags": ["ciudad-estado", "sacrificios"],
+      "description": "Ciudad-estado guerrera al extremo noreste de las Tablelands, ligada a sacrificios rituales.",
+      "coordinates": null
+    },
+    {
+      "id": "balic",
+      "name": "Balic",
+      "type": "city_state",
+      "region": "Sur del Estuario de la Lengua Bifurcada",
+      "importance": 5,
+      "confidence": 3,
+      "tags": ["ciudad-estado", "puerto", "mercantil"],
+      "description": "Ciudad-estado portuaria sobre el Estuary of the Forked Tongue, centro de comercio marítimo de la región.",
+      "coordinates": null
+    },
+
+    {
+      "id": "altaruk",
+      "name": "Altaruk",
+      "type": "town",
+      "region": "Entre Tyr y Balic",
+      "importance": 4,
+      "confidence": 3,
+      "tags": ["puesto-comercial", "caravanas"],
+      "description": "Importante puesto comercial y fortaleza a mitad de camino entre Tyr y Balic.",
+      "coordinates": null
+    },
+    {
+      "id": "kled",
+      "name": "Kled",
+      "type": "village",
+      "region": "Cerca de Tyr",
+      "importance": 3,
+      "confidence": 3,
+      "tags": ["enano", "tradicional"],
+      "description": "Poblado enano ancestral situado al norte de Tyr.",
+      "coordinates": null
+    },
+    {
+      "id": "ledopolus_north",
+      "name": "North Ledopolus",
+      "type": "town",
+      "region": "Estuary of the Forked Tongue",
+      "importance": 3,
+      "confidence": 3,
+      "tags": ["puente", "caravanas"],
+      "description": "Asentamiento al norte del estuario, uno de los dos extremos del gran puente de Ledopolus.",
+      "coordinates": null
+    },
+    {
+      "id": "ledopolus_south",
+      "name": "South Ledopolus",
+      "type": "town",
+      "region": "Estuary of the Forked Tongue",
+      "importance": 3,
+      "confidence": 3,
+      "tags": ["puente", "caravanas"],
+      "description": "Asentamiento al sur del estuario, conectado a su gemelo por el puente de Ledopolus.",
+      "coordinates": null
+    },
+    {
+      "id": "graks_pool",
+      "name": "Grak's Pool",
+      "type": "town",
+      "region": "Entre Raam y Urik",
+      "importance": 3,
+      "confidence": 3,
+      "tags": ["oasis", "mercado"],
+      "description": "Pequeña ciudad alrededor de un oasis, punto habitual de paso entre Raam y Urik.",
+      "coordinates": null
+    },
+    {
+      "id": "celik",
+      "name": "Celik",
+      "type": "town",
+      "region": "Sur de las Tablelands",
+      "importance": 3,
+      "confidence": 2,
+      "tags": ["asentamiento", "frontera"],
+      "description": "Asentamiento meridional en el borde de las Endless Sand Dunes.",
+      "coordinates": null
+    },
+    {
+      "id": "walis",
+      "name": "Walis",
+      "type": "town",
+      "region": "Suroeste de las Tablelands",
+      "importance": 3,
+      "confidence": 2,
+      "tags": ["minería", "aislado"],
+      "description": "Población relativamente aislada en el suroeste de la región.",
+      "coordinates": null
+    },
+
+    {
+      "id": "bodach",
+      "name": "Bodach",
+      "type": "ruin",
+      "region": "Sur de las Tablelands",
+      "importance": 4,
+      "confidence": 3,
+      "tags": ["ruinas", "ciudad-muerta"],
+      "description": "Ruinas de una antigua ciudad, asociada a la historia más oscura de Athas.",
+      "coordinates": null
+    },
+    {
+      "id": "giustenal",
+      "name": "Giustenal",
+      "type": "ruin",
+      "region": "Sur del Estuary of the Forked Tongue",
+      "importance": 4,
+      "confidence": 3,
+      "tags": ["ruinas", "ciudad-hundida"],
+      "description": "Ruinas de la ciudad de Giustenal, parcialmente hundida y ligada a criaturas del Mar de Cieno.",
+      "coordinates": null
+    },
+
+    {
+      "id": "oasis_tyr",
+      "name": "Oasis of Tyr",
+      "type": "oasis",
+      "region": "Al sureste de Tyr",
+      "importance": 3,
+      "confidence": 2,
+      "tags": ["agua", "caravanas"],
+      "description": "Oasis situado al sureste de Tyr, escala habitual de caravanas.",
+      "coordinates": null
+    },
+    {
+      "id": "oasis_kemalok",
+      "name": "Oasis of Kemalok",
+      "type": "oasis",
+      "region": "Cerca de Kled",
+      "importance": 3,
+      "confidence": 2,
+      "tags": ["agua", "enanos"],
+      "description": "Oasis relacionado con las historias de Kemalok y los enanos de la región.",
+      "coordinates": null
+    },
+    {
+      "id": "lost_oasis",
+      "name": "Lost Oasis",
+      "type": "oasis",
+      "region": "Sur de las Tablelands",
+      "importance": 3,
+      "confidence": 2,
+      "tags": ["oculto", "aventuras"],
+      "description": "Oasis aislado en las arenas del sur, de ubicación y acceso peligrosos.",
+      "coordinates": null
+    },
+    {
+      "id": "ledopolus_oasis",
+      "name": "Ledopolus Oasis",
+      "type": "oasis",
+      "region": "Entorno de Ledopolus",
+      "importance": 2,
+      "confidence": 2,
+      "tags": ["agua", "caravanas"],
+      "description": "Oasis cercano al complejo de Ledopolus y su puente.",
+      "coordinates": null
+    },
+    {
+      "id": "dragons_bowl_oasis",
+      "name": "Dragon's Bowl Oasis",
+      "type": "oasis",
+      "region": "Dragon's Bowl",
+      "importance": 3,
+      "confidence": 2,
+      "tags": ["cráter", "agua"],
+      "description": "Pequeño oasis en el interior o entorno del cráter conocido como Dragon's Bowl.",
+      "coordinates": null
+    },
+
+    {
+      "id": "fort_inix",
+      "name": "Fort Inix",
+      "type": "fortress",
+      "region": "Sur de Tyr",
+      "importance": 3,
+      "confidence": 2,
+      "tags": ["caravanas", "defensa"],
+      "description": "Fuerte situado al sur de Tyr, protegiendo una ruta transitada por caravanas.",
+      "coordinates": null
+    },
+    {
+      "id": "fort_skonz",
+      "name": "Fort Skonz",
+      "type": "fortress",
+      "region": "Entre Tyr y Urik",
+      "importance": 2,
+      "confidence": 2,
+      "tags": ["militar"],
+      "description": "Fortificación de tamaño medio en una de las rutas entre Tyr y Urik.",
+      "coordinates": null
+    },
+    {
+      "id": "fort_vordon",
+      "name": "Fort Vordon",
+      "type": "fortress",
+      "region": "Rutas comerciales centrales",
+      "importance": 3,
+      "confidence": 2,
+      "tags": ["casa-mercantil", "caravanas"],
+      "description": "Fortaleza vinculada a una poderosa casa mercantil, vigilando el comercio caravanero.",
+      "coordinates": null
+    },
+    {
+      "id": "fort_crescent",
+      "name": "Fort Crescent",
+      "type": "fortress",
+      "region": "Zona central de las Tablelands",
+      "importance": 2,
+      "confidence": 2,
+      "tags": ["defensa"],
+      "description": "Fuerte estratégico en la región central, vigilando rutas en el desierto.",
+      "coordinates": null
+    },
+    {
+      "id": "fort_melidor",
+      "name": "Fort Melidor",
+      "type": "fortress",
+      "region": "Sur de la región central",
+      "importance": 2,
+      "confidence": 2,
+      "tags": ["guarnición"],
+      "description": "Pequeña fortaleza que protege un cruce de rutas en la región meridional.",
+      "coordinates": null
+    },
+    {
+      "id": "fort_walis",
+      "name": "Fort Walis",
+      "type": "fortress",
+      "region": "Suroeste",
+      "importance": 2,
+      "confidence": 2,
+      "tags": ["defensa", "minas"],
+      "description": "Fortificación próxima a la población de Walis.",
+      "coordinates": null
+    },
+    {
+      "id": "fort_eastwatch",
+      "name": "Fort Eastwatch",
+      "type": "fortress",
+      "region": "Este de las Tablelands",
+      "importance": 2,
+      "confidence": 2,
+      "tags": ["frontera"],
+      "description": "Fuerte que vigila los movimientos hacia el este y la Sea of Silt.",
+      "coordinates": null
+    },
+
+    {
+      "id": "forest_ridge",
+      "name": "Forest Ridge",
+      "type": "region",
+      "region": "Oeste de las Tablelands",
+      "importance": 4,
+      "confidence": 3,
+      "tags": ["bosque", "región"],
+      "description": "Gran cordillera cubierta de vegetación al oeste de las Tablelands.",
+      "coordinates": null
+    },
+    {
+      "id": "ringing_mountains",
+      "name": "Ringing Mountains",
+      "type": "natural_feature",
+      "region": "Oeste",
+      "importance": 4,
+      "confidence": 3,
+      "tags": ["montañas"],
+      "description": "Cordillera montañosa que separa las Tablelands de las tierras exteriores.",
+      "coordinates": null
+    },
+    {
+      "id": "sea_of_silt",
+      "name": "Sea of Silt",
+      "type": "water_body",
+      "region": "Este",
+      "importance": 5,
+      "confidence": 3,
+      "tags": ["mar-de-cieno"],
+      "description": "Enorme mar de ceniza y polvo al este de las Tablelands.",
+      "coordinates": null
+    },
+    {
+      "id": "estuary_forked_tongue",
+      "name": "Estuary of the Forked Tongue",
+      "type": "water_body",
+      "region": "Sur-este de la región central",
+      "importance": 4,
+      "confidence": 3,
+      "tags": ["estuario", "comercio"],
+      "description": "Estuario que conecta el interior de las Tablelands con la Sea of Silt, junto a Balic.",
+      "coordinates": null
+    },
+    {
+      "id": "great_ivory_plain",
+      "name": "Great Ivory Plain",
+      "type": "region",
+      "region": "Sur-este de la Tablelands central",
+      "importance": 3,
+      "confidence": 3,
+      "tags": ["llanura"],
+      "description": "Amplia llanura clara que ocupa gran parte del cuadrante suroriental del mapa.",
+      "coordinates": null
+    },
+    {
+      "id": "alluvial_sand_wastes",
+      "name": "Great Alluvial Sand Wastes",
+      "type": "region",
+      "region": "Centro-sur",
+      "importance": 3,
+      "confidence": 3,
+      "tags": ["desierto"],
+      "description": "Región de arenas profundas al sur de la zona central.",
+      "coordinates": null
+    },
+    {
+      "id": "storms_of_the_forest",
+      "name": "Storms of the Forest",
+      "type": "region",
+      "region": "Sur de la Great Ivory Plain",
+      "importance": 2,
+      "confidence": 2,
+      "tags": ["desierto", "tormentas"],
+      "description": "Área de tormentas de arena constante al sur de la Great Ivory Plain.",
+      "coordinates": null
+    },
+    {
+      "id": "endless_sand_dunes",
+      "name": "Endless Sand Dunes",
+      "type": "region",
+      "region": "Sur extremo",
+      "importance": 3,
+      "confidence": 3,
+      "tags": ["desierto"],
+      "description": "Mares interminables de dunas en el extremo sur del mapa.",
+      "coordinates": null
+    },
+    {
+      "id": "dragons_bowl",
+      "name": "Dragon's Bowl",
+      "type": "natural_feature",
+      "region": "Norte de la Great Ivory Plain",
+      "importance": 4,
+      "confidence": 3,
+      "tags": ["cráter"],
+      "description": "Enorme cráter circular visible en el centro-norte del mapa.",
+      "coordinates": null
+    },
+    {
+      "id": "sunwarped_lands",
+      "name": "Sunwarped Lands",
+      "type": "region",
+      "region": "Este de la Sea of Silt interior",
+      "importance": 2,
+      "confidence": 2,
+      "tags": ["terreno-mutado"],
+      "description": "Región deformada por la magia y el sol, de terreno extraño.",
+      "coordinates": null
+    },
+    {
+      "id": "silt_archipelago",
+      "name": "Silt Archipelago",
+      "type": "region",
+      "region": "Sea of Silt",
+      "importance": 2,
+      "confidence": 2,
+      "tags": ["islas", "cieno"],
+      "description": "Grupo de islas y bancos de ceniza dentro de la Sea of Silt.",
+      "coordinates": null
+    },
+
+    {
+      "id": "great_road",
+      "name": "The Great Road",
+      "type": "route",
+      "region": "Eje Tyr–Urik–Raam",
+      "importance": 4,
+      "confidence": 3,
+      "tags": ["caravanas"],
+      "description": "Ruta principal en rojo que conecta las grandes ciudades-estado del norte y centro.",
+      "coordinates": null
+    },
+    {
+      "id": "balic_trade_road",
+      "name": "Balic Trade Road",
+      "type": "route",
+      "region": "Eje Tyr–Altaruk–Balic",
+      "importance": 3,
+      "confidence": 3,
+      "tags": ["comercio"],
+      "description": "Ruta caravanera que une Tyr con Balic pasando por Altaruk.",
+      "coordinates": null
+    },
+    {
+      "id": "raam_trade_routes",
+      "name": "Raam Trade Routes",
+      "type": "route",
+      "region": "Alrededor de Raam",
+      "importance": 2,
+      "confidence": 2,
+      "tags": ["caravanas"],
+      "description": "Red de rutas que conectan Raam con Draj, Nibenay y el interior.",
+      "coordinates": null
+    }
+  ]
+}
