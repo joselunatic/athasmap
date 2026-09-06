@@ -3,6 +3,12 @@ import ConfirmDialog from "./ConfirmDialog";
 import AtlasMap from "./AtlasMap";
 import PoiEditor from "./PoiEditor";
 import {
+  loadRemoteState,
+  RemoteAuthError,
+  RemoteConflictError,
+  saveRemoteState,
+} from "./remoteState";
+import {
   categories,
   symbols,
   initialState,
@@ -76,6 +82,11 @@ export default function App() {
     }
   });
   const storageSnapshot = useRef<string | null>(null);
+  const remoteRevision = useRef(0);
+  const remotePassword = useRef<string | null>(null);
+  const pendingRemoteState = useRef<AtlasState | undefined>(undefined);
+  const remoteSaveQueue = useRef(Promise.resolve());
+  const hasLocalChanges = useRef(false);
   useEffect(() => {
     try {
       storageSnapshot.current = localStorage.getItem("athas.atlas.v1");
@@ -89,6 +100,8 @@ export default function App() {
     [status, setStatus] = useState(
       boot.error ? "Guardado bloqueado" : "Guardado local disponible",
     );
+  const [passwordDialog, setPasswordDialog] = useState(false);
+  const [passwordDraft, setPasswordDraft] = useState("");
   const [tab, setTab] = useState<"places" | "travel" | "layers" | "data">(
       "places",
     ),
@@ -124,6 +137,57 @@ export default function App() {
       (!pending || !p.coordinates),
   );
   const result = journey(state.itinerary, state.travel);
+  useEffect(() => {
+    try {
+      remotePassword.current = sessionStorage.getItem("athas.admin-password");
+    } catch {
+      /* A password can still be entered for this page session. */
+    }
+    let cancelled = false;
+    void loadRemoteState()
+      .then((snapshot) => {
+        if (cancelled) return;
+        remoteRevision.current = snapshot.revision;
+        if (snapshot.state && !hasLocalChanges.current) {
+          setState(snapshot.state);
+          try {
+            saveState(localStorage, snapshot.state);
+            storageSnapshot.current = localStorage.getItem("athas.atlas.v1");
+          } catch {
+            /* The shared campaign remains usable when local backup fails. */
+          }
+        }
+        setStatus(snapshot.state ? "Campaña compartida cargada" : "Lista para guardar");
+      })
+      .catch((e) => {
+        if (!cancelled)
+          setError(`No se pudo conectar con la campaña compartida: ${errorText(e)}`);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  function queueRemoteSave(next: AtlasState) {
+    const password = remotePassword.current;
+    if (!password) {
+      pendingRemoteState.current = next;
+      setPasswordDialog(true);
+      return;
+    }
+    const operation = remoteSaveQueue.current.then(async () => {
+      const saved = await saveRemoteState(next, remoteRevision.current, password);
+      remoteRevision.current = saved.revision;
+      setStatus("Guardado compartido");
+    });
+    remoteSaveQueue.current = operation.catch((e: unknown) => {
+      setStatus("Error de guardado compartido");
+      setError(
+        e instanceof RemoteConflictError
+          ? "Otra persona ha cambiado la campaña. Recarga antes de volver a guardar."
+          : `No se pudo guardar en la campaña compartida: ${errorText(e)}`,
+      );
+    });
+  }
   function commit(next: AtlasState) {
     if (storageBlocked) {
       setError(
@@ -139,8 +203,10 @@ export default function App() {
       saveState(localStorage, next);
       storageSnapshot.current = localStorage.getItem("athas.atlas.v1");
       setState(next);
-      setStatus("Guardado en este navegador");
+      hasLocalChanges.current = true;
+      setStatus("Guardado localmente");
       setError("");
+      queueRemoteSave(next);
       return true;
     } catch (e) {
       setError(
@@ -1069,7 +1135,7 @@ export default function App() {
                 </label>
                 <h3>Datos y procedencia</h3>
                 <p className="description">
-                  Los 114 registros iniciales proceden de poi.json. Sus
+                  Los 123 registros iniciales proceden de poi.json. Sus
                   posiciones están vacías. Las ubicaciones y notas que añadas
                   pertenecen a tu campaña.
                 </p>
@@ -1240,6 +1306,62 @@ export default function App() {
             ×
           </button>
         </div>
+      )}
+      {passwordDialog && (
+        <ConfirmDialog onClose={() => setPasswordDialog(false)}>
+          <form
+            onSubmit={async (event) => {
+              event.preventDefault();
+              const next = pendingRemoteState.current;
+              if (!next || !passwordDraft) return;
+              try {
+                const saved = await saveRemoteState(
+                  next,
+                  remoteRevision.current,
+                  passwordDraft,
+                );
+                remotePassword.current = passwordDraft;
+                sessionStorage.setItem("athas.admin-password", passwordDraft);
+                remoteRevision.current = saved.revision;
+                pendingRemoteState.current = undefined;
+                setPasswordDialog(false);
+                setPasswordDraft("");
+                setStatus("Guardado compartido");
+                setError("");
+              } catch (e) {
+                setError(
+                  e instanceof RemoteAuthError
+                    ? "Contraseña incorrecta."
+                    : e instanceof RemoteConflictError
+                      ? "Otra persona ha cambiado la campaña. Recarga antes de volver a guardar."
+                      : `No se pudo guardar en la campaña compartida: ${errorText(e)}`,
+                );
+              }
+            }}
+          >
+            <h2 id="confirm-title">Guardar en la campaña</h2>
+            <p>Introduce la contraseña de la partida para compartir este cambio.</p>
+            <label>
+              Contraseña
+              <input
+                autoFocus
+                type="password"
+                value={passwordDraft}
+                onChange={(e) => setPasswordDraft(e.target.value)}
+                autoComplete="current-password"
+                required
+              />
+            </label>
+            <div className="two">
+              <button type="button" onClick={() => setPasswordDialog(false)}>
+                Ahora no
+              </button>
+              <button className="primary" type="submit">
+                Guardar
+              </button>
+            </div>
+          </form>
+        </ConfirmDialog>
       )}
       {(deleteId || imported) && (
         <ConfirmDialog

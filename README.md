@@ -34,7 +34,7 @@ En móvil, «Abrir herramientas» muestra el panel y «Ver mapa» lo oculta. Ini
 
 ## Procedencia y coordenadas
 
-Los originales `routes.geojson`, `tiles/`, `tiles_new/` y `scripts/` no se modifican. El catálogo `poi.json` conserva sus 42 registros iniciales y añade 72 más procedentes de *The Wanderer's Chronicle* (Athas.org), extraídos del DarkSun Atlas de Digital Wanderer (5 de septiembre de 2026; ver `output/dw-extract/`). `initialState()` migra determinísticamente los **114 POIs**, conserva sus campos y añade valores por defecto. Todos empiezan sin coordenadas. Ninguna posición de campaña se presenta como canónica. «Catálogo original» indica procedencia, no verificación editorial independiente; las entradas de la remesa citan su fuente en el campo `source`.
+Los originales `routes.geojson`, `tiles/`, `tiles_new/` y `scripts/` no se modifican. El catálogo `poi.json` conserva sus 42 registros iniciales y añade 72 más procedentes de *The Wanderer's Chronicle* (Athas.org), extraídos del DarkSun Atlas de Digital Wanderer (5 de septiembre de 2026; ver `output/dw-extract/`). `initialState()` migra determinísticamente los **123 POIs**, conserva sus campos y añade valores por defecto. Nueve lugares proceden del historial de campaña `result.json`: Fuerte Hierro y Ablath tienen rótulo cartográfico confirmado; los demás quedan pendientes de asociar por el DM. Ninguna posición de campaña se presenta como canónica. «Catálogo original» indica procedencia, no verificación editorial independiente; las entradas de la remesa citan su fuente en el campo `source`.
 
 El composite mide 4608 × 3328 píxeles; la caja no vacía ocupa **4589 × 3080** desde la esquina superior izquierda. El resto es relleno.
 
@@ -108,13 +108,13 @@ La red se importa, exporta y visualiza uniendo nodos con segmentos rectos. No ha
 
 ## Persistencia y privacidad
 
-La campaña validada se guarda con `localStorage.setItem`, clave `athas.atlas.v1`, antes de actualizar la interfaz. Los fallos de acceso/cuota se comunican y el cambio fallido no se presenta como guardado. Un archivo corrupto bloquea escrituras: Datos permite descargar el contenido original y reemplazarlo explícitamente.
+La campaña compartida se guarda mediante `PUT /api/state` en el volumen Docker `athasmap_data`. Las escrituras requieren la contraseña configurada en `ATLAS_ADMIN_PASSWORD`; la interfaz la pide al primer cambio de cada pestaña y la mantiene sólo en `sessionStorage`. La contraseña no se incorpora al bundle ni a archivos versionados.
 
-Se comprueba si otra pestaña cambió el guardado antes de escribir; en ese caso se solicita recargar. No es un mecanismo transaccional para colaboración simultánea. El almacenamiento pertenece al navegador y al origen exacto: cambiar puerto, host o navegador crea otro almacén. Exporta copias antes de borrar datos del navegador.
+Cada guardado lleva una revisión. Si otra persona actualizó la campaña antes, el servidor rechaza la escritura y solicita recargar, para evitar sobrescrituras silenciosas. No hay usuarios ni permisos por persona: quien conozca la contraseña puede editar.
 
-Las notas privadas no están cifradas, no tienen control de acceso y se incluyen en las exportaciones. No hay sincronización, autenticación ni caché de aplicación offline. El servidor debe estar disponible para cargar los assets.
+También se conserva una copia local en `localStorage`, clave `athas.atlas.v1`, para recuperación y exportación. Los fallos de acceso/cuota se comunican y el cambio fallido no se presenta como guardado. Las notas privadas no están cifradas y se incluyen en las exportaciones.
 
-`loadState` y `saveState` forman la frontera sustituible por IndexedDB o una API compartida, conservando los esquemas. Una futura colaboración requerirá versiones transaccionales en servidor.
+Para iniciar el despliegue, crea un `.env` local con `ATLAS_ADMIN_PASSWORD=wayan` (o usa otra contraseña) y ejecuta `docker compose up -d --build`.
 
 ## Archivos y verificación
 

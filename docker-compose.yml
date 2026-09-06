@@ -1,0 +1,33 @@
+services:
+  athasmap:
+    build: .
+    image: athasmap:latest
+    container_name: athasmap
+    restart: unless-stopped
+    environment:
+      ATLAS_ADMIN_PASSWORD: ${ATLAS_ADMIN_PASSWORD:?Define ATLAS_ADMIN_PASSWORD en el entorno}
+    volumes:
+      - athasmap_data:/data
+    networks:
+      - t2_proxy
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: t2_proxy
+      traefik.http.routers.athasmap.rule: Host(`athas.joselun.xyz`)
+      traefik.http.routers.athasmap.entrypoints: https
+      traefik.http.routers.athasmap.tls: "true"
+      traefik.http.routers.athasmap.tls.certresolver: dns-cloudflare
+      traefik.http.routers.athasmap.middlewares: athasmap-compress,athasmap-security
+      traefik.http.services.athasmap.loadbalancer.server.port: "80"
+      traefik.http.middlewares.athasmap-compress.compress: "true"
+      traefik.http.middlewares.athasmap-security.headers.contentTypeNosniff: "true"
+      traefik.http.middlewares.athasmap-security.headers.frameDeny: "true"
+      traefik.http.middlewares.athasmap-security.headers.referrerPolicy: strict-origin-when-cross-origin
+      traefik.http.middlewares.athasmap-security.headers.stsSeconds: "31536000"
+
+networks:
+  t2_proxy:
+    external: true
+
+volumes:
+  athasmap_data:

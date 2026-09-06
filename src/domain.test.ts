@@ -19,18 +19,20 @@ import {
 } from "./domain";
 
 describe("Catálogo y validación", () => {
-  it("migra los 114 registros: 21 situados por inscripción del mapa, el resto pendiente", () => {
+  it("incluye los lugares de campaña, con sólo los rótulos confirmados situados", () => {
     const state = initialState();
-    expect(state.pois).toHaveLength(114);
-    expect(state.pois.filter((p) => p.coordinates === null)).toHaveLength(93);
+    expect(state.pois).toHaveLength(123);
+    expect(state.pois.filter((p) => p.coordinates === null)).toHaveLength(100);
     const situados = state.pois.filter((p) => p.coordinates !== null);
-    expect(situados).toHaveLength(21);
-    expect(situados.every((p) => p.provenance === "mapa")).toBe(true);
+    expect(situados).toHaveLength(23);
+    expect(situados.every((p) => p.provenance !== "user")).toBe(true);
     const tyr = state.pois.find((p) => p.id === "tyr")!;
     expect(tyr.tags).toContain("ciudad-libre");
     expect(tyr.coordinates).toEqual({ x: 0.2787, y: 0.389 });
     expect(tyr.provenance).toBe("mapa");
     expect(tyr.source).toContain("Inscripción del mapa");
+    expect(state.pois.find((p) => p.id === "fort_iron")?.coordinates).not.toBeNull();
+    expect(state.pois.find((p) => p.id === "hoja_rota")?.coordinates).toBeNull();
   });
   it("rechaza categorías desconocidas, nombres vacíos y puntuaciones inválidas", () => {
     const p = initialState().pois[0];
