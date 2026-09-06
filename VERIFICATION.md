@@ -68,3 +68,9 @@ La navegación con flechas y Enter está implementada para colocar el centro del
 - `provenance` gana el valor `mapa`; las 7 entradas llevan `coordinates` (normalizadas sobre la caja 4589×3080) y `source: Inscripción del mapa «The Tyr Region» (TSR 1991)`. El resto del catálogo sigue pendiente (107 sin coordenadas).
 - Método y candidatos de una sola lectura (fortalezas, oasis, pueblos: Fort Inix, Kled, Bodach, Lost Oasis, Walis, Giustenal, Ledopolus, Grak's Pool…) en `output/dw-extract/ocr-pois.json` (carpeta ignorada por git). La visión transcribe mal ciertas tipografías («T88» por TYR) y alucina topónimos; por eso cada punto requiere doble lectura y el cruce con el catálogo.
 - Verificación visual: los 7 marcadores aparecen dispersos sobre tierra firme en la vista general.
+
+## Segunda pasada de reconocimiento (6 de septiembre de 2026)
+
+- Validación por doble lectura de los candidatos de una sola lectura: **14 nuevos POIs situados** (Fort Inix, Hidden Village, Bodach, Kled, Lost Oasis, Grak's Pool, North y South Ledopolus, Giustenal, Estuary of the Forked Tongue, Fort Melidor, Altaruk, Oasis of Kemalok, Dragon's Bowl). Total: **21 POIs con coordenadas** (provenance `mapa`), 93 pendientes.
+- Hallazgos del mapa que NO casan con el catálogo (documentados, sin integrar): el fuerte de (3445,646) se rotula **«Fort Firstwatch»** en el mapa (5 lecturas, una letra a letra) — no Eastwatch; «Fort Iron» (1729,1332) junto a The Iron Road no está en el catálogo; «Dragon's Palate» (sur) no es Dragon's Bowl (que está en el norte); Fort Crescent, Fort Vordon, Oasis of Tyr, Celik y Ledopolus Oasis no se han localizado como inscripciones. Candidatos y notas en `output/dw-extract/ocr-pois.json` y `output/dw-extract/ui-sketches/`.
+- Verificación visual: 21 marcadores sobre tierra firme, sin puntos en el mar ni fuera del mapa.

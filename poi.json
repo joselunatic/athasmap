@@ -200,7 +200,12 @@
         "caravanas"
       ],
       "description": "Importante puesto comercial y fortaleza a mitad de camino entre Tyr y Balic.",
-      "coordinates": null
+      "coordinates": {
+        "x": 0.3759,
+        "y": 0.5877
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — reconocida por visión"
     },
     {
       "id": "kled",
@@ -214,7 +219,12 @@
         "tradicional"
       ],
       "description": "Poblado enano ancestral situado al norte de Tyr.",
-      "coordinates": null
+      "coordinates": {
+        "x": 0.3456,
+        "y": 0.3737
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — reconocida por visión"
     },
     {
       "id": "ledopolus_north",
@@ -228,7 +238,12 @@
         "caravanas"
       ],
       "description": "Asentamiento al norte del estuario, uno de los dos extremos del gran puente de Ledopolus.",
-      "coordinates": null
+      "coordinates": {
+        "x": 0.5038,
+        "y": 0.7338
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — reconocida por visión"
     },
     {
       "id": "ledopolus_south",
@@ -242,7 +257,12 @@
         "caravanas"
       ],
       "description": "Asentamiento al sur del estuario, conectado a su gemelo por el puente de Ledopolus.",
-      "coordinates": null
+      "coordinates": {
+        "x": 0.4467,
+        "y": 0.8117
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — reconocida por visión"
     },
     {
       "id": "graks_pool",
@@ -256,7 +276,12 @@
         "mercado"
       ],
       "description": "Pequeña ciudad alrededor de un oasis, punto habitual de paso entre Raam y Urik.",
-      "coordinates": null
+      "coordinates": {
+        "x": 0.4221,
+        "y": 0.6899
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — reconocida por visión"
     },
     {
       "id": "celik",
@@ -298,7 +323,12 @@
         "ciudad-muerta"
       ],
       "description": "Ruinas de una antigua ciudad, asociada a la historia más oscura de Athas.",
-      "coordinates": null
+      "coordinates": {
+        "x": 0.6838,
+        "y": 0.6854
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — reconocida por visión"
     },
     {
       "id": "giustenal",
@@ -312,7 +342,12 @@
         "ciudad-hundida"
       ],
       "description": "Ruinas de la ciudad de Giustenal, parcialmente hundida y ligada a criaturas del Mar de Cieno.",
-      "coordinates": null
+      "coordinates": {
+        "x": 0.7355,
+        "y": 0.3675
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — reconocida por visión"
     },
     {
       "id": "oasis_tyr",
@@ -340,7 +375,12 @@
         "enanos"
       ],
       "description": "Oasis relacionado con las historias de Kemalok y los enanos de la región.",
-      "coordinates": null
+      "coordinates": {
+        "x": 0.3314,
+        "y": 0.3617
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — reconocida por visión"
     },
     {
       "id": "lost_oasis",
@@ -354,7 +394,12 @@
         "aventuras"
       ],
       "description": "Oasis aislado en las arenas del sur, de ubicación y acceso peligrosos.",
-      "coordinates": null
+      "coordinates": {
+        "x": 0.2996,
+        "y": 0.8578
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — reconocida por visión"
     },
     {
       "id": "ledopolus_oasis",
@@ -396,7 +441,12 @@
         "defensa"
       ],
       "description": "Fuerte situado al sur de Tyr, protegiendo una ruta transitada por caravanas.",
-      "coordinates": null
+      "coordinates": {
+        "x": 0.6646,
+        "y": 0.4942
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — reconocida por visión"
     },
     {
       "id": "fort_skonz",
@@ -449,7 +499,12 @@
         "guarnición"
       ],
       "description": "Pequeña fortaleza que protege un cruce de rutas en la región meridional.",
-      "coordinates": null
+      "coordinates": {
+        "x": 0.316,
+        "y": 0.8364
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — reconocida por visión"
     },
     {
       "id": "fort_walis",
@@ -530,7 +585,12 @@
         "comercio"
       ],
       "description": "Estuario que conecta el interior de las Tablelands con la Sea of Silt, junto a Balic.",
-      "coordinates": null
+      "coordinates": {
+        "x": 0.6947,
+        "y": 0.8396
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — reconocida por visión"
     },
     {
       "id": "great_ivory_plain",
@@ -596,7 +656,12 @@
         "cráter"
       ],
       "description": "Enorme cráter circular visible en el centro-norte del mapa.",
-      "coordinates": null
+      "coordinates": {
+        "x": 0.5709,
+        "y": 0.2013
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — reconocida por visión"
     },
     {
       "id": "sunwarped_lands",
@@ -980,9 +1045,12 @@
         "crónica-wanderer"
       ],
       "description": "The Hidden Village lies at the bottom of a crater within the foothills of the Great Alluvial Sand Wastes, in the shadow of the Ringing Mountains. Within the crater, the village lies on a raised stone platform surrounded by sturdy brick walls and heavy gates. Here live the Free, a tribe of ex-slaves that now form a well-to-do trading house. Liberty and freedom are the most valuable commodities in the Hidden Village, as every member has roots as an ex-slave. All members of the Hidden Village are free to come and go as they please, with their many talents aiding in communal trade or defense. The members of the Hidden Village supplement their trading income with raids against caravans that are carrying slaves, recruiting those that they free. Each raid allows the village's ranks and capabilities to swell.<br><br>The leader of the Free is human fighter named Trade Master Bartras. He is a charismatic and clever man, and sees himself as the leader in a war against the slave owners. He battles them in the deserts with his raiding parties, and in the marketplaces with his trading house. Bartras is supported by Governor Drog, a dwarf fighter known for his strict but fair administration of the village's day-to-day operations. He is a reluctant leader in the village as he considers himself above no other, and he secretly wishes for Bartras to abolish all positions of command. The two work together to strengthen their trade routes with the free city of Tyr, and to open new trade routes to the west.",
-      "coordinates": null,
-      "source": "The Wanderer's Chronicle (Athas.org), p.67; Slave Tribes p22 — vía DigitalWanderer DarkSun Atlas",
-      "provenance": "catalogue"
+      "coordinates": {
+        "x": 0.3598,
+        "y": 0.2097
+      },
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — reconocida por visión",
+      "provenance": "mapa"
     },
     {
       "id": "hogalay",

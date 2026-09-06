@@ -19,12 +19,12 @@ import {
 } from "./domain";
 
 describe("Catálogo y validación", () => {
-  it("migra los 114 registros: 7 situados por inscripción del mapa, el resto pendiente", () => {
+  it("migra los 114 registros: 21 situados por inscripción del mapa, el resto pendiente", () => {
     const state = initialState();
     expect(state.pois).toHaveLength(114);
-    expect(state.pois.filter((p) => p.coordinates === null)).toHaveLength(107);
+    expect(state.pois.filter((p) => p.coordinates === null)).toHaveLength(93);
     const situados = state.pois.filter((p) => p.coordinates !== null);
-    expect(situados).toHaveLength(7);
+    expect(situados).toHaveLength(21);
     expect(situados.every((p) => p.provenance === "mapa")).toBe(true);
     const tyr = state.pois.find((p) => p.id === "tyr")!;
     expect(tyr.tags).toContain("ciudad-libre");
