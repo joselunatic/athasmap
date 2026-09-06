@@ -483,7 +483,9 @@ export default function App() {
                   <p className="source">
                     {selected.provenance === "catalogue"
                       ? "Catálogo original"
-                      : "Creación de campaña"}{" "}
+                      : selected.provenance === "mapa"
+                        ? "Inscripción del mapa"
+                        : "Creación de campaña"}{" "}
                     · Fuente: {selected.source}
                   </p>
                   <div className="two">

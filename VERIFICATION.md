@@ -61,3 +61,10 @@ La navegación con flechas y Enter está implementada para colocar el centro del
 - `npm test`: 15 pruebas superadas con el nuevo conteo (114).
 - `npm run typecheck`, `npm run lint`, `npm run build`: sin errores.
 - Backup de la fusión: `poi.json.bak-20260906-005551`.
+
+## Reconocimiento de inscripciones del mapa (6 de septiembre de 2026)
+
+- Barrido del raster local (4589×3080) en crops nativos con visión + cruce contra el catálogo: se reconocieron y **validaron las 7 ciudades-estado** (Tyr, Urik, Raam, Draj, Nibenay, Gulg, Balic). Tyr se confirmó por correspondencia de plantilla con un recorte de tile del usuario + comparación visual; el resto por doble lectura de crops de validación con su símbolo de ciudad (anillo rojo).
+- `provenance` gana el valor `mapa`; las 7 entradas llevan `coordinates` (normalizadas sobre la caja 4589×3080) y `source: Inscripción del mapa «The Tyr Region» (TSR 1991)`. El resto del catálogo sigue pendiente (107 sin coordenadas).
+- Método y candidatos de una sola lectura (fortalezas, oasis, pueblos: Fort Inix, Kled, Bodach, Lost Oasis, Walis, Giustenal, Ledopolus, Grak's Pool…) en `output/dw-extract/ocr-pois.json` (carpeta ignorada por git). La visión transcribe mal ciertas tipografías («T88» por TYR) y alucina topónimos; por eso cada punto requiere doble lectura y el cruce con el catálogo.
+- Verificación visual: los 7 marcadores aparecen dispersos sobre tierra firme en la vista general.

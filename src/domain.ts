@@ -38,7 +38,7 @@ export const poiSchema = z.object({
   visible: z.boolean().default(true),
   notes: z.string().max(10000).default(""),
   source: z.string().max(1000).default("poi.json · catálogo original"),
-  provenance: z.enum(["catalogue", "user"]).default("catalogue"),
+  provenance: z.enum(["catalogue", "user", "mapa"]).default("catalogue"),
   water: z.enum(["unknown", "none", "limited", "available"]).default("unknown"),
   danger: z.enum(["unknown", "low", "medium", "high"]).default("unknown"),
   faction: z.string().max(160).default(""),

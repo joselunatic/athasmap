@@ -64,7 +64,12 @@
         "ciudad-libre"
       ],
       "description": "Ciudad-estado situada al pie de las Ringing Mountains, punto de partida clásico de campañas.",
-      "coordinates": null
+      "coordinates": {
+        "x": 0.2787,
+        "y": 0.389
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — reconocida por visión"
     },
     {
       "id": "urik",
@@ -78,7 +83,12 @@
         "templos"
       ],
       "description": "Ciudad-estado fortificada al norte de las Tablelands, conocida por su disciplina militar.",
-      "coordinates": null
+      "coordinates": {
+        "x": 0.4646,
+        "y": 0.1789
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — reconocida por visión"
     },
     {
       "id": "nibenay",
@@ -93,7 +103,12 @@
         "bosques de piedra"
       ],
       "description": "La Ciudad de la Espina, oculta entre formaciones rocosas al este de la región central.",
-      "coordinates": null
+      "coordinates": {
+        "x": 0.5884,
+        "y": 0.4909
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — reconocida por visión"
     },
     {
       "id": "gulg",
@@ -108,7 +123,12 @@
         "tribal"
       ],
       "description": "Ciudad-estado enclavada en un bosque de madera viva, gobernada por la Oba.",
-      "coordinates": null
+      "coordinates": {
+        "x": 0.5354,
+        "y": 0.5373
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — reconocida por visión"
     },
     {
       "id": "raam",
@@ -122,7 +142,12 @@
         "inestabilidad"
       ],
       "description": "Gran ciudad-estado al borde de la Sea of Silt, famosa por su caos interno.",
-      "coordinates": null
+      "coordinates": {
+        "x": 0.6374,
+        "y": 0.2065
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — reconocida por visión"
     },
     {
       "id": "draj",
@@ -136,7 +161,12 @@
         "sacrificios"
       ],
       "description": "Ciudad-estado guerrera al extremo noreste de las Tablelands, ligada a sacrificios rituales.",
-      "coordinates": null
+      "coordinates": {
+        "x": 0.7875,
+        "y": 0.1234
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — reconocida por visión"
     },
     {
       "id": "balic",
@@ -151,7 +181,12 @@
         "mercantil"
       ],
       "description": "Ciudad-estado portuaria sobre el Estuary of the Forked Tongue, centro de comercio marítimo de la región.",
-      "coordinates": null
+      "coordinates": {
+        "x": 0.6034,
+        "y": 0.8828
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — reconocida por visión"
     },
     {
       "id": "altaruk",

@@ -19,14 +19,18 @@ import {
 } from "./domain";
 
 describe("Catálogo y validación", () => {
-  it("migra los 114 registros sin fabricar posiciones ni perder metadatos", () => {
+  it("migra los 114 registros: 7 situados por inscripción del mapa, el resto pendiente", () => {
     const state = initialState();
     expect(state.pois).toHaveLength(114);
-    expect(state.pois.every((p) => p.coordinates === null)).toBe(true);
+    expect(state.pois.filter((p) => p.coordinates === null)).toHaveLength(107);
+    const situados = state.pois.filter((p) => p.coordinates !== null);
+    expect(situados).toHaveLength(7);
+    expect(situados.every((p) => p.provenance === "mapa")).toBe(true);
     const tyr = state.pois.find((p) => p.id === "tyr")!;
     expect(tyr.tags).toContain("ciudad-libre");
-    expect(tyr.source).toContain("poi.json");
-    expect(tyr.provenance).toBe("catalogue");
+    expect(tyr.coordinates).toEqual({ x: 0.2787, y: 0.389 });
+    expect(tyr.provenance).toBe("mapa");
+    expect(tyr.source).toContain("Inscripción del mapa");
   });
   it("rechaza categorías desconocidas, nombres vacíos y puntuaciones inválidas", () => {
     const p = initialState().pois[0];
