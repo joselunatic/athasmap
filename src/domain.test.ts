@@ -16,13 +16,16 @@ import {
   parseImport,
   networkSchema,
   setEndpoint,
+  provenanceLabel,
+  symbols,
 } from "./domain";
 
 describe("Catálogo y validación", () => {
-  it("incluye los lugares de campaña, con sólo los rótulos confirmados situados", () => {
+  it("incluye los lugares de campaña y los 22 externos sin falsear posiciones", () => {
     const state = initialState();
-    expect(state.pois).toHaveLength(123);
-    expect(state.pois.filter((p) => p.coordinates === null)).toHaveLength(100);
+    expect(state.pois).toHaveLength(145);
+    expect(state.pois.filter((p) => p.coordinates === null)).toHaveLength(122);
+    expect(state.pois.filter((p) => p.provenance === "externa")).toHaveLength(22);
     const situados = state.pois.filter((p) => p.coordinates !== null);
     expect(situados).toHaveLength(23);
     expect(situados.every((p) => p.provenance !== "user")).toBe(true);
@@ -33,6 +36,22 @@ describe("Catálogo y validación", () => {
     expect(tyr.source).toContain("Inscripción del mapa");
     expect(state.pois.find((p) => p.id === "fort_iron")?.coordinates).not.toBeNull();
     expect(state.pois.find((p) => p.id === "hoja_rota")?.coordinates).toBeNull();
+  });
+  it("acepta procedencias externas separadas de una inscripción del mapa", () => {
+    const p = initialState().pois[0];
+    expect(poiSchema.safeParse({ ...p, provenance: "externa" }).success).toBe(true);
+    expect(
+      poiSchema.safeParse({ ...p, provenance: "externa_aproximada" }).success,
+    ).toBe(true);
+  });
+  it("etiqueta las procedencias externas sin confundirlas con el catálogo", () => {
+    expect(provenanceLabel("externa")).toBe("Fuente externa · sin situar");
+    expect(provenanceLabel("externa_aproximada")).toBe(
+      "Fuente externa · ubicación aproximada",
+    );
+  });
+  it("da un símbolo propio a los sitios especiales", () => {
+    expect(symbols.special_site).toBe("✦");
   });
   it("rechaza categorías desconocidas, nombres vacíos y puntuaciones inválidas", () => {
     const p = initialState().pois[0];

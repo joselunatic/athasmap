@@ -17,6 +17,7 @@ export const symbols: Record<string, string> = {
   natural_feature: "△",
   water_body: "≈",
   route: "↝",
+  special_site: "✦",
 };
 export const pointSchema = z.object({
   x: z.number().finite().min(0).max(1),
@@ -38,12 +39,29 @@ export const poiSchema = z.object({
   visible: z.boolean().default(true),
   notes: z.string().max(10000).default(""),
   source: z.string().max(1000).default("poi.json · catálogo original"),
-  provenance: z.enum(["catalogue", "user", "mapa"]).default("catalogue"),
+  provenance: z
+    .enum(["catalogue", "user", "mapa", "externa", "externa_aproximada"])
+    .default("catalogue"),
   water: z.enum(["unknown", "none", "limited", "available"]).default("unknown"),
   danger: z.enum(["unknown", "low", "medium", "high"]).default("unknown"),
   faction: z.string().max(160).default(""),
 });
 export type Poi = z.infer<typeof poiSchema>;
+export type PoiProvenance = Poi["provenance"];
+export function provenanceLabel(provenance: PoiProvenance) {
+  switch (provenance) {
+    case "catalogue":
+      return "Catálogo original";
+    case "mapa":
+      return "Inscripción del mapa";
+    case "externa":
+      return "Fuente externa · sin situar";
+    case "externa_aproximada":
+      return "Fuente externa · ubicación aproximada";
+    case "user":
+      return "Creación de campaña";
+  }
+}
 const nodeSchema = z.object({
   id: z.string().min(1),
   name: z.string().min(1),

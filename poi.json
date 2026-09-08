@@ -49,6 +49,10 @@
     {
       "id": "route",
       "label": "Ruta / carretera"
+    },
+    {
+      "id": "special_site",
+      "label": "Sitio especial"
     }
   ],
   "pois": [
@@ -1891,9 +1895,17 @@
       "region": "Tablelands centrales",
       "importance": 3,
       "confidence": 3,
-      "tags": ["campaña", "casa Stel", "caravasar", "rótulo del mapa"],
+      "tags": [
+        "campaña",
+        "casa Stel",
+        "caravasar",
+        "rótulo del mapa"
+      ],
       "description": "Fortaleza con caravasar en la ruta hacia Altaruk. El historial la cita como primera escala camino de Manantial de Plata.",
-      "coordinates": { "x": 0.3792, "y": 0.4237 },
+      "coordinates": {
+        "x": 0.3792,
+        "y": 0.4237
+      },
       "source": "result.json · resumen de partida; inscripción del mapa «Fort Iron» (TSR 1991)",
       "provenance": "mapa"
     },
@@ -1904,9 +1916,16 @@
       "region": "Este de las Tablelands",
       "importance": 3,
       "confidence": 3,
-      "tags": ["campaña", "casa Tsalaxa", "rótulo del mapa"],
+      "tags": [
+        "campaña",
+        "casa Tsalaxa",
+        "rótulo del mapa"
+      ],
       "description": "Fuerte dirigido por la casa Tsalaxa y escala de caravanas durante una tormenta de arena.",
-      "coordinates": { "x": 0.4238, "y": 0.4795 },
+      "coordinates": {
+        "x": 0.4238,
+        "y": 0.4795
+      },
       "source": "result.json · resumen de partida; inscripción del mapa «Ablath» (TSR 1991)",
       "provenance": "mapa"
     },
@@ -1917,7 +1936,12 @@
       "region": "Pendiente de asociar",
       "importance": 3,
       "confidence": 2,
-      "tags": ["campaña", "pendiente-asociar", "Azalia", "Uskar"],
+      "tags": [
+        "campaña",
+        "pendiente-asociar",
+        "Azalia",
+        "Uskar"
+      ],
       "description": "Aldea de Azalia, Uskar y Tanir. El historial la sitúa a unos 120 km de Tyr, pero su correspondencia exacta con el rótulo inglés «Broken Blade» requiere revisión del DM.",
       "coordinates": null,
       "source": "result.json · resumen de partida",
@@ -1930,7 +1954,11 @@
       "region": "Pendiente de asociar",
       "importance": 3,
       "confidence": 2,
-      "tags": ["campaña", "pendiente-asociar", "rótulo del mapa"],
+      "tags": [
+        "campaña",
+        "pendiente-asociar",
+        "rótulo del mapa"
+      ],
       "description": "Escala mencionada entre Fuerte Hierro y Altaruk; la inscripción «Silver Spring» está visible en el mapa, pero su punto exacto queda pendiente de confirmación del DM.",
       "coordinates": null,
       "source": "result.json · resumen de partida; posible inscripción «Silver Spring» (TSR 1991)",
@@ -1943,7 +1971,12 @@
       "region": "Pendiente de asociar",
       "importance": 4,
       "confidence": 2,
-      "tags": ["campaña", "pendiente-asociar", "Incursores de las Arenas Negras", "Zeburon"],
+      "tags": [
+        "campaña",
+        "pendiente-asociar",
+        "Incursores de las Arenas Negras",
+        "Zeburon"
+      ],
       "description": "Posible base o zona de operaciones de los Incursores de las Arenas Negras de Zeburon el Negro. Se ha identificado el rótulo «Black Sand Camp», sin fijar una equivalencia posicional definitiva.",
       "coordinates": null,
       "source": "result.json · resumen de partida; posible inscripción «Black Sand Camp» (TSR 1991)",
@@ -1956,7 +1989,12 @@
       "region": "Pendiente de asociar",
       "importance": 3,
       "confidence": 2,
-      "tags": ["campaña", "pendiente-asociar", "G'Puz-Koa", "druida"],
+      "tags": [
+        "campaña",
+        "pendiente-asociar",
+        "G'Puz-Koa",
+        "druida"
+      ],
       "description": "Pozo donde el grupo rescató a Serle y recibió ayuda del druida G'Puz-Koa. No se ha podido relacionar de forma fiable con un rótulo inglés del mapa.",
       "coordinates": null,
       "source": "result.json · resumen de partida",
@@ -1969,7 +2007,10 @@
       "region": "Pendiente de asociar",
       "importance": 2,
       "confidence": 1,
-      "tags": ["campaña", "pendiente-asociar"],
+      "tags": [
+        "campaña",
+        "pendiente-asociar"
+      ],
       "description": "Asentamiento mencionado como punto de partida antes del viaje a Fuerte Hierro.",
       "coordinates": null,
       "source": "result.json · resumen de partida",
@@ -1982,7 +2023,12 @@
       "region": "Pendiente de asociar",
       "importance": 3,
       "confidence": 1,
-      "tags": ["campaña", "pendiente-asociar", "Kalak", "Ka"],
+      "tags": [
+        "campaña",
+        "pendiente-asociar",
+        "Kalak",
+        "Ka"
+      ],
       "description": "Templo donde, según el historial, Kalak ocultó a Ka tras matar a quienes estaban allí. No se ha identificado un rótulo cartográfico equivalente.",
       "coordinates": null,
       "source": "result.json · resumen de partida",
@@ -1995,11 +2041,411 @@
       "region": "Tyr · pendiente de asociar",
       "importance": 2,
       "confidence": 2,
-      "tags": ["campaña", "pendiente-asociar", "barrio"],
+      "tags": [
+        "campaña",
+        "pendiente-asociar",
+        "barrio"
+      ],
       "description": "Barrio descrito como el peor de Tyr, donde el grupo buscó a Makenca. Se conserva sin coordenadas por ser una localización interna de la ciudad.",
       "coordinates": null,
       "source": "result.json · resumen de partida",
       "provenance": "user"
+    },
+    {
+      "id": "arkhold",
+      "name": "Arkhold",
+      "type": "ruin",
+      "region": "Ubicación pendiente de situar",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "pdf-travel",
+        "pendiente-de-situar"
+      ],
+      "description": "Estructura fortificada marcada en la costa sur del Estuary of the Forked Tongue, al sur de Waverly.",
+      "coordinates": null,
+      "visible": true,
+      "notes": "Reconocido por visión en el PDF de viaje. Nombre ARKHOLD y símbolo de fortificación claramente visibles; se usa ruin para el enclave arruinado.",
+      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
+      "provenance": "externa"
+    },
+    {
+      "id": "bitter-well",
+      "name": "Bitter Well",
+      "type": "oasis",
+      "region": "Ubicación pendiente de situar",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "pdf-travel",
+        "pendiente-de-situar"
+      ],
+      "description": "Pozo/oasis marcado por palmeras y un pequeño punto junto a una ruta roja, en el sector de Marsh/The Narrows.",
+      "coordinates": null,
+      "visible": true,
+      "notes": "Reconocido por visión en el PDF de viaje. Nombre e icono de palmeras claramente visibles en crop nativo; se normaliza a oasis porque el esquema no tiene tipo pozo.",
+      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
+      "provenance": "externa"
+    },
+    {
+      "id": "bleak-tower",
+      "name": "Bleak Tower",
+      "type": "ruin",
+      "region": "Ubicación pendiente de situar",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "pdf-travel",
+        "pendiente-de-situar"
+      ],
+      "description": "Torre/estructura aislada junto al borde del mapa, al sureste de Arkhold y próxima a las indicaciones hacia el Silt Archipelago.",
+      "coordinates": null,
+      "visible": true,
+      "notes": "Reconocido por visión en el PDF de viaje. Etiqueta BLEAK TOWER e icono vertical de torre claramente visibles; se propone ruin como tipo canónico para una torre antigua.",
+      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
+      "provenance": "externa"
+    },
+    {
+      "id": "dasaraches",
+      "name": "Dasaraches",
+      "type": "special_site",
+      "region": "Ubicación pendiente de situar",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "pdf-travel",
+        "pendiente-de-situar"
+      ],
+      "description": "Marcador circular claro de Special Site en el sector boscoso y montañoso del noroeste.",
+      "coordinates": null,
+      "visible": true,
+      "notes": "Reconocido por visión en el PDF de viaje. Texto confirmado por visión nativa como DASARACHES; el símbolo coincide con Special Site en la leyenda. No hay coincidencia exacta ni normalizada en poi.json.",
+      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
+      "provenance": "externa"
+    },
+    {
+      "id": "echoing-mine",
+      "name": "Echoing Mine",
+      "type": "outpost",
+      "region": "Ubicación pendiente de situar",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "pdf-travel",
+        "pendiente-de-situar"
+      ],
+      "description": "Mina nombrada con marcador circular claro y contorno oscuro.",
+      "coordinates": null,
+      "visible": true,
+      "notes": "Reconocido por visión en el PDF de viaje. La etiqueta ECHOING MINE es legible; se usa outpost porque el schema no contempla mine. No confundir con Iron Mines. Ausente de poi.json.",
+      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
+      "provenance": "externa"
+    },
+    {
+      "id": "echoless-caverns",
+      "name": "Echoless Caverns",
+      "type": "ruin",
+      "region": "Ubicación pendiente de situar",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "pdf-travel",
+        "pendiente-de-situar"
+      ],
+      "description": "Icono de doble estructura en el sector montañoso al oeste de Tyr.",
+      "coordinates": null,
+      "visible": true,
+      "notes": "Reconocido por visión en el PDF de viaje. Texto confirmado como ECHOLESS CAVERNS; el símbolo visible coincide con Ruins en la leyenda, pese a la semántica de cavernas. No hay coincidencia exacta ni normalizada en poi.json. | corroborado por zona center (medium)",
+      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
+      "provenance": "externa"
+    },
+    {
+      "id": "freedom",
+      "name": "Freedom",
+      "type": "village",
+      "region": "Ubicación pendiente de situar",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "pdf-travel",
+        "pendiente-de-situar"
+      ],
+      "description": "Punto negro de aldea en el extremo oriental del solape, al este de la franja montañosa.",
+      "coordinates": null,
+      "visible": true,
+      "notes": "Reconocido por visión en el PDF de viaje. El marcador de punto negro coincide con Village en la leyenda. Está dentro del solape x=1800..2050. No hay coincidencia exacta ni normalizada en poi.json. | corroborado por zona center (high)",
+      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
+      "provenance": "externa"
+    },
+    {
+      "id": "iron-mines",
+      "name": "Iron Mines",
+      "type": "ruin",
+      "region": "Ubicación pendiente de situar",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "pdf-travel",
+        "pendiente-de-situar"
+      ],
+      "description": "Icono de doble estructura en la zona minera/montañosa inmediatamente al oeste de Tyr.",
+      "coordinates": null,
+      "visible": true,
+      "notes": "Reconocido por visión en el PDF de viaje. Texto confirmado como IRON MINES; el icono coincide con Ruins en la leyenda. No hay coincidencia exacta ni normalizada en poi.json. | corroborado por zona center (medium)",
+      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
+      "provenance": "externa"
+    },
+    {
+      "id": "kol-tukulg",
+      "name": "Kol-Tukulg",
+      "type": "ruin",
+      "region": "Ubicación pendiente de situar",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "pdf-travel",
+        "pendiente-de-situar"
+      ],
+      "description": "Icono de ruinas en el sector meridional suroccidental, junto al borde de la zona boscosa.",
+      "coordinates": null,
+      "visible": true,
+      "notes": "Reconocido por visión en el PDF de viaje. Lectura confirmada carácter por carácter como KOL-TUKULG; el icono coincide con Ruins en la leyenda. No hay coincidencia exacta ni normalizada en poi.json.",
+      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
+      "provenance": "externa"
+    },
+    {
+      "id": "kra-hnur",
+      "name": "Kra-Hnur",
+      "type": "village",
+      "region": "Ubicación pendiente de situar",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "pdf-travel",
+        "pendiente-de-situar"
+      ],
+      "description": "Punto negro de aldea en el sector meridional de la franja analizada.",
+      "coordinates": null,
+      "visible": true,
+      "notes": "Reconocido por visión en el PDF de viaje. Lectura confirmada como KRA-HNUR, incluido el guion; el punto negro coincide con Village en la leyenda. No hay coincidencia exacta ni normalizada en poi.json.",
+      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
+      "provenance": "externa"
+    },
+    {
+      "id": "makla",
+      "name": "Makla",
+      "type": "village",
+      "region": "Ubicación pendiente de situar",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "pdf-travel",
+        "pendiente-de-situar"
+      ],
+      "description": "Asentamiento marcado por un punto circular negro, cerca de la ruta septentrional.",
+      "coordinates": null,
+      "visible": true,
+      "notes": "Reconocido por visión en el PDF de viaje. Nombre propio claramente legible en crop nativo. Ausente de poi.json.",
+      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
+      "provenance": "externa"
+    },
+    {
+      "id": "mausoleum-of-shivarm",
+      "name": "Mausoleum of Shivarm",
+      "type": "ruin",
+      "region": "Ubicación pendiente de situar",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "pdf-travel",
+        "pendiente-de-situar"
+      ],
+      "description": "Icono de doble estructura en el sector montañoso al oeste de Tyr.",
+      "coordinates": null,
+      "visible": true,
+      "notes": "Reconocido por visión en el PDF de viaje. Lectura confirmada como SHIVARM; el icono coincide con Ruins en la leyenda. No hay coincidencia exacta ni normalizada en poi.json. | corroborado por zona center (medium)",
+      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
+      "provenance": "externa"
+    },
+    {
+      "id": "oco",
+      "name": "Oco",
+      "type": "village",
+      "region": "Ubicación pendiente de situar",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "pdf-travel",
+        "pendiente-de-situar"
+      ],
+      "description": "Punto negro de aldea en el extremo oriental del solape, sobre terreno boscoso/montañoso.",
+      "coordinates": null,
+      "visible": true,
+      "notes": "Reconocido por visión en el PDF de viaje. El marcador de punto negro coincide con Village en la leyenda. Está dentro del solape x=1800..2050. No hay coincidencia exacta ni normalizada en poi.json.",
+      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
+      "provenance": "externa"
+    },
+    {
+      "id": "pristine-tower",
+      "name": "Pristine Tower",
+      "type": "ruin",
+      "region": "Ubicación pendiente de situar",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "pdf-travel",
+        "pendiente-de-situar"
+      ],
+      "description": "Torre aislada señalada por un icono arquitectónico en el entorno de Black Spine Mountains/Broken Butte.",
+      "coordinates": null,
+      "visible": true,
+      "notes": "Reconocido por visión en el PDF de viaje. Etiqueta PRISTINE TOWER y símbolo de torre nítidos; se usa ruin como categoría canónica más cercana para una torre antigua nombrada.",
+      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
+      "provenance": "externa"
+    },
+    {
+      "id": "salt-view",
+      "name": "Salt View",
+      "type": "village",
+      "region": "Ubicación pendiente de situar",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "pdf-travel",
+        "pendiente-de-situar"
+      ],
+      "description": "Asentamiento puntual junto a las salinas, marcado con punto negro.",
+      "coordinates": null,
+      "visible": true,
+      "notes": "Reconocido por visión en el PDF de viaje. Etiqueta legible en crop nativo; el contexto del mapa identifica una localidad, no la región Salt Meres. Ausente de poi.json.",
+      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
+      "provenance": "externa"
+    },
+    {
+      "id": "samarah",
+      "name": "Samarah",
+      "type": "village",
+      "region": "Ubicación pendiente de situar",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "pdf-travel",
+        "pendiente-de-situar"
+      ],
+      "description": "Localidad marcada por un punto negro en el entorno de Rocky Badlands/Verdant Belt.",
+      "coordinates": null,
+      "visible": true,
+      "notes": "Reconocido por visión en el PDF de viaje. Nombre SAMARAH y marcador puntual claramente visibles; se propone village por el tipo de asentamiento del mapa.",
+      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
+      "provenance": "externa"
+    },
+    {
+      "id": "screaming-ravine",
+      "name": "Screaming Ravine",
+      "type": "special_site",
+      "region": "Ubicación pendiente de situar",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "pdf-travel",
+        "pendiente-de-situar"
+      ],
+      "description": "Marcador circular claro de Special Site en el corredor árido meridional.",
+      "coordinates": null,
+      "visible": true,
+      "notes": "Reconocido por visión en el PDF de viaje. Texto confirmado carácter por carácter como SCREAMING RAVINE; el círculo claro con borde coincide con Special Site en la leyenda. No hay coincidencia exacta ni normalizada en poi.json.",
+      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
+      "provenance": "externa"
+    },
+    {
+      "id": "shur-a-tamwa",
+      "name": "Shur-A-Tamwa",
+      "type": "oasis",
+      "region": "Ubicación pendiente de situar",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "pdf-travel",
+        "pendiente-de-situar"
+      ],
+      "description": "Oasis/localidad puntual del borde meridional, marcado junto a palmeras.",
+      "coordinates": null,
+      "visible": true,
+      "notes": "Reconocido por visión en el PDF de viaje. Transcripción clara en crop nativo; el contexto de palmeras y oasis respalda el tipo. Ausente de poi.json. | corroborado por zona east (high)",
+      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
+      "provenance": "externa"
+    },
+    {
+      "id": "silver-spring",
+      "name": "Silver Spring",
+      "type": "oasis",
+      "region": "Ubicación pendiente de situar",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "pdf-travel",
+        "pendiente-de-situar"
+      ],
+      "description": "Manantial/oasis señalado por palmeras y etiqueta propia en el sector central superior.",
+      "coordinates": null,
+      "visible": true,
+      "notes": "Reconocido por visión en el PDF de viaje. Se lee SILVER SPRING; el final queda parcialmente pegado al borde del micro-crop, pero el nombre completo está confirmado por el solape y el contexto de oasis. Ausente de poi.json.",
+      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
+      "provenance": "externa"
+    },
+    {
+      "id": "temple-of-the-sky-serpent",
+      "name": "Temple of the Sky Serpent",
+      "type": "ruin",
+      "region": "Ubicación pendiente de situar",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "pdf-travel",
+        "pendiente-de-situar"
+      ],
+      "description": "Icono de estructura/torres dentro del corredor boscoso del centro-oeste.",
+      "coordinates": null,
+      "visible": true,
+      "notes": "Reconocido por visión en el PDF de viaje. La etiqueta dice SKY, no SEA. Aunque el nombre es un templo, el símbolo visible coincide con Ruins en la leyenda; no hay coincidencia en poi.json.",
+      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
+      "provenance": "externa"
+    },
+    {
+      "id": "the-chaksa",
+      "name": "The Chaksa",
+      "type": "ruin",
+      "region": "Ubicación pendiente de situar",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "pdf-travel",
+        "pendiente-de-situar"
+      ],
+      "description": "Icono de doble estructura/torres al sur de la cordillera occidental.",
+      "coordinates": null,
+      "visible": true,
+      "notes": "Reconocido por visión en el PDF de viaje. La lectura fue comprobada carácter por carácter: THE CHAKSA, no THE CHUNKSA. El icono coincide con Ruins en la leyenda. No hay coincidencia exacta ni normalizada en poi.json.",
+      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
+      "provenance": "externa"
+    },
+    {
+      "id": "yaramuke",
+      "name": "Yaramuke",
+      "type": "ruin",
+      "region": "Ubicación pendiente de situar",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "pdf-travel",
+        "pendiente-de-situar"
+      ],
+      "description": "Ciudad/fortificación arruinada indicada por un icono de estructura rota.",
+      "coordinates": null,
+      "visible": true,
+      "notes": "Reconocido por visión en el PDF de viaje. Nombre propio claramente legible y asociado a ruinas. Ausente de poi.json.",
+      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
+      "provenance": "externa"
     }
   ]
 }

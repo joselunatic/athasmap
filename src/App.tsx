@@ -15,6 +15,7 @@ import {
   loadState,
   saveState,
   errorText,
+  provenanceLabel,
   parseImport,
   poiSchema,
   journey,
@@ -547,12 +548,7 @@ export default function App() {
                     </>
                   )}
                   <p className="source">
-                    {selected.provenance === "catalogue"
-                      ? "Catálogo original"
-                      : selected.provenance === "mapa"
-                        ? "Inscripción del mapa"
-                        : "Creación de campaña"}{" "}
-                    · Fuente: {selected.source}
+                    {provenanceLabel(selected.provenance)} · Fuente: {selected.source}
                   </p>
                   <div className="two">
                     <button onClick={() => setEditor(selected)}>

@@ -74,3 +74,12 @@ La navegación con flechas y Enter está implementada para colocar el centro del
 - Validación por doble lectura de los candidatos de una sola lectura: **14 nuevos POIs situados** (Fort Inix, Hidden Village, Bodach, Kled, Lost Oasis, Grak's Pool, North y South Ledopolus, Giustenal, Estuary of the Forked Tongue, Fort Melidor, Altaruk, Oasis of Kemalok, Dragon's Bowl). Total: **21 POIs con coordenadas** (provenance `mapa`), 93 pendientes.
 - Hallazgos del mapa que NO casan con el catálogo (documentados, sin integrar): el fuerte de (3445,646) se rotula **«Fort Firstwatch»** en el mapa (5 lecturas, una letra a letra) — no Eastwatch; «Fort Iron» (1729,1332) junto a The Iron Road no está en el catálogo; «Dragon's Palate» (sur) no es Dragon's Bowl (que está en el norte); Fort Crescent, Fort Vordon, Oasis of Tyr, Celik y Ledopolus Oasis no se han localizado como inscripciones. Candidatos y notas en `output/dw-extract/ocr-pois.json` y `output/dw-extract/ui-sketches/`.
 - Verificación visual: 21 marcadores sobre tierra firme, sin puntos en el mar ni fuera del mapa.
+
+## Fuentes externas y mapa de viaje (8 de septiembre de 2026)
+
+- Inspección de `391_Athas_Travel_hi-res.pdf`: PDF rasterizado con dos Optional Content Groups (`Test 3 Roads`, 21 cápsulas; `Test 3 Wilds`, 28 cápsulas). Los valores se extraen como evidencias, pero la geometría no se transfiere por píxel al raster local.
+- Tres revisores independientes Luna/xhigh analizaron oeste, centro y este/sur. Consolidación: 35 lecturas → 29 topónimos únicos; se importaron solo los **22 de confianza alta**. Los 7 restantes permanecen en `output/external-poi-workers/consolidated-candidates.json` para revisión posterior.
+- `poi.json`: 114 → **136 POIs**. Los 22 nuevos tienen `provenance: externa`, `coordinates: null` y fuente explícita del PDF. No se presentan como posiciones nativas ni aproximadas.
+- Se añaden `externa` y `externa_aproximada` al dominio; la UI etiqueta ambas de manera explícita. Arquitectura, pipeline y criterios en `docs/TRAVEL_AND_EXTERNAL_POIS.md`.
+- Red semántica investigada, no integrada aún: Urik—Dragon's Bowl (Roads 200), Altaruk—Grak's Pool (Roads 80), Grak's Pool—South Ledopolus (Roads 75), Raam—Draj (Roads 160); dataset en `output/athas-travel-workers/reviewed-travel-network.v0.json`.
+- Validación: `npm test` (17/17), `npm run typecheck`, `npm run lint`, `npm run build` superados.

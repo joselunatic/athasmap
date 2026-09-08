@@ -9,3 +9,5 @@ tiles/
 tiles_new/zoom5_composite.png
 # Backups de fusión del catálogo
 poi.json.bak-*
+# PDF de referencia recibido del DJ; los derivados de investigación viven en output/
+391_Athas_Travel_hi-res.pdf
