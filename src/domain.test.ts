@@ -16,19 +16,24 @@ import {
   parseImport,
   networkSchema,
   setEndpoint,
+  mergeSeedState,
   provenanceLabel,
   symbols,
 } from "./domain";
 
 describe("Catálogo y validación", () => {
-  it("incluye los lugares de campaña y los 22 externos sin falsear posiciones", () => {
+  it("incluye 149 lugares: 43 inscritos, 3 aproximados y 3 externos sin situar", () => {
     const state = initialState();
-    expect(state.pois).toHaveLength(145);
-    expect(state.pois.filter((p) => p.coordinates === null)).toHaveLength(122);
-    expect(state.pois.filter((p) => p.provenance === "externa")).toHaveLength(22);
+    expect(state.pois).toHaveLength(149);
+    expect(state.pois.filter((p) => p.coordinates === null)).toHaveLength(103);
+    expect(state.pois.filter((p) => p.provenance === "externa")).toHaveLength(3);
+    expect(state.pois.filter((p) => p.provenance === "externa_aproximada")).toHaveLength(3);
+    expect(state.pois.filter((p) => p.provenance === "mapa")).toHaveLength(43);
     const situados = state.pois.filter((p) => p.coordinates !== null);
-    expect(situados).toHaveLength(23);
+    expect(situados).toHaveLength(46);
     expect(situados.every((p) => p.provenance !== "user")).toBe(true);
+    expect(state.pois.find((p) => p.id === "roqom")?.coordinates).toBeNull();
+    expect(state.pois.find((p) => p.id === "roqom")?.provenance).toBe("externa");
     const tyr = state.pois.find((p) => p.id === "tyr")!;
     expect(tyr.tags).toContain("ciudad-libre");
     expect(tyr.coordinates).toEqual({ x: 0.2787, y: 0.389 });
@@ -36,6 +41,34 @@ describe("Catálogo y validación", () => {
     expect(tyr.source).toContain("Inscripción del mapa");
     expect(state.pois.find((p) => p.id === "fort_iron")?.coordinates).not.toBeNull();
     expect(state.pois.find((p) => p.id === "hoja_rota")?.coordinates).toBeNull();
+  });
+  it("carga la red semántica curada con cuatro tramos y unidad pendiente", () => {
+    const network = initialState().network;
+    expect(network.nodes).toHaveLength(7);
+    expect(network.edges).toHaveLength(4);
+    expect(network.edges.every((edge) => edge.distanceLabel && edge.source && edge.evidence)).toBe(true);
+    expect(network.edges.every((edge) => edge.unit === null)).toBe(true);
+  });
+  it("migra snapshots antiguos sin perder cambios manuales", () => {
+    const current = initialState();
+    const stale = stateSchema.parse({
+      ...current,
+      pois: current.pois
+        .filter((poi) => !["black-waters", "cromlin", "roqom", "shault"].includes(poi.id))
+        .map((poi) =>
+          poi.id === "yaramuke"
+            ? { ...poi, coordinates: null, provenance: "externa", notes: "Nota del DJ" }
+            : poi,
+        ),
+      network: { nodes: [], edges: [], source: "Sin red curada" },
+    });
+    const migrated = mergeSeedState(stale);
+    expect(migrated.pois).toHaveLength(149);
+    expect(migrated.pois.find((poi) => poi.id === "yaramuke")?.coordinates).toEqual(
+      current.pois.find((poi) => poi.id === "yaramuke")?.coordinates,
+    );
+    expect(migrated.pois.find((poi) => poi.id === "yaramuke")?.notes).toBe("Nota del DJ");
+    expect(migrated.network.edges).toHaveLength(4);
   });
   it("acepta procedencias externas separadas de una inscripción del mapa", () => {
     const p = initialState().pois[0];
@@ -49,6 +82,13 @@ describe("Catálogo y validación", () => {
     expect(provenanceLabel("externa_aproximada")).toBe(
       "Fuente externa · ubicación aproximada",
     );
+  });
+  it("conserva el radio de incertidumbre de las ubicaciones aproximadas", () => {
+    const p = initialState().pois.find((poi) => poi.id === "oco")!;
+    expect(p.provenance).toBe("externa_aproximada");
+    expect(p.placementRadius).toBeGreaterThan(0);
+    expect(poiSchema.safeParse({ ...p, placementRadius: 0 }).success).toBe(false);
+    expect(poiSchema.safeParse({ ...p, placementRadius: 1.1 }).success).toBe(false);
   });
   it("da un símbolo propio a los sitios especiales", () => {
     expect(symbols.special_site).toBe("✦");

@@ -1,0 +1,82 @@
+{
+  "source": "391_Athas_Travel_hi-res.pdf · revisión semántica independiente",
+  "nodes": [
+    { "id": "urik", "name": "Urik", "coordinates": { "x": 0.4646, "y": 0.1789 } },
+    { "id": "dragons_bowl", "name": "Dragon's Bowl", "coordinates": { "x": 0.5709, "y": 0.2013 } },
+    { "id": "altaruk", "name": "Altaruk", "coordinates": { "x": 0.3759, "y": 0.5877 } },
+    { "id": "graks_pool", "name": "Grak's Pool", "coordinates": { "x": 0.4221, "y": 0.6899 } },
+    { "id": "ledopolus_south", "name": "South Ledopolus", "coordinates": { "x": 0.4467, "y": 0.8117 } },
+    { "id": "raam", "name": "Raam", "coordinates": { "x": 0.6374, "y": 0.2065 } },
+    { "id": "draj", "name": "Draj", "coordinates": { "x": 0.7875, "y": 0.1234 } }
+  ],
+  "edges": [
+    {
+      "id": "urik--dragons-bowl--roads",
+      "from": "urik",
+      "to": "dragons_bowl",
+      "terrain": "road",
+      "cost": 200,
+      "distanceLabel": 200,
+      "unit": null,
+      "dangers": [],
+      "traffic": "low",
+      "status": "open",
+      "restrictions": [],
+      "bidirectional": true,
+      "source": "391_Athas_Travel_hi-res.pdf",
+      "confidence": "high",
+      "evidence": "Revisión central: Urik — Dragon's Bowl · Roads 200"
+    },
+    {
+      "id": "altaruk--graks-pool--roads",
+      "from": "altaruk",
+      "to": "graks_pool",
+      "terrain": "road",
+      "cost": 80,
+      "distanceLabel": 80,
+      "unit": null,
+      "dangers": [],
+      "traffic": "low",
+      "status": "open",
+      "restrictions": [],
+      "bidirectional": true,
+      "source": "391_Athas_Travel_hi-res.pdf",
+      "confidence": "high",
+      "evidence": "Revisión central: Altaruk — Grak's Pool · Roads 80"
+    },
+    {
+      "id": "graks-pool--ledopolus-south--roads",
+      "from": "graks_pool",
+      "to": "ledopolus_south",
+      "terrain": "road",
+      "cost": 75,
+      "distanceLabel": 75,
+      "unit": null,
+      "dangers": [],
+      "traffic": "low",
+      "status": "open",
+      "restrictions": [],
+      "bidirectional": true,
+      "source": "391_Athas_Travel_hi-res.pdf",
+      "confidence": "high",
+      "evidence": "Revisión central: Grak's Pool — South Ledopolus · Roads 75"
+    },
+    {
+      "id": "raam--draj--roads",
+      "from": "raam",
+      "to": "draj",
+      "terrain": "road",
+      "cost": 160,
+      "distanceLabel": 160,
+      "unit": null,
+      "dangers": [],
+      "traffic": "low",
+      "status": "open",
+      "restrictions": [],
+      "bidirectional": true,
+      "source": "391_Athas_Travel_hi-res.pdf",
+      "confidence": "high",
+      "evidence": "Revisión central: Raam — Draj · Roads 160"
+    }
+  ]
+}

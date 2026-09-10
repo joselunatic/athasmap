@@ -2055,109 +2055,129 @@
       "id": "arkhold",
       "name": "Arkhold",
       "type": "ruin",
-      "region": "Ubicación pendiente de situar",
+      "region": "Ubicación reconocida en el raster local",
       "importance": 3,
       "confidence": 4,
       "tags": [
-        "pdf-travel",
-        "pendiente-de-situar"
+        "inscripcion-raster",
+        "pdf-travel"
       ],
       "description": "Estructura fortificada marcada en la costa sur del Estuary of the Forked Tongue, al sur de Waverly.",
-      "coordinates": null,
+      "coordinates": {
+        "x": 0.91545,
+        "y": 0.790584
+      },
       "visible": true,
-      "notes": "Reconocido por visión en el PDF de viaje. Nombre ARKHOLD y símbolo de fortificación claramente visibles; se usa ruin para el enclave arruinado.",
-      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
-      "provenance": "externa"
+      "notes": "Rótulo o símbolo reconocido en el raster local. Anclas: Samarah, Waverly, Bodach, Estuary of the Forked Tongue, Endless Sand Dunes, ruta hacia Silt Archipelago, borde costero oriental. Evidencia local: output/external-position-workers/south/crops/current_arkhold.png. Evidencia PDF: output/external-position-workers/south/crops/pdf_arkhold.png.",
+      "source": "Inscripción del mapa local (TSR 1991) — correlacionada con 391_Athas_Travel_hi-res.pdf",
+      "provenance": "mapa"
     },
     {
       "id": "bitter-well",
       "name": "Bitter Well",
       "type": "oasis",
-      "region": "Ubicación pendiente de situar",
+      "region": "Ubicación reconocida en el raster local",
       "importance": 3,
       "confidence": 4,
       "tags": [
-        "pdf-travel",
-        "pendiente-de-situar"
+        "inscripcion-raster",
+        "pdf-travel"
       ],
       "description": "Pozo/oasis marcado por palmeras y un pequeño punto junto a una ruta roja, en el sector de Marsh/The Narrows.",
-      "coordinates": null,
+      "coordinates": {
+        "x": 0.868598823,
+        "y": 0.151298701
+      },
       "visible": true,
-      "notes": "Reconocido por visión en el PDF de viaje. Nombre e icono de palmeras claramente visibles en crop nativo; se normaliza a oasis porque el esquema no tiene tipo pozo.",
-      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
-      "provenance": "externa"
+      "notes": "Rótulo o símbolo reconocido en el raster local. Anclas: Draj, Raam. Evidencia local: Raster: rótulo literal BITTER WELL con símbolo de pozo/estrella en crops/bitter-well.png; la ruta roja llega desde Draj y sigue hacia el este junto al cambio de terreno naranja–pálido.. Evidencia PDF: PDF p.1: BITTER WELL está sobre la ruta roja después de Draj, asociado a palmeras/pozo, antes de The Narrows; el camino continúa hacia el borde oriental y el Sea of Silt..",
+      "source": "Inscripción del mapa local (TSR 1991) — correlacionada con 391_Athas_Travel_hi-res.pdf",
+      "provenance": "mapa"
     },
     {
       "id": "bleak-tower",
       "name": "Bleak Tower",
       "type": "ruin",
-      "region": "Ubicación pendiente de situar",
+      "region": "Ubicación reconocida en el raster local",
       "importance": 3,
       "confidence": 4,
       "tags": [
-        "pdf-travel",
-        "pendiente-de-situar"
+        "inscripcion-raster",
+        "pdf-travel"
       ],
       "description": "Torre/estructura aislada junto al borde del mapa, al sureste de Arkhold y próxima a las indicaciones hacia el Silt Archipelago.",
-      "coordinates": null,
+      "coordinates": {
+        "x": 0.975594,
+        "y": 0.896753
+      },
       "visible": true,
-      "notes": "Reconocido por visión en el PDF de viaje. Etiqueta BLEAK TOWER e icono vertical de torre claramente visibles; se propone ruin como tipo canónico para una torre antigua.",
-      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
-      "provenance": "externa"
+      "notes": "Rótulo o símbolo reconocido en el raster local. Anclas: Arkhold, Samarah, Estuary of the Forked Tongue, Endless Sand Dunes, ruta 100 hacia Silt Archipelago, borde costero suroriental. Evidencia local: output/external-position-workers/south/crops/current_bleak_tower.png. Evidencia PDF: output/external-position-workers/south/crops/pdf_bleak_tower.png.",
+      "source": "Inscripción del mapa local (TSR 1991) — correlacionada con 391_Athas_Travel_hi-res.pdf",
+      "provenance": "mapa"
     },
     {
       "id": "dasaraches",
       "name": "Dasaraches",
       "type": "special_site",
-      "region": "Ubicación pendiente de situar",
+      "region": "Ubicación aproximada en el raster local",
       "importance": 3,
       "confidence": 4,
       "tags": [
+        "inscripcion-raster",
         "pdf-travel",
-        "pendiente-de-situar"
+        "ubicacion-aproximada"
       ],
       "description": "Marcador circular claro de Special Site en el sector boscoso y montañoso del noroeste.",
-      "coordinates": null,
+      "coordinates": {
+        "x": 0.071257,
+        "y": 0.110714
+      },
       "visible": true,
-      "notes": "Reconocido por visión en el PDF de viaje. Texto confirmado por visión nativa como DASARACHES; el símbolo coincide con Special Site en la leyenda. No hay coincidencia exacta ni normalizada en poi.json.",
-      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
-      "provenance": "externa"
+      "notes": "Ubicación aproximada; radio de incertidumbre normalizado: 0.017. Anclas: Silent Forest, Dragon Crown Mountains, Tyr, Kled. Evidencia local: output/external-position-workers/west/current_dasaraches.png. Evidencia PDF: output/external-poi-workers/west/dasaraches.png. El marcador circular claro cae dentro del enclave verde rotulado Silent Forest y rodeado por Dragon Crown Mountains. La posición se fijó por ese conjunto bosque-montaña y por la ruta relativa hacia Tyr/Kled, no escalando la coordenada del PDF.",
+      "source": "391_Athas_Travel_hi-res.pdf + contexto del raster local — ubicación aproximada",
+      "provenance": "externa_aproximada",
+      "placementRadius": 0.017
     },
     {
       "id": "echoing-mine",
       "name": "Echoing Mine",
       "type": "outpost",
-      "region": "Ubicación pendiente de situar",
+      "region": "Ubicación reconocida en el raster local",
       "importance": 3,
       "confidence": 4,
       "tags": [
-        "pdf-travel",
-        "pendiente-de-situar"
+        "inscripcion-raster",
+        "pdf-travel"
       ],
       "description": "Mina nombrada con marcador circular claro y contorno oscuro.",
-      "coordinates": null,
+      "coordinates": {
+        "x": 0.583569405,
+        "y": 0.600649351
+      },
       "visible": true,
-      "notes": "Reconocido por visión en el PDF de viaje. La etiqueta ECHOING MINE es legible; se usa outpost porque el schema no contempla mine. No confundir con Iron Mines. Ausente de poi.json.",
-      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
-      "provenance": "externa"
+      "notes": "Rótulo o símbolo reconocido en el raster local. Anclas: Gulg, Nibenay. Evidencia local: Raster: rótulo literal ECHOING MINE y círculo hueco en el crop crops/echoing-mine.png, dentro de la franja montañosa y punteada al sureste de la zona boscosa de Gulg/Nibenay.. Evidencia PDF: PDF p.1: rótulo literal ECHOING MINE en el corredor claro al oeste/noroeste de Bodach, junto a Salt View y al relieve de Mihillot/Melliot Mountains; el sector se distingue por la franja salina/llana y las flechas de conexión hacia Bodach..",
+      "source": "Inscripción del mapa local (TSR 1991) — correlacionada con 391_Athas_Travel_hi-res.pdf",
+      "provenance": "mapa"
     },
     {
       "id": "echoless-caverns",
       "name": "Echoless Caverns",
       "type": "ruin",
-      "region": "Ubicación pendiente de situar",
+      "region": "Ubicación reconocida en el raster local",
       "importance": 3,
       "confidence": 4,
       "tags": [
-        "pdf-travel",
-        "pendiente-de-situar"
+        "inscripcion-raster",
+        "pdf-travel"
       ],
       "description": "Icono de doble estructura en el sector montañoso al oeste de Tyr.",
-      "coordinates": null,
+      "coordinates": {
+        "x": 0.297886,
+        "y": 0.316558
+      },
       "visible": true,
-      "notes": "Reconocido por visión en el PDF de viaje. Texto confirmado como ECHOLESS CAVERNS; el símbolo visible coincide con Ruins en la leyenda, pese a la semántica de cavernas. No hay coincidencia exacta ni normalizada en poi.json. | corroborado por zona center (medium)",
-      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
-      "provenance": "externa"
+      "notes": "Rótulo o símbolo reconocido en el raster local. Anclas: Mausoleum of Shivarm, western mountain belt, forest edge, Tyr. Evidencia local: output/external-position-workers/west/current_echoless_caverns.png. Evidencia PDF: output/external-poi-workers/west/echoless_caverns.png.",
+      "source": "Inscripción del mapa local (TSR 1991) — correlacionada con 391_Athas_Travel_hi-res.pdf",
+      "provenance": "mapa"
     },
     {
       "id": "freedom",
@@ -2181,271 +2201,411 @@
       "id": "iron-mines",
       "name": "Iron Mines",
       "type": "ruin",
-      "region": "Ubicación pendiente de situar",
+      "region": "Ubicación aproximada en el raster local",
       "importance": 3,
       "confidence": 4,
       "tags": [
+        "inscripcion-raster",
         "pdf-travel",
-        "pendiente-de-situar"
+        "ubicacion-aproximada"
       ],
       "description": "Icono de doble estructura en la zona minera/montañosa inmediatamente al oeste de Tyr.",
-      "coordinates": null,
+      "coordinates": {
+        "x": 0.243844,
+        "y": 0.426948
+      },
       "visible": true,
-      "notes": "Reconocido por visión en el PDF de viaje. Texto confirmado como IRON MINES; el icono coincide con Ruins en la leyenda. No hay coincidencia exacta ni normalizada en poi.json. | corroborado por zona center (medium)",
-      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
-      "provenance": "externa"
+      "notes": "Ubicación aproximada; radio de incertidumbre normalizado: 0.017. Anclas: mountain belt, Fort Iron, red road, Tyr. Evidencia local: output/external-position-workers/west/current_iron_mines.png. Evidencia PDF: output/external-poi-workers/west/iron_mines.png. El punto negro con texto IRON MINES está dentro del cinturón de montañas y junto al parche claro de mineral. El sendero punteado lo conecta hacia el cruce circular; el punto de Fort Iron más al sureste se mantiene separado.",
+      "source": "391_Athas_Travel_hi-res.pdf + contexto del raster local — ubicación aproximada",
+      "provenance": "externa_aproximada",
+      "placementRadius": 0.017
     },
     {
       "id": "kol-tukulg",
       "name": "Kol-Tukulg",
       "type": "ruin",
-      "region": "Ubicación pendiente de situar",
+      "region": "Ubicación reconocida en el raster local",
       "importance": 3,
       "confidence": 4,
       "tags": [
-        "pdf-travel",
-        "pendiente-de-situar"
+        "inscripcion-raster",
+        "pdf-travel"
       ],
       "description": "Icono de ruinas en el sector meridional suroccidental, junto al borde de la zona boscosa.",
-      "coordinates": null,
+      "coordinates": {
+        "x": 0.110917,
+        "y": 0.631818
+      },
       "visible": true,
-      "notes": "Reconocido por visión en el PDF de viaje. Lectura confirmada carácter por carácter como KOL-TUKULG; el icono coincide con Ruins en la leyenda. No hay coincidencia exacta ni normalizada en poi.json.",
-      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
-      "provenance": "externa"
+      "notes": "Rótulo o símbolo reconocido en el raster local. Anclas: western forest edge, mountain pass, Tyr, Altaruk. Evidencia local: output/external-position-workers/west/current_kol_tukulg.png. Evidencia PDF: output/external-poi-workers/west/kol_tukulg.png.",
+      "source": "Inscripción del mapa local (TSR 1991) — correlacionada con 391_Athas_Travel_hi-res.pdf",
+      "provenance": "mapa"
     },
     {
       "id": "kra-hnur",
       "name": "Kra-Hnur",
       "type": "village",
-      "region": "Ubicación pendiente de situar",
+      "region": "Ubicación reconocida en el raster local",
       "importance": 3,
       "confidence": 4,
       "tags": [
-        "pdf-travel",
-        "pendiente-de-situar"
+        "inscripcion-raster",
+        "pdf-travel"
       ],
       "description": "Punto negro de aldea en el sector meridional de la franja analizada.",
-      "coordinates": null,
+      "coordinates": {
+        "x": 0.209632,
+        "y": 0.587662
+      },
       "visible": true,
-      "notes": "Reconocido por visión en el PDF de viaje. Lectura confirmada como KRA-HNUR, incluido el guion; el punto negro coincide con Village en la leyenda. No hay coincidencia exacta ni normalizada en poi.json.",
-      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
-      "provenance": "externa"
+      "notes": "Rótulo o símbolo reconocido en el raster local. Anclas: Kol-Tukulg, forest belt, mountain chain, Altaruk. Evidencia local: output/external-position-workers/west/current_kra_hnur.png. Evidencia PDF: output/external-poi-workers/west/kra_hnur.png.",
+      "source": "Inscripción del mapa local (TSR 1991) — correlacionada con 391_Athas_Travel_hi-res.pdf",
+      "provenance": "mapa"
     },
     {
       "id": "makla",
       "name": "Makla",
       "type": "village",
-      "region": "Ubicación pendiente de situar",
+      "region": "Ubicación reconocida en el raster local",
       "importance": 3,
       "confidence": 4,
       "tags": [
-        "pdf-travel",
-        "pendiente-de-situar"
+        "inscripcion-raster",
+        "pdf-travel"
       ],
       "description": "Asentamiento marcado por un punto circular negro, cerca de la ruta septentrional.",
-      "coordinates": null,
+      "coordinates": {
+        "x": 0.421007,
+        "y": 0.073377
+      },
       "visible": true,
-      "notes": "Reconocido por visión en el PDF de viaje. Nombre propio claramente legible en crop nativo. Ausente de poi.json.",
-      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
-      "provenance": "externa"
+      "notes": "Rótulo o símbolo reconocido en el raster local. Anclas: Lake of the Golden Dragon, mountain belt, Oco, Kled. Evidencia local: output/external-position-workers/west/current_makla.png. Evidencia PDF: output/external-poi-workers/center/micro_makla.png.",
+      "source": "Inscripción del mapa local (TSR 1991) — correlacionada con 391_Athas_Travel_hi-res.pdf",
+      "provenance": "mapa"
     },
     {
       "id": "mausoleum-of-shivarm",
       "name": "Mausoleum of Shivarm",
       "type": "ruin",
-      "region": "Ubicación pendiente de situar",
+      "region": "Ubicación reconocida en el raster local",
       "importance": 3,
       "confidence": 4,
       "tags": [
-        "pdf-travel",
-        "pendiente-de-situar"
+        "inscripcion-raster",
+        "pdf-travel"
       ],
       "description": "Icono de doble estructura en el sector montañoso al oeste de Tyr.",
-      "coordinates": null,
+      "coordinates": {
+        "x": 0.300065,
+        "y": 0.225974
+      },
       "visible": true,
-      "notes": "Reconocido por visión en el PDF de viaje. Lectura confirmada como SHIVARM; el icono coincide con Ruins en la leyenda. No hay coincidencia exacta ni normalizada en poi.json. | corroborado por zona center (medium)",
-      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
-      "provenance": "externa"
+      "notes": "Rótulo o símbolo reconocido en el raster local. Anclas: Forest edge, mountain foothills, Hidden Village, Kled. Evidencia local: output/external-position-workers/west/current_mausoleum_shivarm.png. Evidencia PDF: output/external-poi-workers/west/mausoleum_shivarm.png.",
+      "source": "Inscripción del mapa local (TSR 1991) — correlacionada con 391_Athas_Travel_hi-res.pdf",
+      "provenance": "mapa"
     },
     {
       "id": "oco",
       "name": "Oco",
       "type": "village",
-      "region": "Ubicación pendiente de situar",
+      "region": "Ubicación aproximada en el raster local",
       "importance": 3,
-      "confidence": 4,
+      "confidence": 3,
       "tags": [
         "pdf-travel",
-        "pendiente-de-situar"
+        "ubicacion-aproximada"
       ],
       "description": "Punto negro de aldea en el extremo oriental del solape, sobre terreno boscoso/montañoso.",
-      "coordinates": null,
+      "coordinates": {
+        "x": 0.352364,
+        "y": 0.08539
+      },
       "visible": true,
-      "notes": "Reconocido por visión en el PDF de viaje. El marcador de punto negro coincide con Village en la leyenda. Está dentro del solape x=1800..2050. No hay coincidencia exacta ni normalizada en poi.json.",
-      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
-      "provenance": "externa"
+      "notes": "Ubicación aproximada; radio de incertidumbre normalizado: 0.02. Anclas: Forest edge, mountain belt, Lake of the Golden Dragon, Kled. Evidencia local: output/external-position-workers/west/current_oco.png. Evidencia PDF: output/external-poi-workers/west/oco.png. El punto negro está en la transición bosque-montaña, inmediatamente al oeste de la cadena y al noroeste del corredor del Lake of the Golden Dragon. En el raster la grafía pixelada parece Ogo/Oco; el marcador y el contexto son inequívocos frente al OCO del PDF.",
+      "source": "391_Athas_Travel_hi-res.pdf + contexto del raster local — ubicación aproximada",
+      "provenance": "externa_aproximada",
+      "placementRadius": 0.02
     },
     {
       "id": "pristine-tower",
       "name": "Pristine Tower",
       "type": "ruin",
-      "region": "Ubicación pendiente de situar",
+      "region": "Ubicación reconocida en el raster local",
       "importance": 3,
       "confidence": 4,
       "tags": [
-        "pdf-travel",
-        "pendiente-de-situar"
+        "inscripcion-raster",
+        "pdf-travel"
       ],
       "description": "Torre aislada señalada por un icono arquitectónico en el entorno de Black Spine Mountains/Broken Butte.",
-      "coordinates": null,
+      "coordinates": {
+        "x": 0.733275223,
+        "y": 0.564935065
+      },
       "visible": true,
-      "notes": "Reconocido por visión en el PDF de viaje. Etiqueta PRISTINE TOWER y símbolo de torre nítidos; se usa ruin como categoría canónica más cercana para una torre antigua nombrada.",
-      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
-      "provenance": "externa"
+      "notes": "Rótulo o símbolo reconocido en el raster local. Anclas: Nibenay, Draj. Evidencia local: Raster: rótulo literal PRISTINE TOWER y círculo hueco visibles en crops/pristine-tower.png, al borde de una meseta clara y terreno árido, al este de Nibenay y al sur del corredor de Draj.. Evidencia PDF: PDF p.1: PRISTINE TOWER está rotulado con símbolo de torre en la zona clara asociada a Great Ivory Plain, cerca de Salted Shores of Bodach y de la red de flechas 70/90/100..",
+      "source": "Inscripción del mapa local (TSR 1991) — correlacionada con 391_Athas_Travel_hi-res.pdf",
+      "provenance": "mapa"
     },
     {
       "id": "salt-view",
       "name": "Salt View",
       "type": "village",
-      "region": "Ubicación pendiente de situar",
+      "region": "Ubicación reconocida en el raster local",
       "importance": 3,
       "confidence": 4,
       "tags": [
-        "pdf-travel",
-        "pendiente-de-situar"
+        "inscripcion-raster",
+        "pdf-travel"
       ],
       "description": "Asentamiento puntual junto a las salinas, marcado con punto negro.",
-      "coordinates": null,
+      "coordinates": {
+        "x": 0.612333842,
+        "y": 0.581168831
+      },
       "visible": true,
-      "notes": "Reconocido por visión en el PDF de viaje. Etiqueta legible en crop nativo; el contexto del mapa identifica una localidad, no la región Salt Meres. Ausente de poi.json.",
-      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
-      "provenance": "externa"
+      "notes": "Rótulo o símbolo reconocido en el raster local. Anclas: Gulg, Nibenay. Evidencia local: Raster: rótulo literal SALT VIEW con punto negro en crops/salt-view.png, sobre la franja de relieve punteado al noreste de ECHOING MINE y al este del corredor Gulg–Nibenay.. Evidencia PDF: PDF p.1: SALT VIEW aparece como punto negro en la parte superior del mismo corredor que ECHOING MINE, señalado por la flecha/óvalo 90 y rodeado de superficies claras y salinas; al sur queda Bodach..",
+      "source": "Inscripción del mapa local (TSR 1991) — correlacionada con 391_Athas_Travel_hi-res.pdf",
+      "provenance": "mapa"
     },
     {
       "id": "samarah",
       "name": "Samarah",
       "type": "village",
-      "region": "Ubicación pendiente de situar",
+      "region": "Ubicación reconocida en el raster local",
       "importance": 3,
       "confidence": 4,
       "tags": [
+        "inscripcion-raster",
         "pdf-travel",
-        "pendiente-de-situar"
+        "ubicacion-aproximada"
       ],
       "description": "Localidad marcada por un punto negro en el entorno de Rocky Badlands/Verdant Belt.",
-      "coordinates": null,
+      "coordinates": {
+        "x": 0.753541,
+        "y": 0.74026
+      },
       "visible": true,
-      "notes": "Reconocido por visión en el PDF de viaje. Nombre SAMARAH y marcador puntual claramente visibles; se propone village por el tipo de asentamiento del mapa.",
-      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
-      "provenance": "externa"
+      "notes": "Rótulo o símbolo reconocido en el raster local. Anclas: Bodach, Waverly, Rocky Badlands, Verdant Belt, Estuary of the Forked Tongue, Endless Sand Dunes, corredor montañoso oriental. Evidencia local: output/external-position-workers/south/crops/current_samarah.png. Evidencia PDF: output/external-position-workers/south/crops/pdf_samarah.png.",
+      "source": "Inscripción del mapa local (TSR 1991) — correlacionada con 391_Athas_Travel_hi-res.pdf",
+      "provenance": "mapa"
     },
     {
       "id": "screaming-ravine",
       "name": "Screaming Ravine",
       "type": "special_site",
-      "region": "Ubicación pendiente de situar",
+      "region": "Ubicación reconocida en el raster local",
       "importance": 3,
       "confidence": 4,
       "tags": [
-        "pdf-travel",
-        "pendiente-de-situar"
+        "inscripcion-raster",
+        "pdf-travel"
       ],
       "description": "Marcador circular claro de Special Site en el corredor árido meridional.",
-      "coordinates": null,
+      "coordinates": {
+        "x": 0.175855,
+        "y": 0.675325
+      },
       "visible": true,
-      "notes": "Reconocido por visión en el PDF de viaje. Texto confirmado carácter por carácter como SCREAMING RAVINE; el círculo claro con borde coincide con Special Site en la leyenda. No hay coincidencia exacta ni normalizada en poi.json.",
-      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
-      "provenance": "externa"
+      "notes": "Rótulo o símbolo reconocido en el raster local. Anclas: Kra-Hnur, mountain/ravine belt, Lost Oasis, Altaruk. Evidencia local: output/external-position-workers/west/current_screaming_ravine.png. Evidencia PDF: output/external-poi-workers/west/screaming_ravine.png.",
+      "source": "Inscripción del mapa local (TSR 1991) — correlacionada con 391_Athas_Travel_hi-res.pdf",
+      "provenance": "mapa"
     },
     {
       "id": "shur-a-tamwa",
       "name": "Shur-A-Tamwa",
       "type": "oasis",
-      "region": "Ubicación pendiente de situar",
+      "region": "Ubicación reconocida en el raster local",
       "importance": 3,
       "confidence": 4,
       "tags": [
+        "inscripcion-raster",
         "pdf-travel",
-        "pendiente-de-situar"
+        "ubicacion-aproximada"
       ],
       "description": "Oasis/localidad puntual del borde meridional, marcado junto a palmeras.",
-      "coordinates": null,
+      "coordinates": {
+        "x": 0.664851,
+        "y": 0.952597
+      },
       "visible": true,
-      "notes": "Reconocido por visión en el PDF de viaje. Transcripción clara en crop nativo; el contexto de palmeras y oasis respalda el tipo. Ausente de poi.json. | corroborado por zona east (high)",
-      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
-      "provenance": "externa"
+      "notes": "Rótulo o símbolo reconocido en el raster local. Anclas: Balic, Estuary of the Forked Tongue, Endless Sand Dunes, ruta 75 desde Balic/Baluc, salida hacia Southern Wastes, borde costero meridional. Evidencia local: output/external-position-workers/south/crops/current_shur_a_tamwa.png. Evidencia PDF: output/external-position-workers/south/crops/pdf_shur_a_tamwa.png.",
+      "source": "Inscripción del mapa local (TSR 1991) — correlacionada con 391_Athas_Travel_hi-res.pdf",
+      "provenance": "mapa"
     },
     {
       "id": "silver-spring",
       "name": "Silver Spring",
       "type": "oasis",
-      "region": "Ubicación pendiente de situar",
+      "region": "Ubicación reconocida en el raster local",
       "importance": 3,
       "confidence": 4,
       "tags": [
-        "pdf-travel",
-        "pendiente-de-situar"
+        "inscripcion-raster",
+        "pdf-travel"
       ],
       "description": "Manantial/oasis señalado por palmeras y etiqueta propia en el sector central superior.",
-      "coordinates": null,
+      "coordinates": {
+        "x": 0.457834,
+        "y": 0.409416
+      },
       "visible": true,
-      "notes": "Reconocido por visión en el PDF de viaje. Se lee SILVER SPRING; el final queda parcialmente pegado al borde del micro-crop, pero el nombre completo está confirmado por el solape y el contexto de oasis. Ausente de poi.json.",
-      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
-      "provenance": "externa"
+      "notes": "Rótulo o símbolo reconocido en el raster local. Anclas: The Tablelands, red-road junction, Tyr, Kled, Altaruk. Evidencia local: output/external-position-workers/west/current_silver_spring.png. Evidencia PDF: output/external-poi-workers/center/micro_silver_spring.png.",
+      "source": "Inscripción del mapa local (TSR 1991) — correlacionada con 391_Athas_Travel_hi-res.pdf",
+      "provenance": "mapa"
     },
     {
       "id": "temple-of-the-sky-serpent",
       "name": "Temple of the Sky Serpent",
       "type": "ruin",
-      "region": "Ubicación pendiente de situar",
+      "region": "Ubicación reconocida en el raster local",
       "importance": 3,
       "confidence": 4,
       "tags": [
-        "pdf-travel",
-        "pendiente-de-situar"
+        "inscripcion-raster",
+        "pdf-travel"
       ],
       "description": "Icono de estructura/torres dentro del corredor boscoso del centro-oeste.",
-      "coordinates": null,
+      "coordinates": {
+        "x": 0.236871,
+        "y": 0.20487
+      },
       "visible": true,
-      "notes": "Reconocido por visión en el PDF de viaje. La etiqueta dice SKY, no SEA. Aunque el nombre es un templo, el símbolo visible coincide con Ruins en la leyenda; no hay coincidencia en poi.json.",
-      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
-      "provenance": "externa"
+      "notes": "Rótulo o símbolo reconocido en el raster local. Anclas: Forest, Dragon Crown Mountains, Tyr, Kled. Evidencia local: output/external-position-workers/west/current_temple_sky_serpent.png. Evidencia PDF: output/external-poi-workers/west/temple_sky_serpent.png.",
+      "source": "Inscripción del mapa local (TSR 1991) — correlacionada con 391_Athas_Travel_hi-res.pdf",
+      "provenance": "mapa"
     },
     {
       "id": "the-chaksa",
       "name": "The Chaksa",
       "type": "ruin",
-      "region": "Ubicación pendiente de situar",
+      "region": "Ubicación reconocida en el raster local",
       "importance": 3,
       "confidence": 4,
       "tags": [
-        "pdf-travel",
-        "pendiente-de-situar"
+        "inscripcion-raster",
+        "pdf-travel"
       ],
       "description": "Icono de doble estructura/torres al sur de la cordillera occidental.",
-      "coordinates": null,
+      "coordinates": {
+        "x": 0.073219,
+        "y": 0.225974
+      },
       "visible": true,
-      "notes": "Reconocido por visión en el PDF de viaje. La lectura fue comprobada carácter por carácter: THE CHAKSA, no THE CHUNKSA. El icono coincide con Ruins en la leyenda. No hay coincidencia exacta ni normalizada en poi.json.",
-      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
-      "provenance": "externa"
+      "notes": "Rótulo o símbolo reconocido en el raster local. Anclas: Hinterland, Dragon Crown Mountains, Tyr, Kled. Evidencia local: output/external-position-workers/west/current_the_chaksa.png. Evidencia PDF: output/external-poi-workers/west/the_chaksa.png.",
+      "source": "Inscripción del mapa local (TSR 1991) — correlacionada con 391_Athas_Travel_hi-res.pdf",
+      "provenance": "mapa"
     },
     {
       "id": "yaramuke",
       "name": "Yaramuke",
       "type": "ruin",
-      "region": "Ubicación pendiente de situar",
+      "region": "Ubicación reconocida en el raster local",
       "importance": 3,
       "confidence": 4,
+      "tags": [
+        "inscripcion-raster",
+        "pdf-travel"
+      ],
+      "description": "Ciudad/fortificación arruinada indicada por un icono de estructura rota.",
+      "coordinates": {
+        "x": 0.58858139,
+        "y": 0.117532468
+      },
+      "visible": true,
+      "notes": "Rótulo o símbolo reconocido en el raster local. Anclas: Urik, Raam. Evidencia local: Raster: rótulo literal YARAMUKE junto a un cuadrado morado en crops/yaramuke.png; el camino rojo y las marcas húmedas lo colocan inmediatamente al este de BLACK WATERS y al noroeste de RAAM.. Evidencia PDF: PDF p.1: YARAMUKE está rotulado en el tramo oriental de la secuencia BLACK WATERS → YARAMUKE → RAAM, junto a vegetación/agua y el camino rojo que pasa por el óvalo 80..",
+      "source": "Inscripción del mapa local (TSR 1991) — correlacionada con 391_Athas_Travel_hi-res.pdf",
+      "provenance": "mapa"
+    },
+    {
+      "id": "black-waters",
+      "name": "Black Waters",
+      "type": "oasis",
+      "region": "Ubicación reconocida en el raster local",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "inscripcion-raster",
+        "pdf-travel"
+      ],
+      "description": "Punto de agua asociado a vegetación y al corredor de Yaramuke.",
+      "coordinates": {
+        "x": 0.58400523,
+        "y": 0.126298701
+      },
+      "visible": true,
+      "notes": "Rótulo o símbolo reconocido en el raster local. Anclas: Urik, Raam. Evidencia local: Raster: rótulo literal BLACK WATERS en crops/black-waters.png, con icono oscuro y trazos sinuosos de agua; la ruta roja pasa al sur y sigue hacia el nodo de RAAM.. Evidencia PDF: PDF p.1: BLACK WATERS aparece al oeste de Yaramuke, sobre el mismo camino rojo que continúa hacia RAAM; el entorno inmediato está marcado por trazos ondulados de agua/humedal..",
+      "source": "Inscripción del mapa local (TSR 1991) — correlacionada con 391_Athas_Travel_hi-res.pdf",
+      "provenance": "mapa",
+      "water": "unknown",
+      "danger": "unknown",
+      "faction": ""
+    },
+    {
+      "id": "cromlin",
+      "name": "Cromlin",
+      "type": "village",
+      "region": "Ubicación reconocida en el raster local",
+      "importance": 3,
+      "confidence": 3,
+      "tags": [
+        "inscripcion-raster",
+        "pdf-travel",
+        "ubicacion-aproximada"
+      ],
+      "description": "Asentamiento puntual del corredor oriental, entre relieves y rutas de las Tablelands.",
+      "coordinates": {
+        "x": 0.72477664,
+        "y": 0.376298701
+      },
+      "visible": true,
+      "notes": "Rótulo o símbolo reconocido en el raster local. Anclas: Raam, Draj. Evidencia local: Raster: rótulo literal CROMLIN en crops/cromlin.png, sobre la transición entre relieve oscuro/montañoso al oeste y llanura amarilla al este; una ruta punteada llega desde el norte.. Evidencia PDF: PDF p.1: CROMLIN aparece literalmente con un punto negro en el sector central-sur, junto a una cadena montañosa y el indicador de ruta 130; está entre el corredor de Raam y la llanura oriental..",
+      "source": "Inscripción del mapa local (TSR 1991) — correlacionada con 391_Athas_Travel_hi-res.pdf",
+      "provenance": "mapa",
+      "water": "unknown",
+      "danger": "unknown",
+      "faction": ""
+    },
+    {
+      "id": "roqom",
+      "name": "Roqom",
+      "type": "ruin",
+      "region": "Ubicación pendiente de situar",
+      "importance": 3,
+      "confidence": 3,
       "tags": [
         "pdf-travel",
         "pendiente-de-situar"
       ],
-      "description": "Ciudad/fortificación arruinada indicada por un icono de estructura rota.",
+      "description": "Estructura aislada del sector oriental, próxima al entorno de Isle of Bones.",
       "coordinates": null,
       "visible": true,
-      "notes": "Reconocido por visión en el PDF de viaje. Nombre propio claramente legible y asociado a ruinas. Ausente de poi.json.",
+      "notes": "El raster local no confirma un rótulo o símbolo inequívoco para este POI. Evidencia PDF: PDF p.1: ROQOM aparece literalmente con una pequeña estructura en el sector oriental, al este de la cadena montañosa y próximo al litoral/Isle of Bones; queda separado de la ruta principal.. Se conserva como candidato externo sin coordenadas canónicas.",
       "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
-      "provenance": "externa"
+      "provenance": "externa",
+      "water": "unknown",
+      "danger": "unknown",
+      "faction": ""
+    },
+    {
+      "id": "shault",
+      "name": "Shault",
+      "type": "village",
+      "region": "Tablelands orientales",
+      "importance": 3,
+      "confidence": 3,
+      "tags": [
+        "pdf-travel"
+      ],
+      "description": "Asentamiento nombrado en el extremo oriental de la red de viaje.",
+      "coordinates": null,
+      "visible": true,
+      "notes": "",
+      "source": "391_Athas_Travel_hi-res.pdf · inscripción reconocida por visión",
+      "provenance": "externa",
+      "water": "unknown",
+      "danger": "unknown",
+      "faction": ""
     }
   ]
 }

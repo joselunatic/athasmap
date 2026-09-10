@@ -18,7 +18,7 @@ npm run build
 npm run preview
 ```
 
-`dist/` puede servirse en la raíz de un servidor estático. Incluye teselas 0–5 y los trazos experimentales; no copia el composite de referencia de 33 MB. No uses `file://`.
+`dist/` puede servirse en la raíz de un servidor estático. Incluye teselas 0–5 y la red semántica curada; no copia el composite de referencia de 33 MB. No uses `file://`.
 
 ## Uso
 
@@ -27,14 +27,14 @@ npm run preview
 - **Crear:** botón `+`, clic en el mapa, completa el formulario y guarda. Cancelar no crea el registro.
 - **Editar:** metadatos, visibilidad, agua, peligro, facción, fuentes y notas privadas. La eliminación exige confirmación.
 - **Viaje:** selecciona POIs ubicados o puntos libres. «Ruta manual» permite añadir puntos en orden, deshacer el último y terminar conservando el trazado. La alternativa directa dibuja una línea entre extremos.
-- **Capas:** POIs, cuadrícula, red importada y trazos experimentales. Caminos y nombres impresos son parte inseparable del raster.
+- **Capas:** POIs, cuadrícula y red de viaje semántica. Los caminos y nombres impresos son parte inseparable del raster; los POIs aproximados se dibujan con un radio de incertidumbre.
 - **Datos:** exporta campaña completa, POIs o red. La importación muestra un resumen y pide confirmar el reemplazo; puedes exportar una copia previa.
 
 En móvil, «Abrir herramientas» muestra el panel y «Ver mapa» lo oculta. Iniciar una colocación deja libre el mapa.
 
 ## Procedencia y coordenadas
 
-Los originales `routes.geojson`, `tiles/`, `tiles_new/` y `scripts/` no se modifican. El catálogo `poi.json` conserva sus 42 registros iniciales, añade 72 procedentes de *The Wanderer's Chronicle* (Athas.org), 9 lugares de la campaña compartida del DM y 22 topónimos de alta confianza leídos en `391_Athas_Travel_hi-res.pdf` (ver `output/external-poi-workers/`). `initialState()` migra determinísticamente los **145 POIs**. Hay 23 posiciones confirmadas o asignadas por campaña; los 22 del PDF entran como `externa`, sin coordenadas, hasta contrastar su situación por contexto. Ninguna posición de campaña se presenta como canónica. «Catálogo original» indica procedencia, no verificación editorial independiente; las entradas citan su fuente en el campo `source`.
+Los originales `routes.geojson`, `tiles/`, `tiles_new/` no se modifican. El catálogo `poi.json` conserva sus 42 registros iniciales, añade 72 procedentes de *The Wanderer's Chronicle* (Athas.org), 9 lugares de la campaña compartida del DM, 22 topónimos externos iniciales y 4 candidatos externos pendientes o reconciliados de la revisión del PDF. `initialState()` migra determinísticamente los **149 POIs**: 43 con inscripción local, 3 con ubicación externa aproximada y 3 externos todavía sin situar (`Freedom`, `Roqom`, `Shault`). Los candidatos aproximados incluyen un radio de incertidumbre; ninguna posición se presenta como canónica sin evidencia del raster. Las entradas citan su fuente en `source` y el estado se muestra en la ficha.
 
 El composite mide 4608 × 3328 píxeles; la caja no vacía ocupa **4589 × 3080** desde la esquina superior izquierda. El resto es relleno.
 
@@ -92,9 +92,9 @@ El ritmo es editable y se muestra el avance diario efectivo. Las condiciones afe
 
 ## Red extensible
 
-`networkSchema` define nodos `{id,name,coordinates}` y aristas `{id,from,to,terrain,cost,dangers,traffic,status,restrictions,bidirectional}`. Terreno: road/sand/rock/mountain; estados: open/closed/uncertain; tránsito: low/medium/high. `cost` es un factor positivo reservado para un futuro motor. Se validan nodos referenciados e identificadores únicos.
+`networkSchema` define nodos `{id,name,coordinates}` y aristas `{id,from,to,terrain,cost,distanceLabel,unit,source,evidence,confidence,dangers,traffic,status,restrictions,bidirectional}`. La red inicial de `travel-network.json` contiene **7 nodos y 4 tramos** revisados semánticamente desde `391_Athas_Travel_hi-res.pdf`. `distanceLabel` conserva el valor impreso y `unit: null` evita inventar si son millas, leguas u otra unidad. Se validan nodos referenciados e identificadores únicos.
 
-La red se importa, exporta y visualiza uniendo nodos con segmentos rectos. No hay algoritmo de navegación porque no existe una red curada fiable. Formato vacío válido:
+La red se importa, exporta y visualiza uniendo nodos con segmentos rectos conceptuales; no reproduce la geometría del PDF ni calcula navegación. Las líneas muestran el valor editorial y «unidad pendiente». `routes.geojson` se conserva como artefacto experimental, pero ya no se carga ni se ofrece en la UI porque sus 4.593 segmentos proceden de detección de color/contraste, no de una red curada. Formato vacío válido:
 
 ```json
 {

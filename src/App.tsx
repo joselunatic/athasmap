@@ -21,6 +21,7 @@ import {
   journey,
   distance,
   setEndpoint,
+  mergeSeedState,
   type AtlasState,
   type Poi,
   type Point,
@@ -74,7 +75,7 @@ const normalize = (s: string) =>
 export default function App() {
   const [boot] = useState(() => {
     try {
-      return { state: loadState(localStorage), error: "" };
+      return { state: mergeSeedState(loadState(localStorage)), error: "" };
     } catch (e) {
       return {
         state: initialState(),
@@ -119,7 +120,6 @@ export default function App() {
     [home, setHome] = useState(0);
   const [showPois, setShowPois] = useState(true),
     [grid, setGrid] = useState(false),
-    [experimental, setExperimental] = useState(false),
     [showNetwork, setShowNetwork] = useState(true);
   const [deleteId, setDeleteId] = useState<string>(),
     [imported, setImported] = useState<AtlasState>();
@@ -150,9 +150,10 @@ export default function App() {
         if (cancelled) return;
         remoteRevision.current = snapshot.revision;
         if (snapshot.state && !hasLocalChanges.current) {
-          setState(snapshot.state);
+          const merged = mergeSeedState(snapshot.state);
+          setState(merged);
           try {
-            saveState(localStorage, snapshot.state);
+            saveState(localStorage, merged);
             storageSnapshot.current = localStorage.getItem("athas.atlas.v1");
           } catch {
             /* The shared campaign remains usable when local backup fails. */
@@ -1017,14 +1018,8 @@ export default function App() {
                   [
                     showNetwork,
                     setShowNetwork,
-                    "Red de viaje importada",
-                    `${state.network.nodes.length} nodos · ${state.network.edges.length} aristas. Solo referencia; sin cálculo automático.`,
-                  ],
-                  [
-                    experimental,
-                    setExperimental,
-                    "Trazos extraídos · experimental",
-                    "Segmentos rojos detectados por imagen. No forman una red navegable.",
+                    "Red de viaje semántica",
+                    `${state.network.nodes.length} nodos · ${state.network.edges.length} aristas. Líneas conceptuales; sin cálculo automático.`,
                   ],
                 ].map(([value, setter, title, description]) => (
                   <label className="layer-row" key={String(title)}>
@@ -1137,8 +1132,8 @@ export default function App() {
                 </p>
                 <p className="description">
                   El mapa utiliza coordenadas de imagen, no latitud y longitud.
-                  Los trazos extraídos son experimentales. No hay una red curada
-                  incluida.
+                  La red semántica conserva solo tramos revisados del PDF; sus
+                  valores todavía no tienen unidad confirmada.
                 </p>
                 <p className="hint">
                   Formato JSON propio: athas-image-normalized-v1. GeoJSON
@@ -1204,7 +1199,6 @@ export default function App() {
             pick={!!mode}
             grid={grid}
             showPois={showPois}
-            experimental={experimental}
             network={state.network}
             showNetwork={showNetwork}
             home={home}
@@ -1288,9 +1282,7 @@ export default function App() {
           <div className="map-bottom">
             <span>◈ MAPA ILUSTRADO DE ATHAS · LAS TABLELANDS</span>
             <span>
-              {experimental
-                ? "TRAZOS EXPERIMENTALES · SIN NAVEGACIÓN"
-                : "POSICIONES DE CAMPAÑA · ESCALA CONFIGURABLE"}
+              RED SEMÁNTICA · REFERENCIA EDITORIAL
             </span>
           </div>
         </main>

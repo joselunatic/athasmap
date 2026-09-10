@@ -1,5 +1,6 @@
 import { z } from "zod";
 import seed from "../poi.json";
+import travelNetwork from "../travel-network.json";
 
 export const WIDTH = 4589;
 export const HEIGHT = 3080;
@@ -36,6 +37,7 @@ export const poiSchema = z.object({
   tags: z.array(z.string().max(80)).max(40),
   description: z.string().max(10000),
   coordinates: pointSchema.nullable(),
+  placementRadius: z.number().positive().max(1).optional(),
   visible: z.boolean().default(true),
   notes: z.string().max(10000).default(""),
   source: z.string().max(1000).default("poi.json · catálogo original"),
@@ -73,6 +75,11 @@ const edgeSchema = z.object({
   to: z.string(),
   terrain: z.enum(["road", "sand", "rock", "mountain"]),
   cost: z.number().positive().finite(),
+  distanceLabel: z.number().positive().finite().optional(),
+  unit: z.string().max(80).nullable().default(null),
+  source: z.string().max(1000).default(""),
+  evidence: z.string().max(2000).default(""),
+  confidence: z.enum(["high", "medium", "low"]).default("medium"),
   dangers: z.array(z.string()),
   traffic: z.enum(["low", "medium", "high"]),
   status: z.enum(["open", "closed", "uncertain"]),
@@ -156,7 +163,7 @@ export function initialState(): AtlasState {
     version: 1,
     coordinateSystem: "athas-image-normalized-v1",
     pois: seed.pois,
-    network: { nodes: [], edges: [], source: "Sin red curada" },
+    network: travelNetwork,
     travel: defaultTravel,
     itinerary: [],
     routeKind: "direct",
@@ -220,7 +227,30 @@ export function journey(points: Point[], t: Travel) {
     ],
   };
 }
+export function mergeSeedState(current: AtlasState): AtlasState {
+  const canonical = initialState();
+  const canonicalById = new Map(canonical.pois.map((poi) => [poi.id, poi]));
+  const merged = current.pois.map((poi) => {
+    const seedPoi = canonicalById.get(poi.id);
+    const staleExternal =
+      seedPoi &&
+      poi.coordinates === null &&
+      seedPoi.coordinates !== null &&
+      (poi.provenance === "externa" || poi.source.includes("391_Athas_Travel_hi-res.pdf"));
+    return staleExternal ? { ...seedPoi, notes: poi.notes, visible: poi.visible } : poi;
+  });
+  const currentIds = new Set(current.pois.map((poi) => poi.id));
+  for (const poi of canonical.pois)
+    if (!currentIds.has(poi.id)) merged.push(poi);
+  return stateSchema.parse({
+    ...current,
+    pois: merged,
+    network: current.network.edges.length ? current.network : canonical.network,
+  });
+}
+
 export const STORAGE_KEY = "athas.atlas.v1";
+
 export function saveState(
   storage: Pick<Storage, "setItem">,
   state: AtlasState,

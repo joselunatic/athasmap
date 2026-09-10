@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import L from "leaflet";
-import { z } from "zod";
 import {
   WIDTH,
   HEIGHT,
@@ -20,7 +19,6 @@ type Props = {
   pick: boolean;
   grid: boolean;
   showPois: boolean;
-  experimental: boolean;
   network: Network;
   showNetwork: boolean;
   home: number;
@@ -29,19 +27,6 @@ type Props = {
   onError: (message: string) => void;
 };
 const bounds = L.latLngBounds([-HEIGHT / 32, 0], [0, WIDTH / 32]);
-const extractedSchema = z.object({
-  type: z.literal("FeatureCollection"),
-  features: z.array(
-    z.object({
-      geometry: z.object({
-        type: z.literal("LineString"),
-        coordinates: z
-          .array(z.tuple([z.number().finite(), z.number().finite()]))
-          .min(2),
-      }),
-    }),
-  ),
-});
 
 export default function AtlasMap(props: Props) {
   const el = useRef<HTMLDivElement>(null),
@@ -133,7 +118,7 @@ export default function AtlasMap(props: Props) {
           title: p.name,
           alt: p.name,
           icon: L.divIcon({
-            className: `poi-marker ${p.type} ${p.id === props.selected?.id ? "selected" : ""}`,
+            className: `poi-marker ${p.type} ${p.provenance === "externa_aproximada" ? "approximate" : ""} ${p.id === props.selected?.id ? "selected" : ""}`,
             html: `<span>${symbols[p.type] ?? "◇"}</span>`,
             iconSize: [32, 32],
             iconAnchor: [16, 16],
@@ -147,6 +132,16 @@ export default function AtlasMap(props: Props) {
           else current.current.onSelect(p.id);
         });
         layer.addLayer(marker);
+        if (p.provenance === "externa_aproximada" && p.placementRadius)
+          L.circle(toMap(p.coordinates!), {
+            radius: (Math.max(WIDTH, HEIGHT) * p.placementRadius) / 32,
+            color: "#a12924",
+            weight: 1,
+            dashArray: "4 5",
+            fillColor: "#a12924",
+            fillOpacity: 0.08,
+            interactive: false,
+          }).addTo(layer);
         marker.getElement()?.setAttribute("aria-label", p.name);
       }
     if (props.points.length > 1)
@@ -191,7 +186,8 @@ export default function AtlasMap(props: Props) {
           dashArray: e.status === "open" ? undefined : "4 6",
         });
         const label = document.createElement("span");
-        label.textContent = `${a.name} → ${b.name} · ${e.status}`;
+        const value = e.distanceLabel ?? e.cost;
+        label.textContent = `${a.name} ↔ ${b.name} · ${value} ${e.unit ?? "(unidad pendiente)"} · tramo conceptual`;
         line.bindTooltip(label).addTo(layer);
       }
     return () => {
@@ -207,48 +203,6 @@ export default function AtlasMap(props: Props) {
     props.network,
     props.showNetwork,
   ]);
-  useEffect(() => {
-    const m = map.current;
-    if (!m || !props.experimental) return;
-    const group = L.layerGroup().addTo(m),
-      controller = new AbortController();
-    const renderer = L.canvas({ padding: 0.5 });
-    void (async () => {
-      try {
-        const response = await fetch("/routes.geojson", {
-          signal: controller.signal,
-        });
-        if (!response.ok)
-          throw new Error("No se pudieron leer los trazos experimentales.");
-        const data = extractedSchema.parse(await response.json());
-        if (controller.signal.aborted) return;
-        for (const f of data.features) {
-          // Exact inverse of extract_routes_tiles.py, not a geographic projection.
-          const pts = f.geometry.coordinates.map(([x, y]): [number, number] => [
-            (-(87.17 - y) / (87.17 - 64.02)) * 256,
-            ((x + 182.337) / (21.463 + 182.337)) * 256,
-          ]);
-          L.polyline(pts, {
-            renderer,
-            color: "#a12924",
-            weight: 1.5,
-            opacity: 0.65,
-            interactive: false,
-          }).addTo(group);
-        }
-      } catch (e) {
-        if (!controller.signal.aborted)
-          current.current.onError(
-            e instanceof Error ? e.message : "Error en trazos experimentales",
-          );
-      }
-    })();
-    return () => {
-      controller.abort();
-      group.remove();
-      renderer.remove();
-    };
-  }, [props.experimental]);
   return (
     <div
       ref={el}

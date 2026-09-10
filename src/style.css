@@ -590,6 +590,11 @@ details[open] > summary {
   font-size: 20px;
   color: #513c25;
 }
+.poi-marker.approximate {
+  border-style: dashed;
+  border-color: #a12924;
+  background: #f5eddaee;
+}
 .poi-marker.selected {
   background: #8a462e;
   color: #fff2d8;

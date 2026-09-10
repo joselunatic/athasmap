@@ -75,11 +75,13 @@ La navegación con flechas y Enter está implementada para colocar el centro del
 - Hallazgos del mapa que NO casan con el catálogo (documentados, sin integrar): el fuerte de (3445,646) se rotula **«Fort Firstwatch»** en el mapa (5 lecturas, una letra a letra) — no Eastwatch; «Fort Iron» (1729,1332) junto a The Iron Road no está en el catálogo; «Dragon's Palate» (sur) no es Dragon's Bowl (que está en el norte); Fort Crescent, Fort Vordon, Oasis of Tyr, Celik y Ledopolus Oasis no se han localizado como inscripciones. Candidatos y notas en `output/dw-extract/ocr-pois.json` y `output/dw-extract/ui-sketches/`.
 - Verificación visual: 21 marcadores sobre tierra firme, sin puntos en el mar ni fuera del mapa.
 
-## Fuentes externas y mapa de viaje (8 de septiembre de 2026)
+## Fuentes externas y mapa de viaje (9 de septiembre de 2026)
 
-- Inspección de `391_Athas_Travel_hi-res.pdf`: PDF rasterizado con dos Optional Content Groups (`Test 3 Roads`, 21 cápsulas; `Test 3 Wilds`, 28 cápsulas). Los valores se extraen como evidencias, pero la geometría no se transfiere por píxel al raster local.
-- Tres revisores independientes Luna/xhigh analizaron oeste, centro y este/sur. Consolidación: 35 lecturas → 29 topónimos únicos; se importaron solo los **22 de confianza alta**. Los 7 restantes permanecen en `output/external-poi-workers/consolidated-candidates.json` para revisión posterior.
-- `poi.json`: 114 → **136 POIs**. Los 22 nuevos tienen `provenance: externa`, `coordinates: null` y fuente explícita del PDF. No se presentan como posiciones nativas ni aproximadas.
-- Se añaden `externa` y `externa_aproximada` al dominio; la UI etiqueta ambas de manera explícita. Arquitectura, pipeline y criterios en `docs/TRAVEL_AND_EXTERNAL_POIS.md`.
-- Red semántica investigada, no integrada aún: Urik—Dragon's Bowl (Roads 200), Altaruk—Grak's Pool (Roads 80), Grak's Pool—South Ledopolus (Roads 75), Raam—Draj (Roads 160); dataset en `output/athas-travel-workers/reviewed-travel-network.v0.json`.
-- Validación: `npm test` (17/17), `npm run typecheck`, `npm run lint`, `npm run build` superados.
+- Tres revisores Luna/xhigh analizaron las zonas oeste, centro y sur del PDF y propusieron 24 posiciones sobre el raster local. La consolidación por nombre canónico encontró 3 POIs nuevos (`Black Waters`, `Cromlin`, `Roqom`) y trató `Shault` como candidato pendiente; la segunda revisión corrigió la clasificación final de `Roqom`.
+- Una segunda revisión independiente con DeepSeek verificó las propuestas contra crops nativos y el raster de 4589×3080. Resultado conservador: 20 posiciones con `provenance: mapa`, 3 `externa_aproximada` (`Oco`, `Dasaraches`, `Iron Mines`) y `Roqom` pendiente por no existir un rótulo local inequívoco. La lista final es 43 con `mapa`, 3 con `externa_aproximada` y 3 externos sin situar (`Freedom`, `Roqom`, `Shault`).
+- Las aproximaciones conservan `placementRadius`, anclas, razonamiento y crops en `output/external-position-workers/`. Ninguna propuesta excede la caja útil; las coordenadas normalizadas son consistentes con los píxeles 4589×3080.
+- `travel-network.json` integra los cuatro tramos Roads revisados: Urik—Dragon's Bowl (200), Altaruk—Grak's Pool (80), Grak's Pool—South Ledopolus (75) y Raam—Draj (160). Los valores conservan `unit: null` y evidencia; la UI los dibuja como segmentos conceptuales, no como geometría trasladada del PDF.
+- `routes.geojson` conserva 4.593 `LineString` experimentales, pero ya no se descarga ni se muestra en la interfaz: la detección de color/contraste producía falsos positivos sobre arte, texto y relieve.
+- Se añadió `placementRadius` al esquema y un anillo discontinuo al marcador aproximado. La ficha muestra procedencia y fuente.
+- El script `scripts/apply_external_positions.py` exige clasificación completa, es idempotente, funciona en modo vista previa y crea backup al aplicar.
+- Verificación final: `npm test` (26/26), `npm run typecheck`, `npm run lint`, `npm run build` y `git diff --check` superados. QA CDP/visual: 149 lugares, 4 líneas de red semántica, 3 radios de incertidumbre, 0 peticiones a `routes.geojson` y sin malla experimental.
