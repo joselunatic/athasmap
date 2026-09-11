@@ -80,27 +80,31 @@ La ejecución validada produjo dos pasadas: 234→187 candidatos en gris y 261�
 
 ## Distancia y tiempo
 
-La escala inicial es una **hipótesis de 1.000 millas para todo el ancho**, editable en Viaje → Escala de campaña; no una calibración oficial.
+**Geografía (fija):** la escala se calibra desde la barra impresa en el raster (0/10/20/30 mi). El ancho útil del mapa mide ≈ **408 millas**; no es editable por expedición para no alterar la geografía del mundo.
 
 ```text
-distancia = escala × hypot(Δx, Δy × 3080 / 4589)
-velocidad efectiva = ritmo × terreno × calor × tormenta × carga × agua × camino
-horas = suma de distancias de segmentos / velocidad efectiva
-jornadas = horas / horas de marcha diarias
+distancia = hypot(Δx, Δy × 3080 / 4589) × 408   (millas)
+```
+
+**Reglas de viaje (D&D 5e):** el tiempo se calcula con la tabla oficial de ritmo diario, no con velocidades de AD&D 2e.
+
+| Ritmo (a pie) | Mi por jornada |
+|---|---|
+| Lento | 18 |
+| Normal | 24 |
+| Rápido | 30 |
+
+```text
+jornadas = Σ por tramo [ segmento_mi / (ritmo_diario × terreno) ]
+terreno  = carretera ×1 · resto ×0,5   (5e: normal vs difícil, adaptación Dark Sun)
 días de marcha = ceil(jornadas)
 ```
 
-Valores de campaña, no reglas oficiales:
-
-| Ajuste | Valor |
-|---|---|
-| Ritmo a pie / caravana / montura / kank / mekillot | 2,5 / 2 / 4 / 3 / 1,5 mi/h |
-| Horas iniciales por jornada | 8 |
-| Camino / arena / roca / montaña | ×1 / ×0,7 / ×0,8 / ×0,45 |
-| Calor / tormenta / carga / agua escasa | ×0,75 / ×0,4 / ×0,75 / ×0,7 |
-| Seguir rutas conocidas | ×1,15, excepto en camino firme |
-
-El ritmo es editable y se muestra el avance diario efectivo. Las condiciones afectan a todo el recorrido. La línea directa no evita obstáculos; la ruta manual suma segmentos y también muestra la distancia directa entre extremos. No hay detección automática del terreno, raciones, descansos, encuentros ni optimización de caminos.
+- **Marcha forzada:** más de 8 h/jornada activa un aviso de tiradas de Constitución (5e); no multiplica la distancia.
+- **Terreno por tramo:** cada waypoint del itinerario puede llevar `terrain`; si no, hereda el terreno global.
+- **Modos de montura** (caravana 16 / montura 32 / kank 24 / mekillot 12 mi/día) son **adaptación homebrew** — no existe un Dark Sun 5e oficial — y no calibran la escala.
+- **Calor, tormenta, carga y agua escasa** ya no modifican la velocidad: generan avisos de supervivencia (reglas de campaña, no 5e).
+- La línea directa no evita obstáculos; la ruta manual suma segmentos. No hay pathfinding por aristas ni optimización de caminos todavía.
 
 ## Red extensible
 

@@ -841,19 +841,9 @@ export default function App() {
                   Modo de viaje
                   <select
                     value={state.travel.mode}
-                    onChange={(e) => {
-                      const m = e.target.value as Travel["mode"];
-                      updateTravel({
-                        mode: m,
-                        pace: {
-                          foot: 2.5,
-                          caravan: 2,
-                          mount: 4,
-                          kank: 3,
-                          mekillot: 1.5,
-                        }[m],
-                      });
-                    }}
+                    onChange={(e) =>
+                      updateTravel({ mode: e.target.value as Travel["mode"] })
+                    }
                   >
                     {Object.entries(modeNames).map(([k, v]) => (
                       <option key={k} value={k}>
@@ -862,35 +852,54 @@ export default function App() {
                     ))}
                   </select>
                 </label>
-                <div className="two">
+                <label>
+                  Ritmo de marcha
+                  <select
+                    value={state.travel.pace}
+                    onChange={(e) =>
+                      updateTravel({ pace: e.target.value as Travel["pace"] })
+                    }
+                  >
+                    <option value="slow">Lento · 18 mi/día</option>
+                    <option value="normal">Normal · 24 mi/día</option>
+                    <option value="fast">Rápido · 30 mi/día</option>
+                    <option value="custom">Personalizado</option>
+                  </select>
+                </label>
+                {state.travel.pace === "custom" && (
                   <label>
                     Millas / hora
                     <input
                       type="number"
-                      min="0.1"
-                      max="30"
+                      min="0.5"
+                      max="10"
                       step="0.1"
-                      value={state.travel.pace}
+                      value={state.travel.customMph}
                       onChange={(e) => {
                         if (e.target.validity.valid)
-                          updateTravel({ pace: Number(e.target.value) });
+                          updateTravel({ customMph: Number(e.target.value) });
                       }}
                     />
                   </label>
-                  <label>
-                    Horas / jornada
-                    <input
-                      type="number"
-                      min="1"
-                      max="16"
-                      value={state.travel.hours}
-                      onChange={(e) => {
-                        if (e.target.validity.valid)
-                          updateTravel({ hours: Number(e.target.value) });
-                      }}
-                    />
-                  </label>
-                </div>
+                )}
+                <label>
+                  Horas / jornada
+                  <input
+                    type="number"
+                    min="1"
+                    max="16"
+                    value={state.travel.hours}
+                    onChange={(e) => {
+                      if (e.target.validity.valid)
+                        updateTravel({ hours: Number(e.target.value) });
+                    }}
+                  />
+                </label>
+                {state.travel.hours > 8 && (
+                  <p className="hint">
+                    Más de 8 horas = marcha forzada (tiradas de Constitución).
+                  </p>
+                )}
                 <label>
                   Terreno
                   <select
@@ -914,7 +923,6 @@ export default function App() {
                       ["storm", "Tormenta de arena"],
                       ["load", "Carga pesada"],
                       ["scarceWater", "Agua escasa"],
-                      ["useRoad", "Seguir rutas conocidas"],
                     ] as const
                   ).map(([k, label]) => (
                     <label className="check" key={k}>
@@ -929,26 +937,10 @@ export default function App() {
                     </label>
                   ))}
                 </div>
-                <details>
-                  <summary>Escala de campaña</summary>
-                  <label>
-                    Millas en todo el ancho del mapa
-                    <input
-                      type="number"
-                      min="1"
-                      max="100000"
-                      value={state.travel.scale}
-                      onChange={(e) => {
-                        if (e.target.validity.valid)
-                          updateTravel({ scale: Number(e.target.value) });
-                      }}
-                    />
-                  </label>
-                  <p className="hint">
-                    Valor inicial hipotético: 1.000 millas. Ajusta la escala a
-                    tu campaña; no es una medición canónica.
-                  </p>
-                </details>
+                <p className="hint">
+                  Escala del mapa calibrada por la barra del raster: ≈408 mi de
+                  ancho (no editable).
+                </p>
                 <div className="travel-result">
                   <p className="eyebrow">
                     {state.routeKind === "manual"
@@ -969,8 +961,8 @@ export default function App() {
                         {result.miles.toFixed(1)} millas
                       </p>
                       <div className="result-meta">
-                        {result.hours.toFixed(1)} h en movimiento ·{" "}
                         {result.daily.toFixed(1)} mi / jornada
+                        {result.forcedMarch ? " · marcha forzada" : ""}
                       </div>
                       {state.routeKind === "manual" && (
                         <p className="hint">
@@ -978,7 +970,6 @@ export default function App() {
                           {distance(
                             state.itinerary[0],
                             state.itinerary.at(-1)!,
-                            state.travel.scale,
                           ).toFixed(1)}{" "}
                           mi · {state.itinerary.length} puntos
                         </p>

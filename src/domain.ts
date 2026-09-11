@@ -4,6 +4,9 @@ import travelNetwork from "../travel-network.json";
 
 export const WIDTH = 4589;
 export const HEIGHT = 3080;
+// Medido de la barra de escala impresa en el raster (0/10/20/30 mi ≈ 337,5 px).
+// Ancho útil 4589 px → ~408 mi. No es editable por expedición.
+export const MAP_WIDTH_MILES = 408;
 export const categories = seed.categories;
 export const symbols: Record<string, string> = {
   city_state: "♜",
@@ -25,6 +28,10 @@ export const pointSchema = z.object({
   y: z.number().finite().min(0).max(1),
 });
 export type Point = z.infer<typeof pointSchema>;
+export const waypointSchema = pointSchema.extend({
+  terrain: z.enum(["road", "sand", "rock", "mountain"]).optional(),
+});
+export type Waypoint = z.infer<typeof waypointSchema>;
 export const poiSchema = z.object({
   id: z.string().min(1).max(100),
   name: z.string().trim().min(1).max(120),
@@ -111,29 +118,30 @@ export const networkSchema = z
   });
 export type Network = z.infer<typeof networkSchema>;
 export const travelSchema = z.object({
-  mode: z.enum(["foot", "caravan", "mount", "kank", "mekillot"]),
-  pace: z.number().min(0.1).max(30),
-  hours: z.number().min(1).max(16),
-  scale: z.number().min(1).max(100000),
-  terrain: z.enum(["road", "sand", "rock", "mountain"]),
-  heat: z.boolean(),
-  storm: z.boolean(),
-  load: z.boolean(),
-  scarceWater: z.boolean(),
-  useRoad: z.boolean(),
+  mode: z.enum(["foot", "caravan", "mount", "kank", "mekillot"]).default("foot"),
+  pace: z.enum(["slow", "normal", "fast", "custom"]).default("normal"),
+  customMph: z.number().min(0.5).max(10).default(4),
+  hours: z.number().min(1).max(16).default(8),
+  terrain: z.enum(["road", "sand", "rock", "mountain"]).default("road"),
+  heat: z.boolean().default(false),
+  storm: z.boolean().default(false),
+  load: z.boolean().default(false),
+  scarceWater: z.boolean().default(false),
 });
 export type Travel = z.infer<typeof travelSchema>;
+export const TRAVEL_PACE_DAILY_MILES = { slow: 18, normal: 24, fast: 30 } as const;
+// Adaptación Dark Sun (homebrew): no existe setting 5e oficial. No calibran la escala.
+export const MODE_DAILY_MILES = { caravan: 16, mount: 32, kank: 24, mekillot: 12 } as const;
 export const defaultTravel: Travel = {
   mode: "foot",
-  pace: 2.5,
+  pace: "normal",
+  customMph: 4,
   hours: 8,
-  scale: 1000,
-  terrain: "sand",
-  heat: true,
+  terrain: "road",
+  heat: false,
   storm: false,
   load: false,
   scarceWater: false,
-  useRoad: false,
 };
 export const stateSchema = z
   .object({
@@ -142,7 +150,7 @@ export const stateSchema = z
     pois: z.array(poiSchema).max(10000),
     network: networkSchema,
     travel: travelSchema,
-    itinerary: z.array(pointSchema).max(2000),
+    itinerary: z.array(waypointSchema).max(2000),
     routeKind: z.enum(["direct", "manual"]),
   })
   .superRefine((s, ctx) => {
@@ -175,8 +183,10 @@ export function toMap(p: Point): [number, number] {
 export function fromMap(lat: number, lng: number): Point {
   return pointSchema.parse({ x: (lng * 32) / WIDTH, y: (-lat * 32) / HEIGHT });
 }
-export function distance(a: Point, b: Point, scale: number) {
-  return Math.hypot(a.x - b.x, ((a.y - b.y) * HEIGHT) / WIDTH) * scale;
+export function distance(a: Point, b: Point) {
+  return (
+    Math.hypot(a.x - b.x, ((a.y - b.y) * HEIGHT) / WIDTH) * MAP_WIDTH_MILES
+  );
 }
 export function setEndpoint(
   points: Point[],
@@ -190,30 +200,33 @@ export function setEndpoint(
     ? [points[0], point]
     : [...points.slice(0, -1), point];
 }
-export function journey(points: Point[], t: Travel) {
+export function journey(points: Waypoint[], t: Travel) {
   travelSchema.parse(t);
-  points.forEach((p) => pointSchema.parse(p));
+  points.forEach((p) => waypointSchema.parse(p));
   const miles = points
     .slice(1)
-    .reduce((sum, p, i) => sum + distance(points[i], p, t.scale), 0);
-  const terrain = { road: 1, sand: 0.7, rock: 0.8, mountain: 0.45 }[t.terrain];
-  const speed =
-    t.pace *
-    terrain *
-    (t.heat ? 0.75 : 1) *
-    (t.storm ? 0.4 : 1) *
-    (t.load ? 0.75 : 1) *
-    (t.scarceWater ? 0.7 : 1) *
-    (t.useRoad && t.terrain !== "road" ? 1.15 : 1);
-  const hours = miles / speed;
+    .reduce((sum, p, i) => sum + distance(points[i], p), 0);
+  const baseDaily = dailyMiles(t);
+  // Terreno: 5e distingue normal vs difícil (×0,5). La asociación biome→dificultad
+  // es adaptación Dark Sun (solo "road" es normal) y se aplica por segmento.
+  let days = 0;
+  for (let i = 1; i < points.length; i++) {
+    const segmentMiles = distance(points[i - 1], points[i]);
+    const terrain = points[i].terrain ?? t.terrain;
+    days += segmentMiles / (baseDaily * (terrain === "road" ? 1 : 0.5));
+  }
+  const forcedMarch = t.hours > 8;
   return {
     miles,
-    hours,
-    days: hours / t.hours,
-    daily: speed * t.hours,
+    days,
+    daily: days > 0 ? miles / days : baseDaily,
+    forcedMarch,
+    forcedMarchHours: forcedMarch ? t.hours - 8 : 0,
     warnings: [
       ...(t.heat
-        ? ["Calor extremo: viaja al amanecer y busca refugio al mediodía."]
+        ? [
+            "Calor extremo: considera viajar al amanecer y busca refugio al mediodía.",
+          ]
         : []),
       ...(t.storm
         ? ["Tormenta de arena: considera detener la expedición."]
@@ -223,9 +236,21 @@ export function journey(points: Point[], t: Travel) {
             "Agua escasa: establece un punto de reabastecimiento antes de partir.",
           ]
         : []),
-      ...(t.load ? ["La carga reduce el avance de la expedición."] : []),
+      ...(t.load
+        ? ["Carga pesada: revisa las reglas de carga de tu campaña."]
+        : []),
+      ...(forcedMarch
+        ? ["Marcha forzada: más de 8 horas exige tiradas de Constitución (5e)."]
+        : []),
     ],
   };
+}
+export function dailyMiles(t: Travel): number {
+  if (t.mode === "foot") {
+    if (t.pace === "custom") return t.customMph * 8;
+    return TRAVEL_PACE_DAILY_MILES[t.pace];
+  }
+  return MODE_DAILY_MILES[t.mode];
 }
 export function mergeSeedState(current: AtlasState): AtlasState {
   const canonical = initialState();
@@ -257,9 +282,23 @@ export function saveState(
 ) {
   storage.setItem(STORAGE_KEY, JSON.stringify(stateSchema.parse(state)));
 }
+export function migrateTravelShape(rawTravel: unknown): unknown {
+  if (typeof rawTravel !== "object" || rawTravel === null) return rawTravel;
+  const travel = { ...(rawTravel as Record<string, unknown>) };
+  delete travel.scale;
+  if (typeof travel.pace === "number") {
+    travel.customMph = travel.pace;
+    travel.pace = "custom";
+  }
+  return travel;
+}
 export function loadState(storage: Pick<Storage, "getItem">): AtlasState {
   const raw = storage.getItem(STORAGE_KEY);
-  return raw ? stateSchema.parse(JSON.parse(raw)) : initialState();
+  if (!raw) return initialState();
+  const parsed = JSON.parse(raw);
+  if (parsed && typeof parsed === "object" && "travel" in parsed)
+    parsed.travel = migrateTravelShape(parsed.travel);
+  return stateSchema.parse(parsed);
 }
 export function errorText(e: unknown) {
   return e instanceof z.ZodError

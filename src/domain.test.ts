@@ -11,6 +11,7 @@ import {
   defaultTravel,
   HEIGHT,
   WIDTH,
+  MAP_WIDTH_MILES,
   saveState,
   loadState,
   parseImport,
@@ -169,12 +170,19 @@ describe("Coordenadas de imagen", () => {
     ])
       expect(pointSchema.safeParse(p).success).toBe(false);
   });
-  it("respeta la relación de aspecto en las distancias", () => {
-    expect(distance({ x: 0, y: 0 }, { x: 1, y: 0 }, 1000)).toBe(1000);
-    expect(distance({ x: 0, y: 0 }, { x: 0, y: 1 }, 1000)).toBeCloseTo(
-      (1000 * HEIGHT) / WIDTH,
+  it("calibra la distancia desde la barra de escala del raster (408 mi de ancho)", () => {
+    expect(MAP_WIDTH_MILES).toBe(408);
+    expect(distance({ x: 0, y: 0 }, { x: 1, y: 0 })).toBeCloseTo(408, 5);
+    expect(distance({ x: 0, y: 0 }, { x: 0, y: 1 })).toBeCloseTo(
+      (408 * HEIGHT) / WIDTH,
+      5,
     );
-    expect(distance({ x: 0.5, y: 0.5 }, { x: 0.5, y: 0.5 }, 1000)).toBe(0);
+    expect(distance({ x: 0.5, y: 0.5 }, { x: 0.5, y: 0.5 })).toBe(0);
+  });
+  it("mantiene isotropía: N píxeles horizontales y verticales son la misma distancia", () => {
+    const horizontal = distance({ x: 0, y: 0 }, { x: 1, y: 0 });
+    const vertical = distance({ x: 0, y: 0 }, { x: 0, y: WIDTH / HEIGHT });
+    expect(vertical).toBeCloseTo(horizontal, 5);
   });
 });
 describe("Expedición", () => {
@@ -188,58 +196,134 @@ describe("Expedición", () => {
     expect(setEndpoint([a], "destination", d)).toEqual([a, d]);
     expect(() => setEndpoint([], "destination", d)).toThrow();
   });
-  const clear = {
-    ...defaultTravel,
-    scale: 100,
-    terrain: "road" as const,
-    heat: false,
-  };
-  it("calcula distancia, horas y jornadas desde la velocidad", () => {
-    const j = journey(
-      [
-        { x: 0, y: 0 },
-        { x: 1, y: 0 },
-      ],
-      clear,
+  it("usa la tabla diaria de 5e como fuente de verdad (slow 18 / normal 24 / fast 30 mi)", () => {
+    const day = (pace: "slow" | "normal" | "fast") =>
+      journey(
+        [
+          { x: 0, y: 0 },
+          { x: 1, y: 0 },
+        ],
+        { ...defaultTravel, pace },
+      );
+    expect(day("normal").daily).toBeCloseTo(24, 5);
+    expect(day("slow").daily).toBeCloseTo(18, 5);
+    expect(day("fast").daily).toBeCloseTo(30, 5);
+  });
+  it("calcula jornadas = millas / ritmo diario", () => {
+    const to = (miles: number) => [
+      { x: 0, y: 0 },
+      { x: miles / MAP_WIDTH_MILES, y: 0 },
+    ];
+    expect(journey(to(170), { ...defaultTravel, pace: "normal" }).days).toBeCloseTo(
+      170 / 24,
+      4,
     );
-    expect(j.miles).toBe(100);
-    expect(j.hours).toBe(40);
-    expect(j.days).toBe(5);
+    expect(journey(to(170), { ...defaultTravel, pace: "fast" }).days).toBeCloseTo(
+      170 / 30,
+      4,
+    );
+    expect(journey(to(170), { ...defaultTravel, pace: "slow" }).days).toBeCloseTo(
+      170 / 18,
+      4,
+    );
+  });
+  it("el terreno difícil (no carretera) reduce a la mitad; la carretera es normal", () => {
+    const to = (miles: number) => [
+      { x: 0, y: 0 },
+      { x: miles / MAP_WIDTH_MILES, y: 0 },
+    ];
+    expect(journey(to(24), { ...defaultTravel, terrain: "road" }).days).toBeCloseTo(1, 5);
+    expect(journey(to(24), { ...defaultTravel, terrain: "sand" }).days).toBeCloseTo(2, 5);
+    expect(journey(to(24), { ...defaultTravel, terrain: "mountain" }).days).toBeCloseTo(2, 5);
+  });
+  it("marcha forzada solo por encima de 8 horas", () => {
+    const p = [
+      { x: 0, y: 0 },
+      { x: 1, y: 0 },
+    ];
+    expect(journey(p, { ...defaultTravel, hours: 8 }).forcedMarch).toBe(false);
+    expect(journey(p, { ...defaultTravel, hours: 9 }).forcedMarch).toBe(true);
+    expect(journey(p, { ...defaultTravel, hours: 16 }).forcedMarch).toBe(true);
+    expect(journey(p, { ...defaultTravel, hours: 16 }).forcedMarchHours).toBe(8);
+  });
+  it("los modificadores legacy ya no alteran las jornadas: solo avisos", () => {
+    const p = [
+      { x: 0, y: 0 },
+      { x: 1, y: 0 },
+    ];
+    const base = journey(p, defaultTravel);
+    for (const key of ["heat", "storm", "load", "scarceWater"] as const) {
+      const r = journey(p, { ...defaultTravel, [key]: true });
+      expect(r.days).toBe(base.days);
+      expect(r.warnings.length).toBeGreaterThan(0);
+    }
+  });
+  it("los modos de montura usan valores homebrew aislados (no calibran la escala)", () => {
+    const to = (miles: number) => [
+      { x: 0, y: 0 },
+      { x: miles / MAP_WIDTH_MILES, y: 0 },
+    ];
+    expect(journey(to(32), { ...defaultTravel, mode: "mount" }).days).toBeCloseTo(1, 5);
+    expect(journey(to(16), { ...defaultTravel, mode: "caravan" }).days).toBeCloseTo(1, 5);
   });
   it("suma segmentos manuales sin confundirlos con la distancia directa", () => {
     const a = { x: 0, y: 0 },
       b = { x: 1, y: 0 },
       c = { x: 1, y: 1 };
-    expect(journey([a, b, c], clear).miles).toBeCloseTo(
-      100 + (100 * HEIGHT) / WIDTH,
+    expect(journey([a, b, c], defaultTravel).miles).toBeCloseTo(
+      408 + (408 * HEIGHT) / WIDTH,
+      5,
     );
-    expect(journey([a, b, c], clear).miles).toBeGreaterThan(
-      distance(a, c, 100),
-    );
+    expect(journey([a, b, c], defaultTravel).miles).toBeGreaterThan(distance(a, c));
   });
-  it("calor, tormentas, agua y carga ralentizan y generan advertencias", () => {
-    const points = [
-        { x: 0, y: 0 },
-        { x: 1, y: 0 },
-      ],
-      base = journey(points, clear);
-    for (const key of ["heat", "storm", "load", "scarceWater"] as const) {
-      const r = journey(points, { ...clear, [key]: true });
-      expect(r.days).toBeGreaterThan(base.days);
-      expect(r.warnings.length).toBeGreaterThan(0);
-    }
+  it("calcula por tramo: cada segmento usa su propio terreno", () => {
+    const pts = [
+      { x: 0, y: 0 },
+      { x: 12 / MAP_WIDTH_MILES, y: 0 },
+      { x: 24 / MAP_WIDTH_MILES, y: 0, terrain: "sand" as const },
+    ];
+    expect(journey(pts, defaultTravel).days).toBeCloseTo(1.5, 5);
   });
-  it("no duplica la bonificación de camino y limita entradas", () => {
+  it("valida entradas y permite itinerario vacío", () => {
     const p = [
       { x: 0, y: 0 },
       { x: 1, y: 0 },
     ];
-    expect(journey(p, { ...clear, useRoad: true }).hours).toBe(
-      journey(p, clear).hours,
-    );
-    expect(() => journey(p, { ...clear, hours: 0 })).toThrow();
-    expect(() => journey(p, { ...clear, pace: 0 })).toThrow();
-    expect(journey([], clear).days).toBe(0);
+    expect(() => journey(p, { ...defaultTravel, hours: 0 })).toThrow();
+    expect(journey([], defaultTravel).days).toBe(0);
+  });
+});
+
+describe("Migración del estado de viaje", () => {
+  it("convierte el formato antiguo (scale + pace en mph) al nuevo", () => {
+    const legacy = {
+      mode: "foot",
+      pace: 2.5,
+      hours: 8,
+      scale: 1000,
+      terrain: "sand",
+      heat: true,
+      storm: false,
+      load: false,
+      scarceWater: false,
+      useRoad: false,
+    };
+    const storage = {
+      getItem: () =>
+        JSON.stringify({
+          version: 1,
+          coordinateSystem: "athas-image-normalized-v1",
+          pois: initialState().pois,
+          network: initialState().network,
+          travel: legacy,
+          itinerary: [],
+          routeKind: "direct",
+        }),
+    };
+    const s = loadState(storage);
+    expect(s.travel).not.toHaveProperty("scale");
+    expect(s.travel.pace).toBe("custom");
+    expect(s.travel.customMph).toBe(2.5);
   });
 });
 describe("Persistencia e intercambio", () => {

@@ -95,3 +95,11 @@ La navegación con flechas y Enter está implementada para colocar el centro del
 - Refinamiento visual nativo confirmó tres altas (`Gunginwald`, `Fort Butcher`, `Mira's Halo`), situó `Fort Skonz` y corrigió el anchor de `Kled`. La coordenada de `Kled` se tomó del círculo negro nativo, no del marcador Leaflet anterior.
 - `poi.json` queda en **152 POIs: 47 `mapa`, 3 `externa_aproximada`, 3 `externa` sin situar y 50 situados**. `Krikik's Pack`, `Iron Mines`, `Fort Iron`, carreteras/regiones y accidentes extensos no se promovieron.
 - Tests posteriores: `npm test` **26/26**. La verificación de typecheck/lint/build y QA productivo queda pendiente de la fase de cierre de este cambio.
+
+## Calibración de escala y reglas de viaje 5e (11 de septiembre de 2026)
+
+- La barra de escala impresa en el raster (0/10/20/30 mi ≈ 337,5 px) calibra el ancho útil del mapa en **≈408 millas**. `distance()` pasa a usar la constante `MAP_WIDTH_MILES = 408`; `scale` deja de ser editable por expedición.
+- Viaje adaptado a **D&D 5e**: ritmo lento/normal/rápido = 18/24/30 mi por jornada (tabla diaria oficial), marcha forzada >8 h (aviso de tiradas de Constitución), terreno normal/difícil (×0,5, adaptación Dark Sun) aplicado **por segmento** sobre el itinerario.
+- Se retiran del núcleo los multiplicadores arbitrarios `heat ×0,75`, `storm ×0,4`, `load ×0,75`, `scarceWater ×0,7` y `useRoad ×1,15`; ahora solo generan avisos. Los modos de montura quedan como homebrew aislado (caravana 16 / montura 32 / kank 24 / mekillot 12 mi/día).
+- Migración: `loadState()` convierte el formato antiguo (`scale` + `pace` numérico) al nuevo (`pace` enum + `customMph`) sin perder datos guardados.
+- Tests: **33/33** (`npm test`), typecheck, lint y build verdes.
