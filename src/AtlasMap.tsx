@@ -17,10 +17,7 @@ type Props = {
   points: Point[];
   manual: boolean;
   pick: boolean;
-  grid: boolean;
-  showPois: boolean;
   network: Network;
-  showNetwork: boolean;
   home: number;
   onPick: (p: Point) => void;
   onSelect: (id: string) => void;
@@ -112,38 +109,37 @@ export default function AtlasMap(props: Props) {
     const m = map.current;
     if (!m) return;
     const layer = L.layerGroup().addTo(m);
-    if (props.showPois)
-      for (const p of props.pois.filter((p) => p.visible && p.coordinates)) {
-        const marker = L.marker(toMap(p.coordinates!), {
-          title: p.name,
-          alt: p.name,
-          icon: L.divIcon({
-            className: `poi-marker ${p.type} ${p.provenance === "externa_aproximada" ? "approximate" : ""} ${p.id === props.selected?.id ? "selected" : ""}`,
-            html: `<span>${symbols[p.type] ?? "◇"}</span>`,
-            iconSize: [32, 32],
-            iconAnchor: [16, 16],
-          }),
-        });
-        const label = document.createElement("span");
-        label.textContent = p.name;
-        marker.bindTooltip(label, { direction: "top", offset: [0, -12] });
-        marker.on("click", () => {
-          if (current.current.pick) current.current.onPick(p.coordinates!);
-          else current.current.onSelect(p.id);
-        });
-        layer.addLayer(marker);
-        if (p.provenance === "externa_aproximada" && p.placementRadius)
-          L.circle(toMap(p.coordinates!), {
-            radius: (Math.max(WIDTH, HEIGHT) * p.placementRadius) / 32,
-            color: "#a12924",
-            weight: 1,
-            dashArray: "4 5",
-            fillColor: "#a12924",
-            fillOpacity: 0.08,
-            interactive: false,
-          }).addTo(layer);
-        marker.getElement()?.setAttribute("aria-label", p.name);
-      }
+    for (const p of props.pois.filter((p) => p.visible && p.coordinates)) {
+      const marker = L.marker(toMap(p.coordinates!), {
+        title: p.name,
+        alt: p.name,
+        icon: L.divIcon({
+          className: `poi-marker ${p.type} ${p.provenance === "externa_aproximada" ? "approximate" : ""} ${p.id === props.selected?.id ? "selected" : ""}`,
+          html: `<span>${symbols[p.type] ?? "◇"}</span>`,
+          iconSize: [32, 32],
+          iconAnchor: [16, 16],
+        }),
+      });
+      const label = document.createElement("span");
+      label.textContent = p.name;
+      marker.bindTooltip(label, { direction: "top", offset: [0, -12] });
+      marker.on("click", () => {
+        if (current.current.pick) current.current.onPick(p.coordinates!);
+        else current.current.onSelect(p.id);
+      });
+      layer.addLayer(marker);
+      if (p.provenance === "externa_aproximada" && p.placementRadius)
+        L.circle(toMap(p.coordinates!), {
+          radius: (Math.max(WIDTH, HEIGHT) * p.placementRadius) / 32,
+          color: "#a12924",
+          weight: 1,
+          dashArray: "4 5",
+          fillColor: "#a12924",
+          fillOpacity: 0.08,
+          interactive: false,
+        }).addTo(layer);
+      marker.getElement()?.setAttribute("aria-label", p.name);
+    }
     if (props.points.length > 1)
       L.polyline(props.points.map(toMap), {
         color: "#772f24",
@@ -161,35 +157,19 @@ export default function AtlasMap(props: Props) {
         }),
       }).addTo(layer);
     });
-    if (props.grid)
-      for (let i = 1; i < 10; i++) {
-        L.polyline([toMap({ x: i / 10, y: 0 }), toMap({ x: i / 10, y: 1 })], {
-          color: "#40372a",
-          weight: 1,
-          opacity: 0.5,
-          interactive: false,
-        }).addTo(layer);
-        L.polyline([toMap({ x: 0, y: i / 10 }), toMap({ x: 1, y: i / 10 })], {
-          color: "#40372a",
-          weight: 1,
-          opacity: 0.5,
-          interactive: false,
-        }).addTo(layer);
-      }
-    if (props.showNetwork)
-      for (const e of props.network.edges) {
-        const a = props.network.nodes.find((n) => n.id === e.from)!,
-          b = props.network.nodes.find((n) => n.id === e.to)!;
-        const line = L.polyline([toMap(a.coordinates), toMap(b.coordinates)], {
-          color: e.status === "open" ? "#805e27" : "#615b54",
-          weight: 3,
-          dashArray: e.status === "open" ? undefined : "4 6",
-        });
-        const label = document.createElement("span");
-        const value = e.distanceLabel ?? e.cost;
-        label.textContent = `${a.name} ↔ ${b.name} · ${value} ${e.unit ?? "(unidad pendiente)"} · tramo conceptual`;
-        line.bindTooltip(label).addTo(layer);
-      }
+    for (const e of props.network.edges) {
+      const a = props.network.nodes.find((n) => n.id === e.from)!,
+        b = props.network.nodes.find((n) => n.id === e.to)!;
+      const line = L.polyline([toMap(a.coordinates), toMap(b.coordinates)], {
+        color: e.status === "open" ? "#805e27" : "#615b54",
+        weight: 3,
+        dashArray: e.status === "open" ? undefined : "4 6",
+      });
+      const label = document.createElement("span");
+      const value = e.distanceLabel ?? e.cost;
+      label.textContent = `${a.name} ↔ ${b.name} · ${value} ${e.unit ?? "(unidad pendiente)"} · tramo conceptual`;
+      line.bindTooltip(label).addTo(layer);
+    }
     return () => {
       layer.remove();
     };
@@ -198,10 +178,7 @@ export default function AtlasMap(props: Props) {
     props.selected?.id,
     props.points,
     props.manual,
-    props.grid,
-    props.showPois,
     props.network,
-    props.showNetwork,
   ]);
   return (
     <div

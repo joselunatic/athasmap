@@ -14,6 +14,8 @@ import {
   MAP_WIDTH_MILES,
   saveState,
   loadState,
+  fuzzyMatch,
+  normalizeText,
   parseImport,
   networkSchema,
   setEndpoint,
@@ -291,6 +293,23 @@ describe("Expedición", () => {
     ];
     expect(() => journey(p, { ...defaultTravel, hours: 0 })).toThrow();
     expect(journey([], defaultTravel).days).toBe(0);
+  });
+});
+
+describe("Búsqueda difusa", () => {
+  it("tolera tildes, orden de palabras, prefijos y erratas de un carácter", () => {
+    expect(fuzzyMatch("kled", "Kled")).toBe(true);
+    expect(fuzzyMatch("KLEDD", "Kled")).toBe(true);
+    expect(fuzzyMatch("mira halo", "Mira's Halo")).toBe(true);
+    expect(fuzzyMatch("halo mira", "Mira's Halo")).toBe(true);
+    expect(fuzzyMatch("gung", "Gunginwald")).toBe(true);
+    expect(fuzzyMatch("fort fyra", "Fort Fyra")).toBe(true);
+    expect(fuzzyMatch("", "Kled")).toBe(true);
+    expect(fuzzyMatch("zzz", "Kled")).toBe(false);
+  });
+  it("normaliza tildes y signos", () => {
+    expect(normalizeText("Mira's Halo")).toBe("mira s halo");
+    expect(normalizeText("Puesto Avanzado")).toBe("puesto avanzado");
   });
 });
 

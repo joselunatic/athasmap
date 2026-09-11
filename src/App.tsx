@@ -22,6 +22,7 @@ import {
   distance,
   setEndpoint,
   mergeSeedState,
+  fuzzyMatch,
   type AtlasState,
   type Poi,
   type Point,
@@ -66,12 +67,6 @@ function download(name: string, data: unknown, raw = false) {
   a.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
-const normalize = (s: string) =>
-  s
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase();
-
 export default function App() {
   const [boot] = useState(() => {
     try {
@@ -104,9 +99,7 @@ export default function App() {
     );
   const [passwordDialog, setPasswordDialog] = useState(false);
   const [passwordDraft, setPasswordDraft] = useState("");
-  const [tab, setTab] = useState<"places" | "travel" | "layers" | "data">(
-      "places",
-    ),
+  const [tab, setTab] = useState<"places" | "travel">("places"),
     [mobileOpen, setMobileOpen] = useState(false);
   const [query, setQuery] = useState(""),
     [category, setCategory] = useState(""),
@@ -118,19 +111,15 @@ export default function App() {
     [editor, setEditor] = useState<Poi>(),
     [mode, setMode] = useState<Mode>(null),
     [home, setHome] = useState(0);
-  const [showPois, setShowPois] = useState(true),
-    [grid, setGrid] = useState(false),
-    [showNetwork, setShowNetwork] = useState(true);
+  const [legendOpen, setLegendOpen] = useState(false),
+    [dataOpen, setDataOpen] = useState(false);
   const [deleteId, setDeleteId] = useState<string>(),
     [imported, setImported] = useState<AtlasState>();
   const selected = state.pois.find((p) => p.id === selectedId),
     unplaced = state.pois.filter((p) => !p.coordinates).length;
   const filtered = state.pois.filter(
     (p) =>
-      (!query ||
-        normalize(`${p.name} ${p.description} ${p.tags.join(" ")}`).includes(
-          normalize(query),
-        )) &&
+      fuzzyMatch(query, `${p.name} ${p.description} ${p.tags.join(" ")}`) &&
       (!category || p.type === category) &&
       (!region || p.region === region) &&
       (!tag || p.tags.includes(tag)) &&
@@ -192,9 +181,7 @@ export default function App() {
   }
   function commit(next: AtlasState) {
     if (storageBlocked) {
-      setError(
-        "El guardado está bloqueado. Abre Datos para recuperar o reemplazar el archivo local.",
-      );
+      setError("El guardado está bloqueado. Ábrelo en Datos para recuperarlo.");
       return false;
     }
     try {
@@ -372,14 +359,7 @@ export default function App() {
             />
             {status}
           </span>
-          <button
-            onClick={() => {
-              setTab("data");
-              setMobileOpen(true);
-            }}
-          >
-            Datos <span aria-hidden="true">↗</span>
-          </button>
+          <button onClick={() => setDataOpen(true)}>Datos ↗</button>
         </div>
       </header>
       <div className="workspace">
@@ -393,8 +373,6 @@ export default function App() {
               [
                 ["places", "Lugares"],
                 ["travel", "Viaje"],
-                ["layers", "Capas"],
-                ["data", "Datos"],
               ] as const
             ).map(([id, label]) => (
               <button
@@ -565,14 +543,10 @@ export default function App() {
                 </>
               ) : (
                 <>
-                  <p className="eyebrow">BAJO EL SOL OSCURO</p>
                   <div className="section-heading">
                     <h1>Explorar Athas</h1>
                     <span className="count">{state.pois.length}</span>
                   </div>
-                  <p className="intro">
-                    Un atlas para encontrar tu próximo destino.
-                  </p>
                   <label className="search">
                     <span aria-hidden="true">⌕</span>
                     <input
@@ -718,9 +692,7 @@ export default function App() {
               ))}
             {tab === "travel" && (
               <>
-                <p className="eyebrow">CUADERNO DE EXPEDICIÓN</p>
                 <h1>Preparar el viaje</h1>
-                <p className="intro">Traza un camino. Cuenta el agua.</p>
                 <label>
                   Tipo de recorrido
                   <select
@@ -748,8 +720,7 @@ export default function App() {
                 <p className="hint">
                   {state.routeKind === "direct"
                     ? "La línea recta no evita montañas ni peligros."
-                    : "Añade puntos en orden. El último será el destino."}{" "}
-                  La navegación por red aún no está disponible.
+                    : "Añade puntos en orden; el último es el destino."}
                 </p>
                 {(["origin", "destination"] as const).map((kind, i) => (
                   <div className="endpoint" key={kind}>
@@ -988,193 +959,6 @@ export default function App() {
                 </p>
               </>
             )}
-            {tab === "layers" && (
-              <>
-                <p className="eyebrow">LECTURA DEL TERRITORIO</p>
-                <h1>Capas del atlas</h1>
-                <p className="intro">Elige qué acompaña al mapa.</p>
-                {[
-                  [
-                    showPois,
-                    setShowPois,
-                    "Lugares de campaña",
-                    "Símbolos según categoría. Los filtros del catálogo también se aplican al mapa.",
-                  ],
-                  [
-                    grid,
-                    setGrid,
-                    "Cuadrícula de referencia",
-                    "Diez divisiones por eje para orientar y comparar.",
-                  ],
-                  [
-                    showNetwork,
-                    setShowNetwork,
-                    "Red de viaje semántica",
-                    `${state.network.nodes.length} nodos · ${state.network.edges.length} aristas. Líneas conceptuales; sin cálculo automático.`,
-                  ],
-                ].map(([value, setter, title, description]) => (
-                  <label className="layer-row" key={String(title)}>
-                    <input
-                      type="checkbox"
-                      checked={value as boolean}
-                      onChange={(e) =>
-                        (setter as (v: boolean) => void)(e.target.checked)
-                      }
-                    />
-                    <span>
-                      <strong>{title as string}</strong>
-                      <small>{description as string}</small>
-                    </span>
-                  </label>
-                ))}
-                <div className="placement-note">
-                  <strong>Mapa ilustrado original</strong>
-                  <p>
-                    Los caminos y nombres impresos forman parte del raster y no
-                    pueden ocultarse por separado.
-                  </p>
-                </div>
-                <h3>Leyenda de lugares</h3>
-                <div className="legend">
-                  {categories.map((c) => (
-                    <div key={c.id}>
-                      <span className={`list-symbol ${c.id}`}>
-                        {symbols[c.id]}
-                      </span>
-                      {c.label}
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
-            {tab === "data" && (
-              <>
-                <p className="eyebrow">ARCHIVO DE CAMPAÑA</p>
-                <h1>Tus datos</h1>
-                <p className="intro">
-                  Guardados en este navegador, para este origen web. Exporta
-                  copias para conservarlos.
-                </p>
-                <dl className="facts">
-                  <div>
-                    <dt>Lugares</dt>
-                    <dd>{state.pois.length}</dd>
-                  </div>
-                  <div>
-                    <dt>Ubicados</dt>
-                    <dd>{state.pois.length - unplaced}</dd>
-                  </div>
-                  <div>
-                    <dt>Red</dt>
-                    <dd>{state.network.edges.length} aristas</dd>
-                  </div>
-                </dl>
-                <button
-                  className="primary full"
-                  onClick={() => exportData("all")}
-                >
-                  ↓ Exportar campaña completa
-                </button>
-                <div className="two">
-                  <button onClick={() => exportData("pois")}>
-                    Exportar POIs
-                  </button>
-                  <button onClick={() => exportData("network")}>
-                    Exportar red
-                  </button>
-                </div>
-                <p className="hint">
-                  Los archivos exportados incluyen notas privadas. Revísalos
-                  antes de compartir.
-                </p>
-                <h3>Importar JSON</h3>
-                <p className="hint">
-                  Acepta campañas completas, POIs o redes del atlas con
-                  coordenadas normalizadas. Podrás revisar el reemplazo antes de
-                  aplicarlo.
-                </p>
-                <label className="import-input">
-                  Seleccionar archivo
-                  <input
-                    type="file"
-                    accept=".json,application/json"
-                    onChange={async (e) => {
-                      const f = e.target.files?.[0];
-                      e.target.value = "";
-                      if (!f) return;
-                      try {
-                        if (f.size > 10 * 1024 * 1024)
-                          throw new Error("El archivo supera 10 MB.");
-                        setImported(
-                          parseImport(JSON.parse(await f.text()), state),
-                        );
-                        setError("");
-                      } catch (err) {
-                        setError(`Importación rechazada: ${errorText(err)}`);
-                      }
-                    }}
-                  />
-                </label>
-                <h3>Datos y procedencia</h3>
-                <p className="description">
-                  Los 123 registros iniciales proceden de poi.json. Sus
-                  posiciones están vacías. Las ubicaciones y notas que añadas
-                  pertenecen a tu campaña.
-                </p>
-                <p className="description">
-                  El mapa utiliza coordenadas de imagen, no latitud y longitud.
-                  La red semántica conserva solo tramos revisados del PDF; sus
-                  valores todavía no tienen unidad confirmada.
-                </p>
-                <p className="hint">
-                  Formato JSON propio: athas-image-normalized-v1. GeoJSON
-                  geográfico no se importa porque interpretaría estas posiciones
-                  como coordenadas terrestres.
-                </p>
-                {storageBlocked && (
-                  <div className="placement-note">
-                    <h3>Recuperar guardado</h3>
-                    <button
-                      onClick={() => {
-                        try {
-                          const raw = localStorage.getItem("athas.atlas.v1");
-                          if (raw === null)
-                            throw new Error("No existe un guardado accesible.");
-                          download("athas-guardado-original.json", raw, true);
-                        } catch (e) {
-                          setError(errorText(e));
-                        }
-                      }}
-                    >
-                      Descargar guardado original
-                    </button>
-                    <button
-                      className="danger"
-                      onClick={() => {
-                        if (
-                          window.confirm(
-                            "¿Reemplazar el guardado no válido por los datos visibles? Exporta el original primero.",
-                          )
-                        ) {
-                          try {
-                            saveState(localStorage, state);
-                            storageSnapshot.current =
-                              localStorage.getItem("athas.atlas.v1");
-                            setStorageBlocked(false);
-                            setError("");
-                            setStatus("Guardado recuperado");
-                          } catch (e) {
-                            setError(errorText(e));
-                          }
-                        }
-                      }}
-                    >
-                      Reemplazar guardado
-                    </button>
-                  </div>
-                )}
-              </>
-            )}
           </div>
           <footer className="sidebar-footer">
             <span>DARK SUN</span>
@@ -1188,10 +972,7 @@ export default function App() {
             points={state.itinerary}
             manual={state.routeKind === "manual"}
             pick={!!mode}
-            grid={grid}
-            showPois={showPois}
             network={state.network}
-            showNetwork={showNetwork}
             home={home}
             onPick={onPick}
             onSelect={select}
@@ -1226,6 +1007,33 @@ export default function App() {
             >
               ↝
             </button>
+          </div>
+          <div className="map-legend">
+            <button
+              className={`legend-fab ${legendOpen ? "active" : ""}`}
+              aria-expanded={legendOpen}
+              aria-controls="legend-panel"
+              title="Leyenda"
+              onClick={() => setLegendOpen((v) => !v)}
+            >
+              ◈
+            </button>
+            {legendOpen && (
+              <aside
+                id="legend-panel"
+                className="legend-panel"
+                aria-label="Leyenda de lugares"
+              >
+                {categories.map((c) => (
+                  <div key={c.id} className="legend-row">
+                    <span className={`list-symbol ${c.id}`}>
+                      {symbols[c.id]}
+                    </span>
+                    {c.label}
+                  </div>
+                ))}
+              </aside>
+            )}
           </div>
           {mode && (
             <div className="mode-banner" role="status">
@@ -1271,10 +1079,8 @@ export default function App() {
             </div>
           )}
           <div className="map-bottom">
-            <span>◈ MAPA ILUSTRADO DE ATHAS · LAS TABLELANDS</span>
-            <span>
-              RED SEMÁNTICA · REFERENCIA EDITORIAL
-            </span>
+            <span>LAS TABLELANDS</span>
+            <span>RED SEMÁNTICA · TRAMOS CONCEPTUALES</span>
           </div>
         </main>
       </div>
@@ -1285,6 +1091,88 @@ export default function App() {
             ×
           </button>
         </div>
+      )}
+      {dataOpen && (
+        <ConfirmDialog onClose={() => setDataOpen(false)}>
+          <h2 id="confirm-title">Datos</h2>
+          <p className="hint">
+            {state.pois.length} lugares · {state.pois.length - unplaced}{" "}
+            ubicados. Guardados en este navegador.
+          </p>
+          <button className="primary full" onClick={() => exportData("all")}>
+            ↓ Exportar campaña
+          </button>
+          <div className="two">
+            <button onClick={() => exportData("pois")}>POIs</button>
+            <button onClick={() => exportData("network")}>Red</button>
+          </div>
+          <label className="import-input">
+            Importar JSON
+            <input
+              type="file"
+              accept=".json,application/json"
+              onChange={async (e) => {
+                const f = e.target.files?.[0];
+                e.target.value = "";
+                if (!f) return;
+                try {
+                  if (f.size > 10 * 1024 * 1024)
+                    throw new Error("El archivo supera 10 MB.");
+                  setImported(parseImport(JSON.parse(await f.text()), state));
+                  setError("");
+                } catch (err) {
+                  setError(`Importación rechazada: ${errorText(err)}`);
+                }
+              }}
+            />
+          </label>
+          {storageBlocked && (
+            <div className="placement-note">
+              <h3>Recuperar guardado</h3>
+              <p className="hint">
+                El guardado local no se pudo leer. Descarga una copia o
+                reemplázalo por los datos visibles.
+              </p>
+              <button
+                onClick={() => {
+                  try {
+                    const raw = localStorage.getItem("athas.atlas.v1");
+                    if (raw === null)
+                      throw new Error("No existe un guardado accesible.");
+                    download("athas-guardado-original.json", raw, true);
+                  } catch (e) {
+                    setError(errorText(e));
+                  }
+                }}
+              >
+                Descargar original
+              </button>
+              <button
+                className="danger"
+                onClick={() => {
+                  if (
+                    window.confirm(
+                      "¿Reemplazar el guardado no válido por los datos visibles? Exporta el original primero.",
+                    )
+                  ) {
+                    try {
+                      saveState(localStorage, state);
+                      storageSnapshot.current =
+                        localStorage.getItem("athas.atlas.v1");
+                      setStorageBlocked(false);
+                      setError("");
+                      setStatus("Guardado recuperado");
+                    } catch (e) {
+                      setError(errorText(e));
+                    }
+                  }
+                }}
+              >
+                Reemplazar
+              </button>
+            </div>
+          )}
+        </ConfirmDialog>
       )}
       {passwordDialog && (
         <ConfirmDialog onClose={() => setPasswordDialog(false)}>

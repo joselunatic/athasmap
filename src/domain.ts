@@ -188,6 +188,47 @@ export function distance(a: Point, b: Point) {
     Math.hypot(a.x - b.x, ((a.y - b.y) * HEIGHT) / WIDTH) * MAP_WIDTH_MILES
   );
 }
+export function normalizeText(value: string): string {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+function editDistance(a: string, b: string): number {
+  const row = Array.from({ length: b.length + 1 }, (_, j) => j);
+  for (let i = 1; i <= a.length; i++) {
+    let diagonal = row[0];
+    row[0] = i;
+    for (let j = 1; j <= b.length; j++) {
+      const previous = row[j];
+      row[j] = Math.min(
+        row[j] + 1,
+        row[j - 1] + 1,
+        diagonal + (a[i - 1] === b[j - 1] ? 0 : 1),
+      );
+      diagonal = previous;
+    }
+  }
+  return row[b.length];
+}
+/** Búsqueda tolerante: ignora tildes/signos, el orden de palabras y erratas de un carácter. */
+export function fuzzyMatch(query: string, text: string): boolean {
+  const needle = normalizeText(query);
+  if (!needle) return true;
+  const haystack = normalizeText(text);
+  if (haystack.includes(needle)) return true;
+  const words = needle.split(" ").filter(Boolean);
+  const tokens = haystack.split(" ").filter(Boolean);
+  return words.every((word) =>
+    tokens.some(
+      (token) =>
+        token.includes(word) ||
+        (word.length >= 3 && editDistance(token, word) <= 1),
+    ),
+  );
+}
 export function setEndpoint(
   points: Point[],
   endpoint: "origin" | "destination",

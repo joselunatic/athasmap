@@ -27,8 +27,10 @@ npm run preview
 - **Crear:** botón `+`, clic en el mapa, completa el formulario y guarda. Cancelar no crea el registro.
 - **Editar:** metadatos, visibilidad, agua, peligro, facción, fuentes y notas privadas. La eliminación exige confirmación.
 - **Viaje:** selecciona POIs ubicados o puntos libres. «Ruta manual» permite añadir puntos en orden, deshacer el último y terminar conservando el trazado. La alternativa directa dibuja una línea entre extremos.
-- **Capas:** POIs, cuadrícula y red de viaje semántica. Los caminos y nombres impresos son parte inseparable del raster; los POIs aproximados se dibujan con un radio de incertidumbre.
-- **Datos:** exporta campaña completa, POIs o red. La importación muestra un resumen y pide confirmar el reemplazo; puedes exportar una copia previa.
+- **Leyenda:** icono flotante abajo a la izquierda; despliega la leyenda de categorías en un panel translúcido sobre el mapa sin abrir el panel lateral.
+- **Datos:** botón en la cabecera superior. Exporta campaña completa, POIs o red; la importación muestra un resumen y pide confirmar el reemplazo.
+
+La búsqueda de lugares es difusa: ignora tildes y signos, acepta las palabras en cualquier orden y tolera erratas de un carácter.
 
 En móvil, «Abrir herramientas» muestra el panel y «Ver mapa» lo oculta. Iniciar una colocación deja libre el mapa.
 
@@ -64,7 +66,7 @@ Se intercambia **JSON propio**, no GeoJSON RFC 7946, para no presentar coordenad
 }
 ```
 
-Las importaciones parciales reemplazan la colección correspondiente; no fusionan. Se validan categorías, identificadores únicos, límites, números finitos y referencias de red. Máximo por archivo: 10 MB. Exporta desde Datos para obtener un ejemplo completo con todos los campos.
+Las importaciones parciales reemplazan la colección correspondiente; no fusionan. Se validan categorías, identificadores únicos, límites, números finitos y referencias de red. Máximo por archivo: 10 MB. Exporta desde el botón «Datos» para obtener un ejemplo completo con todos los campos.
 
 ## Escáner global de POIs
 

@@ -12,15 +12,15 @@
     },
     {
       "id": "town",
-      "label": "Pueblo / asentamiento grande"
+      "label": "Pueblo"
     },
     {
       "id": "village",
-      "label": "Aldea / asentamiento menor"
+      "label": "Aldea"
     },
     {
       "id": "fortress",
-      "label": "Fortaleza / fuerte"
+      "label": "Fortaleza"
     },
     {
       "id": "oasis",
@@ -32,23 +32,23 @@
     },
     {
       "id": "outpost",
-      "label": "Puesto avanzado / caravansar"
+      "label": "Puesto"
     },
     {
       "id": "region",
-      "label": "Región / área amplia"
+      "label": "Región"
     },
     {
       "id": "natural_feature",
-      "label": "Rasgo natural (montañas, llanuras…)"
+      "label": "Rasgo natural"
     },
     {
       "id": "water_body",
-      "label": "Mar / lago / estuario"
+      "label": "Agua"
     },
     {
       "id": "route",
-      "label": "Ruta / carretera"
+      "label": "Ruta"
     },
     {
       "id": "special_site",
