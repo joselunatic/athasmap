@@ -19,4 +19,24 @@ describe("cliente de campaña remota", () => {
     ).rejects.toBeInstanceOf(RemoteAuthError);
     expect(new Headers(request?.headers).get("x-atlas-password")).toBe("wayan");
   });
+
+  it("migra el formato de viaje antiguo de una campaña remota", async () => {
+    const legacy = {
+      mode: "foot",
+      pace: 2.5,
+      hours: 8,
+      scale: 1000,
+      terrain: "sand",
+      heat: true,
+      storm: false,
+      load: false,
+      scarceWater: false,
+      useRoad: false,
+    };
+    const snapshot = { revision: 4, state: { ...initialState(), travel: legacy } };
+    const result = await loadRemoteState(async () => new Response(JSON.stringify(snapshot)));
+    expect(result.state?.travel.pace).toBe("custom");
+    expect(result.state?.travel.customMph).toBe(2.5);
+    expect(result.state?.travel).not.toHaveProperty("scale");
+  });
 });

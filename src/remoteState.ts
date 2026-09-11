@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { stateSchema, type AtlasState } from "./domain";
+import { migrateTravelShape, stateSchema, type AtlasState } from "./domain";
 
 type Fetcher = (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 export type RemoteSnapshot = { revision: number; state: AtlasState | null };
@@ -30,7 +30,16 @@ async function errorFor(response: Response) {
 export async function loadRemoteState(fetcher: Fetcher = fetch): Promise<RemoteSnapshot> {
   const response = await fetcher("/api/state", { headers: { accept: "application/json" } });
   if (!response.ok) throw await errorFor(response);
-  return snapshotSchema.parse(await response.json());
+  const body = await response.json();
+  if (
+    body &&
+    typeof body === "object" &&
+    body.state &&
+    typeof body.state === "object" &&
+    "travel" in body.state
+  )
+    body.state.travel = migrateTravelShape(body.state.travel);
+  return snapshotSchema.parse(body);
 }
 
 export async function saveRemoteState(
