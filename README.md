@@ -26,6 +26,7 @@ npm run preview
 - **Situar/mover:** abre una ficha, pulsa «Situar en el mapa» y elige una posición. Cancelar/Escape conserva la posición anterior hasta el clic. Con teclado, enfoca el mapa, desplázalo con flechas y pulsa Enter para elegir el centro.
 - **Crear:** botón `+`, clic en el mapa, completa el formulario y guarda. Cancelar no crea el registro.
 - **Editar:** metadatos, visibilidad, agua, peligro, facción, fuentes y notas privadas. La eliminación exige confirmación.
+- **Guía de ciudad:** la ficha de una ciudad ofrece «◈ Guía de ciudad», un popup con lo esencial para dirigirla: epíteto, gobernante, peligro, resumen de dos líneas, seis hechos prácticos, gancho de aventura y etiquetas.
 - **Viaje:** selecciona POIs ubicados o puntos libres. «Ruta manual» permite añadir puntos en orden, deshacer el último y terminar conservando el trazado. La alternativa directa dibuja una línea entre extremos.
 - **Leyenda:** icono flotante abajo a la izquierda; despliega la leyenda de categorías en un panel translúcido sobre el mapa sin abrir el panel lateral.
 - **Datos:** botón en la cabecera superior. Exporta campaña completa, POIs o red; la importación muestra un resumen y pide confirmar el reemplazo.
@@ -33,6 +34,16 @@ npm run preview
 La búsqueda de lugares es difusa: ignora tildes y signos, acepta las palabras en cualquier orden y tolera erratas de un carácter.
 
 En móvil, «Abrir herramientas» muestra el panel y «Ver mapa» lo oculta. Iniciar una colocación deja libre el mapa.
+
+## Guías de ciudad
+
+`city-guides.json` resume las 14 ciudades de `docs/traveler.pdf` (*A Traveller's Guide to…*). El popup no reproduce el PDF: condensa cada ciudad en un vistazo.
+
+Cada entrada tiene `epithet`, `ruler`, `danger`, `tags`, `summary`, `facts[]`, `hook` e `imagePrompt`. `imageStyle` fija un estilo gráfico común para que las ilustraciones sean coherentes entre sí; `imagePrompt` de cada ciudad ya lo incorpora y puede copiarse desde el propio popup (desplegable «Prompt de imagen»).
+
+Las imágenes se dejan en `cities/<id>.jpg` (`.jpeg`, `.png` o `.webp`; 16:9). Si faltan, el popup muestra un marcador y no se rompe. Vite sirve `/cities/` en desarrollo y copia la carpeta a `dist/cities/` en el build.
+
+13 de las 14 guías enlazan con una ciudad del catálogo. `ur-draxa` (Ur Draxa, la Ciudad de la Perdición) aún no tiene POI: su guía queda lista para cuando se añada.
 
 ## Procedencia y coordenadas
 

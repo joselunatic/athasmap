@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import ConfirmDialog from "./ConfirmDialog";
 import AtlasMap from "./AtlasMap";
 import PoiEditor from "./PoiEditor";
+import CityGuide from "./CityGuide";
 import {
   loadRemoteState,
   RemoteAuthError,
@@ -23,6 +24,7 @@ import {
   setEndpoint,
   mergeSeedState,
   fuzzyMatch,
+  cityGuideFor,
   type AtlasState,
   type Poi,
   type Point,
@@ -113,6 +115,7 @@ export default function App() {
     [home, setHome] = useState(0);
   const [legendOpen, setLegendOpen] = useState(false),
     [dataOpen, setDataOpen] = useState(false);
+  const [cityId, setCityId] = useState<string>();
   const [deleteId, setDeleteId] = useState<string>(),
     [imported, setImported] = useState<AtlasState>();
   const selected = state.pois.find((p) => p.id === selectedId),
@@ -432,6 +435,14 @@ export default function App() {
                       <span key={i}>{t}</span>
                     ))}
                   </div>
+                  {cityGuideFor(selected.id) && (
+                    <button
+                      className="primary full"
+                      onClick={() => setCityId(selected.id)}
+                    >
+                      ◈ Guía de ciudad
+                    </button>
+                  )}
                   <dl className="facts">
                     <div>
                       <dt>Importancia</dt>
@@ -1091,6 +1102,9 @@ export default function App() {
             ×
           </button>
         </div>
+      )}
+      {cityId && (
+        <CityGuide poiId={cityId} onClose={() => setCityId(undefined)} />
       )}
       {dataOpen && (
         <ConfirmDialog onClose={() => setDataOpen(false)}>

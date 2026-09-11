@@ -10,7 +10,15 @@ export default function ConfirmDialog({
   useEffect(() => {
     const dialog = ref.current!;
     dialog.showModal();
-    return () => dialog.close();
+    // showModal() enfoca el primer elemento focusable; si está abajo (p. ej. el
+    // desplegable del prompt de ciudad), desplaza el scroll. Lo devolvemos arriba.
+    const frame = requestAnimationFrame(() => {
+      dialog.scrollTop = 0;
+    });
+    return () => {
+      cancelAnimationFrame(frame);
+      dialog.close();
+    };
   }, []);
   return (
     <dialog

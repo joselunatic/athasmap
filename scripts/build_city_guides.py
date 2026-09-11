@@ -1,0 +1,245 @@
+"""Construye city-guides.json a partir del contenido de docs/traveler.pdf."""
+import json
+from pathlib import Path
+
+root = Path(r'C:\Users\JoseAntonioHernandez\Repos\athas')
+
+IMAGE_STYLE = (
+    "ilustración digital de fantasía oscura al estilo de la pintura TSR de Dark Sun de los 90 "
+    "(Brom, Baxa): paleta terrosa y desaturada de ocre, bronce, óxido y sombras violáceas bajo un "
+    "cielo de ceniza, luz de sol bajo y duro con polvo en suspensión y sombras marcadas, cámara "
+    "cinematográfica amplia a tres cuartos y elevada que muestra la silueta completa de la ciudad "
+    "contra el paisaje de Athas, arquitectura monumental y erosionada de piedra, adobe, hueso y "
+    "obsidiana, atmósfera opresiva y grandiosa, detalle alto, sin texto, sin logotipos, sin marcos, "
+    "sin personas mirando a cámara, composición 16:9"
+)
+
+G = [
+    dict(
+        id="tyr", name="Tyr", epithet="La ciudad libre", ruler="Consejo de Asesores (tras la caída de Kalak)",
+        danger="media", tags=["libre", "arena", "UnderTyr"],
+        summary="Ciudad-estado al pie de las Montañas Resonantes, ceñida por plantaciones-fortaleza de los nobles y por el zigurat inacabado de Kalak. Bajo sus calles, el laberinto de UnderTyr guarda riqueza y muerte a partes iguales.",
+        facts=[
+            ("Puertas", "Caravana (la más activa), Estadio (mercaderes y gladiadores), Dorada (cerrada)"),
+            ("Dormir", "Golden Inix (Caravan Way), Sweetwater (nobles), Drunken Giant (la Alianza Velada)"),
+            ("Comer", "Carne de baazrag, erdlu, kip y z'tal; Shadow Square y Artisan's Way, barato"),
+            ("Comprar", "Iron Square (casas mercantes), mercado elfo, Night Trader's Way en UnderTyr"),
+            ("Peligro", "UnderTyr: bóvedas, ríos secos y bosques petrificados; gloria o horror"),
+            ("Entrenar", "Establos gladiatorios de los nobles; Escuela del Pensamiento (psiónica)"),
+        ],
+        hook="Un sótano recién abierto da a un túnel de UnderTyr que no figura en ningún mapa.",
+        subject="Tyr, ciudad-estado al pie de las Montañas Resonantes: murallas de piedra dorada, el gran zigurat de Kalak en construcción dominando la ciudad, el bullicioso mercado de Iron Square entre emporios fortificados, la arena y calles de adobe bajo un cielo de atardecer polvoriento",
+    ),
+    dict(
+        id="urik", name="Urik", epithet="La ciudad disciplinada", ruler="Hamanu el Rey León",
+        danger="media", tags=["militar", "obsidiana", "ley"],
+        summary="Ciudad-estado militarista donde las Montañas Resonantes tocan las Tablelands, irrigada por pozos profundos. Sus muros teñidos de amarillo azufre y sus leones de piedra custodian el Código de Hamanu.",
+        facts=[
+            ("Puertas", "Esclavo (caravanas), Alta (nobles), Obsidiana y del Rey; peaje 5 cp + 1 cp/montura"),
+            ("Dormir", "Lion's Crown (lujo), Empty Urn (mercaderes), Dustdevil Inn (barato y duro)"),
+            ("Comer", "Joat's Den junto a la Puerta de Obsidiana; tabernas del Pozo de Agua Clara"),
+            ("Comprar", "Barrio de la Obsidiana (caro), Distrito Viejo (barato), Corte de Alfareros"),
+            ("Ley", "El Código de Hamanu cambia a capricho del rey; sus templarios buscan lagunas"),
+            ("Entrenar", "El Pozo de la Muerte Negra (arena), House Stel, Academia del Rey (psiónica)"),
+        ],
+        hook="Un templario ha hallado una laguna del Código que pone a un noble en la arena.",
+        subject="Urik, ciudad-estado de piedra teñida de amarillo azufre al pie de las Montañas Resonantes: murallas almenadas coronadas por cabezas de león de piedra y estatuas de leones guerreros, campos de grano y huertos en hileras, la Puerta de la Obsidiana y el Pozo de Agua Clara en el centro",
+    ),
+    dict(
+        id="nibenay", name="Nibenay", epithet="La ciudad de la espina", ruler="Nibenay el Rey Sombra",
+        danger="media", tags=["comercio", "templos", "bardos"],
+        summary="Ciudad de piedra tallada entre farallones al este de la región central, célebre por sus «puertas danzantes» que hipnotizan con música. El comercio de las casas dinásticas lo impregna todo, y con él la intriga.",
+        facts=[
+            ("Puertas", "Cuatro; solo la del Embalse es templaria; la del Mekillot admite grandes caravanas; evita la del Sur (Barrio de la Colina)"),
+            ("Dormir", "Open Door (Sage's Square), Borderstone (barato, mercado elfo), casas nobles"),
+            ("Comer", "El arroz es la base; mercados que no cierran; cuidado con emborracharse (esclavistas)"),
+            ("Comprar", "Sage's Square de día y de noche; el Barrio de la Colina para lo ilícito"),
+            ("Ojo", "Templarios con tortura e interrogatorio psiónico; mazmorras del Naggaramakam"),
+            ("Entrenar", "Salas de combate públicas; el Bosque de la Media Luna para druidas"),
+        ],
+        hook="Una casa dinástica quiere recuperar un cargamento robado sin que los templarios se enteren.",
+        subject="Nibenay, ciudad de piedra tallada entre farallones rocosos: puertas monumentales con balcones de músicos, callejones labrados en la roca viva, los emporios de las casas dinásticas en la plaza de ceniza de Sage's Square y el palacio del Rey Sombra oculto entre las rocas",
+    ),
+    dict(
+        id="gulg", name="Gulg", epithet="La ciudad del bosque", ruler="Lalali-Puy, la Oba",
+        danger="media", tags=["bosque", "rituales", "tribal"],
+        summary="Ciudad de adobe envuelta por el bosque al final del Camino del Pueblo y gobernada por la Oba desde el Hogar de la Luz. Cada acto cotidiano está regido por rituales, y ofenderlos puede costar la libertad.",
+        facts=[
+            ("Puertas", "Solo la Puerta de la Reina para foráneos; interrogatorio telepático; 5 bits por pierna"),
+            ("Dormir", "Dagadas públicas (5 bits con comida), el Dagaous; fuera, el Kaponome Dagafari"),
+            ("Comprar", "Solo la Casa de Comercio de la Reina; campamentos mercantes fuera de la ciudad"),
+            ("Comer", "No compres en los mercados nocturnos (mercado negro); un ciudadano puede regalarte"),
+            ("Costumbres", "Puño a los labios, «dotome» y «latolo»; jamás mires el Hogar de la Luz"),
+            ("Peligro", "Templarios con clariaudiencia y telepatía: no mientas ni cierres tu mente"),
+        ],
+        hook="Un foráneo ha violado un rito sin saberlo y la Oba exige reparación antes del amanecer.",
+        subject="Gulg, ciudad de adobe y madera viva enclavada en una selva densa: dagadas de muros de barro entre árboles gigantes, el Hogar de la Luz resplandeciente elevado sobre el dosel verde y niebla baja entre las copas",
+    ),
+    dict(
+        id="raam", name="Raam", epithet="La ciudad rota", ruler="Abalach-Re y los nawabs en guerra",
+        danger="extrema", tags=["guerra civil", "castas", "caos"],
+        summary="Antigua rival de Draj en la producción de grano, hoy arrasada por la guerra entre nawabs: campos quemados y salados, santuarios derruidos y una sociedad de castas rígida entre las ruinas.",
+        facts=[
+            ("Puertas", "Cuatro: Mastyrial, Nawab, Badna (antes del Este) y la Puerta Fantasma"),
+            ("Dormir", "Seven-Pointed Star (con mercenarios propios), Messenger's Refuge (barato y espartano)"),
+            ("Comer", "Puestos callejeros; los bandos respetan a los vendedores porque todos comen"),
+            ("Comprar", "Tribunal del Comercio, medio cerrado y con precios volátiles; House M'ke pide seriedad"),
+            ("Peligro", "Abalach-Re arrasó los santuarios: la sanación es pésima y las plagas crónicas"),
+            ("Castas", "Sacerdote, visir, terrateniente, jornalero y proscrito; el proscrito vive en la Ciudad Fantasma"),
+        ],
+        hook="Dos nawabs contratan a los mismos forasteros para lo mismo; descubrirlo es la única salida.",
+        subject="Raam, gran ciudad en ruinas al pie de una colina: campos quemados y salados alrededor, fortalezas nobiliarias de muros almenados, el Tribunal del Comercio semivacío en el centro y la Ciudad Fantasma de chabolas extramuros bajo un cielo de polvo",
+    ),
+    dict(
+        id="draj", name="Draj", epithet="La ciudad de la guerra", ruler="Tectuktitlay y los Sacerdotes de la Luna",
+        danger="alta", tags=["guerra", "sacrificios", "esclavos"],
+        summary="Ciudad-estado guerrera alzada sobre un vasto lodazal al final del Camino de los Reyes. No tiene murallas —el barro es el foso— y su cultura glorifica la guerra y el sacrificio.",
+        facts=[
+            ("Puerta", "Sin murallas; se entra por la Puerta de la Luna Dorada tras dos torres gemelas; 5 bits por pierna"),
+            ("Dormir", "Posadas del Distrito Mercante (1 cp); el Great Cleaver para semigigantes"),
+            ("Comer", "Cocina célebre: estofado de erdlu y maíz al vapor; Lirr's Tail, Snarling Jaguar"),
+            ("Comprar", "Distritos Mercante y de Artesanos; el arte solo glorifica la guerra"),
+            ("Ojo", "Componentes mágicos y magia son ilegales; cacheos y telépatas en las puertas"),
+            ("Entrenar", "Arena y ejercicios militares; el templo de fuego es el mejor"),
+        ],
+        hook="Un esclavo fugado esconde algo que los Sacerdotes de la Luna quieren recuperar antes de la próxima luna.",
+        subject="Draj, ciudad amurallada alzada sobre un vasto lodazal: la Gran Pirámide de piedra dominando el horizonte, una calzada de piedra cruzando el barro, campos de cultivo labrados por esclavos y la Puerta de la Luna Dorada entre dos torres gemelas",
+    ),
+    dict(
+        id="balic", name="Balic", epithet="La ciudad de los patricios", ruler="Andropinis el Dictador",
+        danger="media", tags=["puerto", "comercio", "arena"],
+        summary="Puerto sobre el Estuario de la Lengua gobernado por el Dictador Andropinis. Los patricios terratenientes y los pretores electos se reparten el poder mientras las casas mercantes mueven el comercio.",
+        facts=[
+            ("Puertas", "Gran Puerta (siempre abierta, colas), Puerta del Palacio (solo con permiso), Puerta del Guilder (puerto)"),
+            ("Dormir", "El Olivo (barato y seguro), Grove View (caro y vigilado por templarios)"),
+            ("Comprar", "Ágora: emporios de Rees, Tomblador y Wavir; elfos en los Puentes Brillantes"),
+            ("Trabajo", "House Wavir recluta agentes; los navíos de cieno cruzan el Mar de Cieno"),
+            ("Sanar", "Santuario de aire elemental en el Monte Laeron, tras un ascenso duro"),
+            ("Entrenar", "House Jarko (gladiadores); el Cerebran (psiónica, sin templarios en sus tierras)"),
+        ],
+        hook="Alguien compra votos en las elecciones de pretores y los «accidentes» empiezan a ser sospechosos.",
+        subject="Balic, ciudad-estado portuaria amurallada en la punta de una península árida que corta el Estuario de la Lengua: la Gran Puerta abarrotada de caravanas, el mercado del Ágora entre emporios fortificados, viñedos y olivares en las laderas y el Palacio Blanco de Andropinis sobre la colina",
+    ),
+    dict(
+        id="celik", name="Celik", epithet="Dos ciudades: una muerta y otra que crece", ruler="Patriarca Korsun Mareneth",
+        danger="alta", tags=["ruinas", "frontera", "saqueo"],
+        summary="Ciudad partida entre ruinas y un núcleo vivo, al final del Camino del Comercio en las Dunas Sin Fin. House Mareneth controla su única puerta y cobra en trabajo la deuda de quien entra.",
+        facts=[
+            ("Puerta", "El Bastión, siempre cerrado; Mareneth admite a quien acepte sus términos de servicio"),
+            ("Dormir", "Mareneth's Pride (caro), Fallen Star (elfos Starchasers, con casino), Bastion Hall"),
+            ("Comprar", "Mercados elfos y mercado negro en las cloacas; precios altísimos y agua carísima"),
+            ("Ruinas", "Delves sin licencia = servidumbre; compra la licencia a Korsun antes de bajar"),
+            ("Sanar", "Boticarios de Mareneth y chamanes elfos; templos de tierra, magma y fuego"),
+            ("Peligro", "Monstruos en las ruinas y un aura psiónica que incomoda a los psiónicos"),
+        ],
+        hook="Circula una licencia de excavación falsificada y Mareneth quiere saber quién la imprime.",
+        subject="Celik, ciudad hundida en las Dunas Sin Fin bajo un sol blanco: ruinas grises derruidas junto a edificios reparados, canales secos con muelles de piedra colgando sobre la arena, una única puerta fortificada —el Bastión— y andamios de saqueo entre los escombros",
+    ),
+    dict(
+        id="eldaarich", name="Eldaarich", epithet="La ciudad del miedo", ruler="Daskinor el Paranoico",
+        danger="alta", tags=["isla", "paranoia", "prohibida"],
+        summary="Ciudadela insular en el Mar de Cieno, alcanzable solo por puentes levadizos custodiados por Fuerte Holz y Guardia Sur. Los extranjeros no pueden entrar y su rey ha contagiado a todos su paranoia.",
+        facts=[
+            ("Acceso", "Puentes desde Fuerte Holz y Guardia Sur, que se retraen ante amenaza; los foráneos no pasan de Silt Side"),
+            ("Dormir", "Sin posadas para foráneos; el Giant's Skull en Silt Side"),
+            ("Comprar", "Silt Side (House Azeth) con sobreprecio pequeño frente al interior"),
+            ("Peligro", "Las Entrañas (Bowels): túneles y cuevas bajo la ciudad, territorio letal"),
+            ("Trabajo", "En los asentamientos cliente; dentro, la traición y el descarte son la norma"),
+            ("Ojo", "La psiónica es ilegal por decreto de Daskinor; no te identifiques como seguidor"),
+        ],
+        hook="Una facción eldaariana busca ayuda externa para eliminar a un rival y planea deshacerse del mensajero.",
+        subject="Eldaarich, ciudadela fortificada en una isla del Mar de Cieno, unida al continente por una serie de puentes sobre el cieno lechoso: torres y murallas defensivas con máquinas de guerra, puentes levadizos retraídos y bruma de ceniza sobre el mar",
+    ),
+    dict(
+        id="kurn", name="Kurn", epithet="La ciudad que se apaga", ruler="Oronis (rey hechicero distante) y el Tribunal",
+        danger="baja", tags=["democracia", "comercio", "decadencia"],
+        summary="Casi un pueblo fantasma en un prado al este de las Montañas Blancas, al final del Camino de los Reyes. Apenas unos miles de habitantes, pero su mercado sigue vivo gracias a House Azeth.",
+        facts=[
+            ("Puertas", "Puerta Sur siempre abierta; la del Protector cerrada, lleva a Fuerte Protector"),
+            ("Dormir", "Wasp House (House Azeth), End of Kings, Golden Eyrie (aarakocra, fuera de la muralla)"),
+            ("Comer", "El Wasp House es lo mejor; Guthay's Smile infla la cuenta; el Cup and Hammer, barato"),
+            ("Comprar", "Mercados concurridos: claves artesanas, aarakocra, ssurran y elfos"),
+            ("Magia", "Componentes fáciles y tolerados; la magia es ilegal pero los templarios miran aparte"),
+            ("Gobierno", "Democracia: el Tribunal y el Preside; los templarios solo aplican la ley"),
+        ],
+        hook="Queda vacante un puesto en el Tribunal y las claves compiten por colocar a su candidato.",
+        subject="Kurn, ciudad en declive sobre un prado verde al pie de las Montañas Blancas: calles de piedra medio vacías, tejados derruidos junto a un mercado bullicioso, los enormes nidos de papel de la Wasp House en la ladera y el Camino de los Reyes entrando por la Puerta Sur",
+    ),
+    dict(
+        id="new-kurn", name="New Kurn", epithet="El paraíso escondido", ruler="Oronis",
+        danger="baja", tags=["utopía", "valle", "magia"],
+        summary="Valle fértil oculto tras Fuerte Protector y cerrado a los no invitados: el proyecto de restauración de Oronis, donde no hay hambre ni sed y las artes arcanas se practican a la luz del día.",
+        facts=[
+            ("Acceso", "Sin puertas ni murallas; solo por invitación de Oronis; los picos matan a quien intenta entrar"),
+            ("Dormir", "Lakeside Lodge (oficial, junto al lago), el Loft (cabañas entre los árboles)"),
+            ("Comer", "El Dome, taberna bajo las aguas del lago en vidriacero; el Roc's Rest, bulliciosa"),
+            ("Comprar", "De todo, caro por el transporte; House Azeth no puede entrar en la ciudad"),
+            ("Magia", "Componentes fáciles; la magia defilera está prohibida; el Loft y la Torre Desvelada"),
+            ("Entrenar", "De todo; Valiar Forasta enseña psiónica a los alumnos de Oronis"),
+        ],
+        hook="Un estudiante del Loft ha encontrado algo en el bosque que Oronis quiere mantener oculto.",
+        subject="New Kurn, ciudad utópica en un claro de bosque junto a un lago de montaña: arquitectura cuidada de madera y piedra clara, la cúpula de vidriacero del Dome sumergida en el lago, cabañas elevadas entre las ramas y montañas nevadas al fondo",
+    ),
+    dict(
+        id="saragar", name="Saragar", epithet="La ciudad de la Última Mar", ruler="Los Señores de la Mente",
+        danger="baja", tags=["mar", "psiónica", "utopía"],
+        summary="Metrópolis de mármol blanco a orillas de Marnita, la Última Mar, encerrada por las Montañas del Trueno. Una cultura que valora la felicidad sobre todo lo demás y donde la magia arcana es desconocida.",
+        facts=[
+            ("Puertas", "No hay: patrullan los Guardianes de la Ley y hay que justificar la presencia"),
+            ("Dormir", "Squark's Rest (puerto), Smiling Moons (acogedora), Redwatch Tower (recomendada a foráneos)"),
+            ("Comer", "Marisco fresco; asados comunales en la playa cada atardecer"),
+            ("Comprar", "Mercado del Puerto; dos veces al año, los Grandes Días de Comercio"),
+            ("Magia", "La magia arcana es ilegal y desconocida aquí: no se venden componentes"),
+            ("Entrenar", "Academia de Psiónica (cumbre de las artes mentales); salas marciales municipales"),
+        ],
+        hook="Un foráneo ha traído noticia de la magia a una ciudad que no sabe qué es; los Guardianes quieren silenciarlo.",
+        subject="Saragar, metrópolis de mármol blanco y columnatas a orillas de una gran mar interior: calles pavimentadas y aireadas, terrazas sobre la playa con hogueras de cocina al atardecer y las Montañas del Trueno cerrando el horizonte",
+    ),
+    dict(
+        id="thamasku", name="Thamasku", epithet="La ciudad vertical", ruler="Los rhul-thaun (halflings)",
+        danger="baja", tags=["halfling", "vida moldeada", "acantilados"],
+        summary="Ciudad halfling en un claro junto a un lago, al borde de los Acantilados Dentados. Sus edificios son altos y estrechos porque sus gentes miran el mundo en vertical, y todo lo crean con vida moldeada.",
+        facts=[
+            ("Puertas", "Sin murallas: los jinetes del viento y los vher-elus interceptan a los visitantes antes de entrar"),
+            ("Dormir", "Safehomes: el Mirrored Host (lujo, carísimo), el Water Singer (espartano con vistas)"),
+            ("Comprar", "Tres mercados: pescado (sur), vida moldeada (oeste), artesanía (este)"),
+            ("Moneda", "Ghav-egoths, monedas orgánicas que ya no se pueden crear; se comercia por trueque"),
+            ("Peligro", "El gremio Ban-ghesh y los terroristas Chahn trafican con venenos"),
+            ("Sanar", "Los rhul-thaun son sanadores excelentes, de los mejores de Athas"),
+        ],
+        hook="Un moldeador de vida ha creado algo que no debería existir y su gremio quiere recuperarlo.",
+        subject="Thamasku, ciudad halfling de torres altas y estrechas junto a un lago en un claro de bosque primigenio, al borde de unos acantilados vertiginosos: edificios de vida moldeada con formas orgánicas y curvas, pasarelas entre las copas y niebla sobre el agua",
+    ),
+    dict(
+        id="ur-draxa", name="Ur Draxa", epithet="La Ciudad de la Perdición", ruler="El Dragón (Borys) y los Señores Muertos",
+        danger="extrema", tags=["volcán", "dragón", "prohibida"],
+        summary="Fortaleza del Dragón en el Valle del Polvo y el Fuego, rodeada por un mar de lava y tras murallas de 220 metros. Casi nadie la ha visto y muy pocos han entrado en ella.",
+        facts=[
+            ("Acceso", "La Puerta de la Perdición, a 25 millas, cruza el Anillo de Fuego; la muralla tiene nueve puertas"),
+            ("Dormir", "Rathay's Towers (sector Chuur), posadas de lujo para ciudadanos de otros sectores"),
+            ("Comprar", "Un mercado por sector y especializado: fruta, artesanía, ganado, armas, arte"),
+            ("Peligro", "Magia, psiónica y alquimia por doquier; las disputas se resuelven en la arena"),
+            ("Ojo", "Sin contactos de clan, un forastero acaba esclavizado; los Draxanos toman lo que quieren"),
+            ("Ley", "Siete leyes y tres castigos: esclavitud, destierro o muerte"),
+        ],
+        hook="Un clan ofrece protección a cambio de un servicio que violaría una de las Siete Leyes.",
+        subject="Ur Draxa, colosal ciudadela volcánica en el corazón del Mar de Cieno: murallas ciclópeas de piedra negra bajo un cielo de tormenta de ceniza, la Puerta de la Perdición como arco de obsidiana sobre un mar de lava —el Anillo de Fuego— y torres de basalto entre resplandores rojos",
+    ),
+]
+
+for g in G:
+    g["facts"] = [{"label": l, "value": v} for l, v in g["facts"]]
+    g["imagePrompt"] = g.pop("subject") + ". Estilo: " + IMAGE_STYLE + "."
+
+doc = {
+    "version": 1,
+    "artifact": "city-guides",
+    "source": "docs/traveler.pdf — «A Traveller's Guide to…» (Player's Handout)",
+    "imageStyle": IMAGE_STYLE,
+    "guides": G,
+}
+
+out = root / "city-guides.json"
+out.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf8")
+print("escrito", out, len(doc["guides"]), "ciudades")
+print("ids:", [g["id"] for g in doc["guides"]])

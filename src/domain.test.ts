@@ -16,6 +16,8 @@ import {
   loadState,
   fuzzyMatch,
   normalizeText,
+  cityGuides,
+  cityGuideFor,
   parseImport,
   networkSchema,
   setEndpoint,
@@ -310,6 +312,32 @@ describe("Búsqueda difusa", () => {
   it("normaliza tildes y signos", () => {
     expect(normalizeText("Mira's Halo")).toBe("mira s halo");
     expect(normalizeText("Puesto Avanzado")).toBe("puesto avanzado");
+  });
+});
+
+describe("Guías de ciudad", () => {
+  it("carga una guía por ciudad con prompt de imagen y estilo común", () => {
+    expect(cityGuides.guides.length).toBe(14);
+    expect(new Set(cityGuides.guides.map((g) => g.id)).size).toBe(14);
+    expect(cityGuides.imageStyle.length).toBeGreaterThan(100);
+    for (const g of cityGuides.guides) {
+      expect(g.imagePrompt.length).toBeGreaterThan(100);
+      expect(g.imagePrompt).toContain(cityGuides.imageStyle.slice(0, 40));
+      expect(g.facts.length).toBeGreaterThanOrEqual(4);
+      expect(g.summary.length).toBeLessThanOrEqual(600);
+    }
+  });
+  it("encuentra la guía por id de POI", () => {
+    expect(cityGuideFor("tyr")?.name).toBe("Tyr");
+    expect(cityGuideFor("balic")?.facts.length).toBeGreaterThan(0);
+    expect(cityGuideFor("no-existe")).toBeUndefined();
+  });
+  it("las guías que enlazan con el catálogo apuntan a asentamientos", () => {
+    const byId = new Map(initialState().pois.map((p) => [p.id, p]));
+    const linked = cityGuides.guides.filter((g) => byId.has(g.id));
+    expect(linked.length).toBe(13);
+    for (const g of linked)
+      expect(["city_state", "city", "town"]).toContain(byId.get(g.id)!.type);
   });
 });
 

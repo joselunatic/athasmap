@@ -1,6 +1,7 @@
 import { z } from "zod";
 import seed from "../poi.json";
 import travelNetwork from "../travel-network.json";
+import cityGuidesJson from "../city-guides.json";
 
 export const WIDTH = 4589;
 export const HEIGHT = 3080;
@@ -228,6 +229,32 @@ export function fuzzyMatch(query: string, text: string): boolean {
         (word.length >= 3 && editDistance(token, word) <= 1),
     ),
   );
+}
+const cityGuideSchema = z.object({
+  id: z.string().min(1),
+  name: z.string().min(1),
+  epithet: z.string().max(120),
+  ruler: z.string().max(160),
+  danger: z.enum(["baja", "media", "alta", "extrema"]),
+  tags: z.array(z.string().max(60)).max(10),
+  summary: z.string().max(600),
+  facts: z
+    .array(z.object({ label: z.string().max(40), value: z.string().max(200) }))
+    .max(10),
+  hook: z.string().max(300),
+  imagePrompt: z.string().max(2000),
+});
+export const cityGuidesSchema = z.object({
+  version: z.literal(1),
+  artifact: z.literal("city-guides"),
+  source: z.string(),
+  imageStyle: z.string(),
+  guides: z.array(cityGuideSchema),
+});
+export type CityGuide = z.infer<typeof cityGuideSchema>;
+export const cityGuides = cityGuidesSchema.parse(cityGuidesJson);
+export function cityGuideFor(id: string): CityGuide | undefined {
+  return cityGuides.guides.find((guide) => guide.id === id);
 }
 export function setEndpoint(
   points: Point[],

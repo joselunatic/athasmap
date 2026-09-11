@@ -1,24 +1,32 @@
 import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
-import { createReadStream } from "node:fs";
+import { createReadStream, existsSync } from "node:fs";
 import { cp, mkdir } from "node:fs/promises";
 import { resolve } from "node:path";
 
 // Expose only known immutable map assets, without copying 33 MB of reference art.
 function atlasAssets(): Plugin {
+  const cityImage = /^\/cities\/[a-z0-9-]+\.(?:jpg|jpeg|png|webp)$/;
   return {
     name: "atlas-assets",
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
         const url = req.url?.split("?")[0] ?? "";
-        if (!/^\/tiles_new\/[0-5]\/\d+\/\d+\.png$/.test(url))
-          return next();
+        const isTile = /^\/tiles_new\/[0-5]\/\d+\/\d+\.png$/.test(url);
+        if (!isTile && !cityImage.test(url)) return next();
         const stream = createReadStream(resolve(".", url.slice(1)));
         stream.on("error", () => {
           res.statusCode = 404;
           res.end("Asset unavailable");
         });
-        res.setHeader("Content-Type", "image/png");
+        res.setHeader(
+          "Content-Type",
+          url.endsWith(".png")
+            ? "image/png"
+            : url.endsWith(".webp")
+              ? "image/webp"
+              : "image/jpeg",
+        );
         stream.pipe(res);
       });
     },
@@ -26,6 +34,7 @@ function atlasAssets(): Plugin {
       await mkdir("dist/tiles_new", { recursive: true });
       for (let z = 0; z <= 5; z++)
         await cp(`tiles_new/${z}`, `dist/tiles_new/${z}`, { recursive: true });
+      if (existsSync("cities")) await cp("cities", "dist/cities", { recursive: true });
     },
   };
 }
