@@ -11,3 +11,6 @@ tiles_new/zoom5_composite.png
 poi.json.bak-*
 # PDF de referencia recibido del DJ; los derivados de investigación viven en output/
 391_Athas_Travel_hi-res.pdf
+# Caché de Python del pipeline de escaneo
+__pycache__/
+*.pyc

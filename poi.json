@@ -224,11 +224,11 @@
       ],
       "description": "Poblado enano ancestral situado al norte de Tyr.",
       "coordinates": {
-        "x": 0.3456,
-        "y": 0.3737
+        "x": 0.360209196,
+        "y": 0.354730519
       },
       "provenance": "mapa",
-      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — reconocida por visión"
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — símbolo nativo corregido mediante OCR/CV y revisión visual del crop nativo"
     },
     {
       "id": "ledopolus_north",
@@ -463,7 +463,12 @@
         "militar"
       ],
       "description": "Fortificación de tamaño medio en una de las rutas entre Tyr y Urik.",
-      "coordinates": null
+      "coordinates": {
+        "x": 0.334937895,
+        "y": 0.449857143
+      },
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — OCR/CV y revisión visual del crop nativo",
+      "provenance": "mapa"
     },
     {
       "id": "fort_vordon",
@@ -2606,6 +2611,251 @@
       "water": "unknown",
       "danger": "unknown",
       "faction": ""
+    },
+    {
+      "id": "gunginwald",
+      "name": "Gunginwald",
+      "type": "village",
+      "region": "Cerca de Kled",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "inscripcion-raster"
+      ],
+      "description": "Asentamiento marcado con un punto negro en el mapa de The Tyr Region.",
+      "coordinates": {
+        "x": 0.289169754,
+        "y": 0.334577922
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — OCR/CV y revisión visual del crop nativo"
+    },
+    {
+      "id": "fort_butcher",
+      "name": "Fort Butcher",
+      "type": "fortress",
+      "region": "Cerca de Kled",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "militar",
+        "inscripcion-raster"
+      ],
+      "description": "Fortificación marcada con un símbolo cuadrado en el mapa de The Tyr Region.",
+      "coordinates": {
+        "x": 0.352582262,
+        "y": 0.32987013
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — OCR/CV y revisión visual del crop nativo"
+    },
+    {
+      "id": "miras_halo",
+      "name": "Mira's Halo",
+      "type": "special_site",
+      "region": "Cerca de Kled",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "inscripcion-raster"
+      ],
+      "description": "Lugar cartográfico marcado con un círculo en el mapa de The Tyr Region.",
+      "coordinates": {
+        "x": 0.407106123,
+        "y": 0.32863961
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — OCR/CV y revisión visual del crop nativo"
+    },
+    {
+      "id": "fort_ebon",
+      "name": "Fort Ebon",
+      "type": "fortress",
+      "region": "Inscripción del mapa",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "inscripcion-raster",
+        "scan-global-2026-09"
+      ],
+      "description": "Fort Ebon está marcado por un símbolo puntual en el raster canónico.",
+      "coordinates": {
+        "x": 0.721510133,
+        "y": 0.207295455
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — OCR/CV y revisión visual del crop nativo"
+    },
+    {
+      "id": "fort_ianto",
+      "name": "Fort Ianto",
+      "type": "fortress",
+      "region": "Inscripción del mapa",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "inscripcion-raster",
+        "scan-global-2026-09"
+      ],
+      "description": "Fort Ianto está marcado por un símbolo puntual en el raster canónico.",
+      "coordinates": {
+        "x": 0.26519939,
+        "y": 0.442694805
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — OCR/CV y revisión visual del crop nativo"
+    },
+    {
+      "id": "fort_sandol",
+      "name": "Fort Sandol",
+      "type": "fortress",
+      "region": "Inscripción del mapa",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "inscripcion-raster",
+        "scan-global-2026-09"
+      ],
+      "description": "Fort Sandol está marcado por un símbolo puntual en el raster canónico.",
+      "coordinates": {
+        "x": 0.546308564,
+        "y": 0.360886364
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — OCR/CV y revisión visual del crop nativo"
+    },
+    {
+      "id": "fort_adro",
+      "name": "Fort Adro",
+      "type": "fortress",
+      "region": "Inscripción del mapa",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "inscripcion-raster",
+        "scan-global-2026-09"
+      ],
+      "description": "Fort Adro está marcado por un símbolo puntual en el raster canónico.",
+      "coordinates": {
+        "x": 0.293545435,
+        "y": 0.686662338
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — OCR/CV y revisión visual del crop nativo"
+    },
+    {
+      "id": "fort_harbeth",
+      "name": "Fort Harbeth",
+      "type": "fortress",
+      "region": "Inscripción del mapa",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "inscripcion-raster",
+        "scan-global-2026-09"
+      ],
+      "description": "Fort Harbeth está marcado por un símbolo puntual en el raster canónico.",
+      "coordinates": {
+        "x": 0.55589453,
+        "y": 0.620292208
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — OCR/CV y revisión visual del crop nativo"
+    },
+    {
+      "id": "fort_fyra",
+      "name": "Fort Fyra",
+      "type": "fortress",
+      "region": "Inscripción del mapa",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "inscripcion-raster",
+        "scan-global-2026-09"
+      ],
+      "description": "Fort Fyra está marcado por un símbolo puntual en el raster canónico.",
+      "coordinates": {
+        "x": 0.602752234,
+        "y": 0.605051948
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — OCR/CV y revisión visual del crop nativo"
+    },
+    {
+      "id": "fort_courage",
+      "name": "Fort Courage",
+      "type": "fortress",
+      "region": "Inscripción del mapa",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "inscripcion-raster",
+        "scan-global-2026-09"
+      ],
+      "description": "Fort Courage está marcado por un símbolo puntual en el raster canónico.",
+      "coordinates": {
+        "x": 0.436801046,
+        "y": 0.110788961
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — OCR/CV y revisión visual del crop nativo"
+    },
+    {
+      "id": "fort_firstwatch",
+      "name": "Fort Firstwatch",
+      "type": "fortress",
+      "region": "Inscripción del mapa",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "inscripcion-raster",
+        "scan-global-2026-09"
+      ],
+      "description": "Fort Firstwatch está marcado por un símbolo puntual en el raster canónico.",
+      "coordinates": {
+        "x": 0.749836566,
+        "y": 0.201785714
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — OCR/CV y revisión visual del crop nativo"
+    },
+    {
+      "id": "utba",
+      "name": "Utba",
+      "type": "village",
+      "region": "Inscripción del mapa",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "inscripcion-raster",
+        "scan-global-2026-09"
+      ],
+      "description": "Utba está marcado por un símbolo puntual en el raster canónico.",
+      "coordinates": {
+        "x": 0.33057311,
+        "y": 0.230681818
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — OCR/CV y revisión visual del crop nativo"
+    },
+    {
+      "id": "jhazlim",
+      "name": "Jhazlim",
+      "type": "village",
+      "region": "Inscripción del mapa",
+      "importance": 3,
+      "confidence": 4,
+      "tags": [
+        "inscripcion-raster",
+        "scan-global-2026-09"
+      ],
+      "description": "Jhazlim está marcado por un símbolo puntual en el raster canónico.",
+      "coordinates": {
+        "x": 0.533231641,
+        "y": 0.303733766
+      },
+      "provenance": "mapa",
+      "source": "Inscripción del mapa «The Tyr Region» (TSR 1991) — OCR/CV y revisión visual del crop nativo"
     }
   ]
 }

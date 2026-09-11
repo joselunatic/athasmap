@@ -8,6 +8,9 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 127.0.0.1",
     "test": "vitest run",
+    "scan:pois": "python scripts/scan_poi_candidates.py --raster tiles_new/zoom5_composite.png --output output/poi-scan --tile 1280 --overlap 0.15 --variants gray",
+    "review:pois": "python scripts/review_poi_candidates.py --root . --scan output/poi-scan/candidates.json --output output/poi-scan/review.json",
+    "merge:pois": "python scripts/merge_poi_scans.py --output output/poi-scan/combined.json output/poi-scan/candidates.json output/poi-scan-colour/candidates.json",
     "lint": "eslint src",
     "typecheck": "tsc -b"
   },

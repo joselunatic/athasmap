@@ -11,20 +11,14 @@ function atlasAssets(): Plugin {
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
         const url = req.url?.split("?")[0] ?? "";
-        if (
-          !/^\/tiles_new\/[0-5]\/\d+\/\d+\.png$/.test(url) &&
-          url !== "/routes.geojson"
-        )
+        if (!/^\/tiles_new\/[0-5]\/\d+\/\d+\.png$/.test(url))
           return next();
         const stream = createReadStream(resolve(".", url.slice(1)));
         stream.on("error", () => {
           res.statusCode = 404;
           res.end("Asset unavailable");
         });
-        res.setHeader(
-          "Content-Type",
-          url.endsWith(".png") ? "image/png" : "application/json",
-        );
+        res.setHeader("Content-Type", "image/png");
         stream.pipe(res);
       });
     },
@@ -32,7 +26,6 @@ function atlasAssets(): Plugin {
       await mkdir("dist/tiles_new", { recursive: true });
       for (let z = 0; z <= 5; z++)
         await cp(`tiles_new/${z}`, `dist/tiles_new/${z}`, { recursive: true });
-      await cp("routes.geojson", "dist/routes.geojson");
     },
   };
 }

@@ -25,3 +25,7 @@ Personas que consultan el atlas para preparar o dirigir partidas en Athas.
 4. La opción de trazos automáticos no se muestra al usuario mientras `routes.geojson` siga siendo un experimento de detección de color.
 5. Tests, typecheck, lint, build y comprobación visual pasan.
 6. `main` remoto contiene la entrega integrada sin conflictos ni artefactos de investigación.
+7. Un escáner global de rótulos y símbolos produce inventario de candidatos con crops, anchors, scores y deduplicación, sin mutar el catálogo.
+8. La reconciliación separa texto puntual, rutas y accidentes; solo un manifiesto revisado puede publicar `provenance: mapa`.
+9. Las coordenadas aceptadas se derivan del símbolo nativo en la caja útil 4589×3080 y se verifican visualmente.
+10. El estado final debe pasar tests, typecheck, lint, build y QA visual antes de desplegar.

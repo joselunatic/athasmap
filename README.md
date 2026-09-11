@@ -34,7 +34,7 @@ En móvil, «Abrir herramientas» muestra el panel y «Ver mapa» lo oculta. Ini
 
 ## Procedencia y coordenadas
 
-Los originales `routes.geojson`, `tiles/`, `tiles_new/` no se modifican. El catálogo `poi.json` conserva sus 42 registros iniciales, añade 72 procedentes de *The Wanderer's Chronicle* (Athas.org), 9 lugares de la campaña compartida del DM, 22 topónimos externos iniciales y 4 candidatos externos pendientes o reconciliados de la revisión del PDF. `initialState()` migra determinísticamente los **149 POIs**: 43 con inscripción local, 3 con ubicación externa aproximada y 3 externos todavía sin situar (`Freedom`, `Roqom`, `Shault`). Los candidatos aproximados incluyen un radio de incertidumbre; ninguna posición se presenta como canónica sin evidencia del raster. Las entradas citan su fuente en `source` y el estado se muestra en la ficha.
+Los originales `routes.geojson`, `tiles/`, `tiles_new/` no se modifican. El catálogo `poi.json` conserva sus 42 registros iniciales, añade 72 procedentes de *The Wanderer's Chronicle* (Athas.org), 9 lugares de la campaña compartida del DM, 22 topónimos externos iniciales, 4 candidatos externos reconciliados de la revisión del PDF y 13 inscripciones nuevas del barrido global. `initialState()` migra determinísticamente los **162 POIs**: 57 con inscripción local, 3 con ubicación externa aproximada y 3 externos todavía sin situar (`Freedom`, `Roqom`, `Shault`). Los candidatos aproximados incluyen un radio de incertidumbre; ninguna posición se presenta como canónica sin evidencia del raster. Las entradas citan su fuente en `source` y el estado se muestra en la ficha.
 
 El composite mide 4608 × 3328 píxeles; la caja no vacía ocupa **4589 × 3080** desde la esquina superior izquierda. El resto es relleno.
 
@@ -65,6 +65,18 @@ Se intercambia **JSON propio**, no GeoJSON RFC 7946, para no presentar coordenad
 ```
 
 Las importaciones parciales reemplazan la colección correspondiente; no fusionan. Se validan categorías, identificadores únicos, límites, números finitos y referencias de red. Máximo por archivo: 10 MB. Exporta desde Datos para obtener un ejemplo completo con todos los campos.
+
+## Escáner global de POIs
+
+El detector reproducible trabaja sobre `tiles_new/zoom5_composite.png`, usando la caja útil 4589 × 3080. Divide el raster en ventanas solapadas, ejecuta OCR, busca símbolos oscuros cercanos, traduce todo a coordenadas globales y deduplica los solapes. Nunca publica directamente.
+
+```sh
+npm run scan:pois
+npm run review:pois
+python scripts/refine_poi_candidates.py --name kled-zone --box 1300,850,1850,1350
+```
+
+La ejecución validada produjo dos pasadas: 234→187 candidatos en gris y 261→212 en color; la unión conservadora quedó en 310 candidatos únicos. Los crops y JSON quedan en `output/poi-scan/` (ignorado por Git). El aplicador exige un manifiesto revisado y `--apply`, y crea backup; es idempotente para altas idénticas. Se publicaron 13 inscripciones puntuales confirmadas (`Gunginwald`, `Fort Butcher`, `Mira's Halo`, `Fort Skonz`, `Fort Ebon`, `Fort Ianto`, `Fort Sandol`, `Fort Adro`, `Fort Harbeth`, `Fort Fyra`, `Fort Courage`, `Fort Firstwatch`, `Utba`, `Jhazlim`) y se corrigió `Kled`. `Krikik's Pack`, `Iron Mines`, los picos cuya ancla requiere refinamiento adicional, carreteras, regiones y accidentes extensos permanecen sin promoción automática.
 
 ## Distancia y tiempo
 
@@ -104,7 +116,7 @@ La red se importa, exporta y visualiza uniendo nodos con segmentos rectos concep
 }
 ```
 
-`routes.geojson` es una capa experimental bajo demanda. Se invierte la función `tile_px_to_lonlat` de `scripts/extract_routes_tiles.py` con sus constantes, sin Web Mercator. No se convierte en navegación. Sus miles de segmentos se dibujan con Canvas y pueden tardar en equipos modestos.
+`routes.geojson` se conserva únicamente como artefacto de investigación histórica. No se copia al build, no se carga en la UI y no se convierte en navegación: sus miles de segmentos proceden de detección de contraste y contienen falsos positivos.
 
 ## Persistencia y privacidad
 

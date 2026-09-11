@@ -26,3 +26,35 @@
 
 ## Modelo de ejecución
 Hermes directo para reconciliación y UI (archivos compartidos). Revisión independiente de solo lectura antes de publicar porque cambia datos y representación cartográfica. Sin nuevos worktrees ni Kanban: trabajo acotado, un integrador y sin dependencias duraderas.
+
+## 5. Inventario global de inscripciones
+- Recorrer `tiles_new/zoom5_composite.png` en ventanas globales con solape.
+- Ejecutar OCR en vistas de color/gris/contraste y traducir cajas al lienzo 4589×3080.
+- Asociar cada rótulo a un símbolo nativo, guardar crop y deduplicar lecturas.
+
+**Aceptación:** `output/poi-scan/candidates.json` contiene canvas, parámetros, anchors, puntuaciones y evidencia; ningún candidato modifica `poi.json`.
+
+## 6. Revisión y reconciliación
+- Cruzar candidatos contra el catálogo y calcular desplazamientos.
+- Revisar visualmente las propuestas nuevas y los POIs desplazados.
+- Clasificar rutas, regiones y accidentes extensos fuera del modelo puntual.
+
+**Aceptación:** un manifiesto separado enumera cada alta/corrección, evidencia y decisión; solo las entradas aceptadas se aplican con backup.
+
+## 7. Integración verificada
+- Actualizar invariantes, documentación y migración de snapshots.
+- Ejecutar tests, typecheck, lint, build y QA visual de los anchors publicados.
+
+**Aceptación:** 162 POIs, 57 `mapa`, 3 `externa_aproximada`, 3 externos sin situar; no se solicitan `routes.geojson`.
+
+## 9. Escáner global de inscripciones
+- Ejecutar gris y color sobre la caja útil de 4589×3080 con ventanas solapadas.
+- Unir por nombre normalizado y distancia de anchor; separar punto, ruta y paisaje.
+- Exigir crop nativo y símbolo para `mapa`; el detector nunca publica directamente.
+- Aplicar manifiestos idempotentes con backup y ejecutar los gates completos.
+
+**Estado:** implementado. Dos pasadas reales produjeron 310 candidatos únicos; 13 altas y un ajuste de coordenada fueron aceptados tras revisión visual. Los candidatos restantes quedan en `output/poi-scan/combined-review.json`.
+
+## 10. Límites pendientes
+- Refinar detecciones parciales como `Krikik's Pack` y distinguir `Iron Mines` de `Fort Iron`.
+- No promover lecturas fuzzy ni nombres de carreteras/regiones sin crop inequívoco y símbolo puntual.

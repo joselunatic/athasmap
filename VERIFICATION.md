@@ -8,8 +8,8 @@
 - `npm run build`: salida 0. Bundle JS de 478,37 kB (143,12 kB gzip), CSS de 29,73 kB (10,37 kB gzip).
 - Avisos no bloqueantes: Rollup retira dos anotaciones de comentarios de Zod que no puede interpretar; no hay errores de compilación.
 - `npm install`: auditoría inicial con 0 vulnerabilidades reportadas. Versiones exactas en `package-lock.json`.
-- Producción con `npm run preview -- --port 4173`: HTML, teselas de zoom 0/5 y `routes.geojson` responden HTTP 200 con tipos correctos.
-- Las **326 teselas** copiadas a `dist/tiles_new` coinciden byte por byte (SHA-256) con los originales. El GeoJSON copiado también es idéntico.
+- Producción con `npm run preview -- --port 4173`: HTML y teselas de zoom 0/5 responden HTTP 200 con tipos correctos; `routes.geojson` no forma parte del build.
+- Las **326 teselas** copiadas a `dist/tiles_new` coinciden byte por byte (SHA-256) con los originales. El artefacto experimental GeoJSON no se copia.
 
 ## Navegador
 
@@ -84,4 +84,14 @@ La navegación con flechas y Enter está implementada para colocar el centro del
 - `routes.geojson` conserva 4.593 `LineString` experimentales, pero ya no se descarga ni se muestra en la interfaz: la detección de color/contraste producía falsos positivos sobre arte, texto y relieve.
 - Se añadió `placementRadius` al esquema y un anillo discontinuo al marcador aproximado. La ficha muestra procedencia y fuente.
 - El script `scripts/apply_external_positions.py` exige clasificación completa, es idempotente, funciona en modo vista previa y crea backup al aplicar.
-- Verificación final: `npm test` (26/26), `npm run typecheck`, `npm run lint`, `npm run build` y `git diff --check` superados. QA CDP/visual: 149 lugares, 4 líneas de red semántica, 3 radios de incertidumbre, 0 peticiones a `routes.geojson` y sin malla experimental.
+- Verificación final de la fase anterior: `npm test` (26/26), `npm run typecheck`, `npm run lint`, `npm run build` y `git diff --check` superados. QA CDP/visual: 149 lugares, 4 líneas de red semántica, 3 radios de incertidumbre, 0 peticiones a `routes.geojson` y sin malla experimental.
+- El inventario global posterior elevó el catálogo a **162 POIs, 57 `mapa`, 3 `externa_aproximada`, 3 `externa` sin situar y 60 situados**. Se aceptaron 13 altas puntuales tras crops y se corrigió `Kled`; la unión de las pasadas gris/color conserva 310 candidatos, no 310 publicaciones.
+- Tests Python del pipeline: **7/7**; `npm test`: **26/26**. Typecheck/lint/build y QA de la nueva build se verifican en el cierre de esta entrega.
+## Inventario global y corrección de anchors (11 de septiembre de 2026)
+
+- Se implementó `scripts/scan_poi_candidates.py` con coordenadas globales, ventanas solapadas, OCR RapidOCR, máscaras gris/contraste, búsqueda de símbolo nativo y deduplicación.
+- Barrido real de `tiles_new/zoom5_composite.png`: **234 lecturas brutas → 187 candidatos**; cada candidato conserva bounding box, anchor, puntuación y crop en `output/poi-scan/`.
+- `scripts/review_poi_candidates.py` generó la auditoría: 12 posibles desplazamientos de existentes, 11 coincidencias con POIs sin situar y 151 lecturas nuevas/no emparejadas. Estas cifras son candidatos, no confirmaciones.
+- Refinamiento visual nativo confirmó tres altas (`Gunginwald`, `Fort Butcher`, `Mira's Halo`), situó `Fort Skonz` y corrigió el anchor de `Kled`. La coordenada de `Kled` se tomó del círculo negro nativo, no del marcador Leaflet anterior.
+- `poi.json` queda en **152 POIs: 47 `mapa`, 3 `externa_aproximada`, 3 `externa` sin situar y 50 situados**. `Krikik's Pack`, `Iron Mines`, `Fort Iron`, carreteras/regiones y accidentes extensos no se promovieron.
+- Tests posteriores: `npm test` **26/26**. La verificación de typecheck/lint/build y QA productivo queda pendiente de la fase de cierre de este cambio.

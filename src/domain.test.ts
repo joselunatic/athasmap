@@ -22,15 +22,15 @@ import {
 } from "./domain";
 
 describe("Catálogo y validación", () => {
-  it("incluye 149 lugares: 43 inscritos, 3 aproximados y 3 externos sin situar", () => {
+  it("incluye 162 lugares: 57 inscritos, 3 aproximados y 3 externos sin situar", () => {
     const state = initialState();
-    expect(state.pois).toHaveLength(149);
-    expect(state.pois.filter((p) => p.coordinates === null)).toHaveLength(103);
+    expect(state.pois).toHaveLength(162);
+    expect(state.pois.filter((p) => p.coordinates === null)).toHaveLength(102);
     expect(state.pois.filter((p) => p.provenance === "externa")).toHaveLength(3);
     expect(state.pois.filter((p) => p.provenance === "externa_aproximada")).toHaveLength(3);
-    expect(state.pois.filter((p) => p.provenance === "mapa")).toHaveLength(43);
+    expect(state.pois.filter((p) => p.provenance === "mapa")).toHaveLength(57);
     const situados = state.pois.filter((p) => p.coordinates !== null);
-    expect(situados).toHaveLength(46);
+    expect(situados).toHaveLength(60);
     expect(situados.every((p) => p.provenance !== "user")).toBe(true);
     expect(state.pois.find((p) => p.id === "roqom")?.coordinates).toBeNull();
     expect(state.pois.find((p) => p.id === "roqom")?.provenance).toBe("externa");
@@ -40,7 +40,41 @@ describe("Catálogo y validación", () => {
     expect(tyr.provenance).toBe("mapa");
     expect(tyr.source).toContain("Inscripción del mapa");
     expect(state.pois.find((p) => p.id === "fort_iron")?.coordinates).not.toBeNull();
+    for (const id of [
+      "gunginwald",
+      "fort_butcher",
+      "miras_halo",
+      "fort_skonz",
+      "kled",
+      "fort_ebon",
+      "fort_ianto",
+      "fort_sandol",
+      "fort_adro",
+      "fort_harbeth",
+      "fort_fyra",
+      "fort_courage",
+      "fort_firstwatch",
+      "utba",
+      "jhazlim",
+    ]) {
+      expect(state.pois.find((p) => p.id === id)?.provenance).toBe("mapa");
+      expect(state.pois.find((p) => p.id === id)?.coordinates).not.toBeNull();
+    }
     expect(state.pois.find((p) => p.id === "hoja_rota")?.coordinates).toBeNull();
+    expect(state.pois.find((p) => p.id === "gunginwald")?.coordinates).toEqual({
+      x: 0.289169754,
+      y: 0.334577922,
+    });
+    expect(state.pois.find((p) => p.id === "fort_butcher")?.type).toBe("fortress");
+    expect(state.pois.find((p) => p.id === "miras_halo")?.type).toBe("special_site");
+    expect(state.pois.find((p) => p.id === "fort_skonz")?.coordinates).toEqual({
+      x: 0.334937895,
+      y: 0.449857143,
+    });
+    expect(state.pois.find((p) => p.id === "kled")?.coordinates).toEqual({
+      x: 0.360209196,
+      y: 0.354730519,
+    });
   });
   it("carga la red semántica curada con cuatro tramos y unidad pendiente", () => {
     const network = initialState().network;
@@ -63,7 +97,7 @@ describe("Catálogo y validación", () => {
       network: { nodes: [], edges: [], source: "Sin red curada" },
     });
     const migrated = mergeSeedState(stale);
-    expect(migrated.pois).toHaveLength(149);
+    expect(migrated.pois).toHaveLength(162);
     expect(migrated.pois.find((poi) => poi.id === "yaramuke")?.coordinates).toEqual(
       current.pois.find((poi) => poi.id === "yaramuke")?.coordinates,
     );

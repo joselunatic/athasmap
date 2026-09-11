@@ -9,6 +9,9 @@
 ## Posicionamiento
 Las coordenadas usan `athas-image-normalized-v1` sobre la caja útil 4589×3080. Solo se asignan tras revisión de crop y anclas.
 
+## Escáner global
+`scripts/scan_poi_candidates.py` es una fase de descubrimiento aislada: ventanas solapadas → OCR multi-variante → anchor de símbolo → matching de nombres → deduplicación → crops de evidencia en `output/poi-scan/`. `scripts/review_poi_candidates.py` cruza candidatos con `poi.json` y calcula desplazamientos, pero no escribe datos. `scripts/apply_poi_candidates.py` solo acepta un manifiesto revisado con `--apply` y crea un backup. El barrido no convierte una lectura fuzzy en `provenance: mapa`; esa promoción requiere evidencia local visual.
+
 | Procedencia | Regla |
 |---|---|
 | `mapa` | Rótulo o símbolo local verificable en el raster. |
