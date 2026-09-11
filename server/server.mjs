@@ -103,9 +103,15 @@ export function createAtlasServer({ password, publicDir, statePath }) {
         content = await readFile(join(publicDir, "index.html"));
       }
       const extension = extname(filePath);
+      const immutable = requested.startsWith("/assets/") || requested.startsWith("/tiles_new/");
       response.writeHead(200, {
         "content-type": MIME_TYPES[extension] ?? "application/octet-stream",
-        "cache-control": extension === ".html" ? "no-cache" : "public, max-age=2592000, immutable",
+        "cache-control":
+          extension === ".html"
+            ? "no-cache"
+            : immutable
+              ? "public, max-age=2592000, immutable"
+              : "public, max-age=3600, must-revalidate",
       });
       response.end(request.method === "HEAD" ? undefined : content);
     } catch (error) {

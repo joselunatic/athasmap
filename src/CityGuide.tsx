@@ -9,6 +9,10 @@ const dangerLabel: Record<string, string> = {
   extrema: "Peligro extremo",
 };
 
+// Súbela al reemplazar una ilustración: las rutas de /cities/ no llevan hash,
+// así que sin versión el navegador (y Cloudflare) siguen sirviendo la vieja.
+const imageVersion = 1;
+
 export default function CityGuide({
   poiId,
   onClose,
@@ -25,7 +29,7 @@ export default function CityGuide({
         <div className={`city-figure danger-${guide.danger}`}>
           {imageOk ? (
             <img
-              src={`/cities/${guide.id}.jpg`}
+              src={`/cities/${guide.id}.jpg?v=${imageVersion}`}
               alt={`Vista de ${guide.name}`}
               onError={() => setImageOk(false)}
             />

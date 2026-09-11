@@ -64,23 +64,36 @@ describe("API de campaña", () => {
 });
 
 describe("Archivos estáticos", () => {
-  it("sirve las imágenes de ciudad como image/jpeg", async () => {
+  async function serve() {
     const directory = await mkdtemp(join(tmpdir(), "athas-static-"));
     directories.push(directory);
     await mkdir(join(directory, "cities"), { recursive: true });
+    await mkdir(join(directory, "assets"), { recursive: true });
     await writeFile(
       join(directory, "cities", "tyr.jpg"),
       Buffer.from([0xff, 0xd8, 0xff, 0xd9]),
     );
+    await writeFile(join(directory, "assets", "app-1234.js"), "export {};");
     const server = createAtlasServer({
       password: "wayan",
       publicDir: directory,
       statePath: join(directory, "state.json"),
     });
     servers.push(server);
-    const url = await server.listen();
-    const response = await fetch(`${url}/cities/tyr.jpg`);
+    return await server.listen();
+  }
+
+  it("sirve las imágenes de ciudad como image/jpeg y con caché revalidable", async () => {
+    const response = await fetch(`${await serve()}/cities/tyr.jpg`);
     expect(response.status).toBe(200);
     expect(response.headers.get("content-type")).toBe("image/jpeg");
+    expect(response.headers.get("cache-control")).toBe(
+      "public, max-age=3600, must-revalidate",
+    );
+  });
+
+  it("mantiene inmutables los assets con hash", async () => {
+    const response = await fetch(`${await serve()}/assets/app-1234.js`);
+    expect(response.headers.get("cache-control")).toContain("immutable");
   });
 });

@@ -24,5 +24,6 @@ cities/
 - Proporción recomendada: **16:9** (el popup la recorta a esa ratio con `object-fit: cover`).
 - Si falta la imagen, el popup muestra un marcador con el símbolo ◈; no se rompe.
 - En desarrollo, Vite sirve `/cities/<archivo>`; en el build se copian a `dist/cities/`.
+- **Al reemplazar una imagen, sube `imageVersion` en `src/CityGuide.tsx`.** Las rutas no llevan hash, así que sin ese cambio el navegador y la caché de Cloudflare seguirían sirviendo la anterior.
 
 El prompt de generación de cada ciudad está en `city-guides.json` (campo `imagePrompt`), con un `imageStyle` común para que todas las ilustraciones compartan estilo.
