@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from "vitest";
-import { mkdtemp, rm } from "node:fs/promises";
+import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { createAtlasServer } from "./server.mjs";
@@ -60,5 +60,27 @@ describe("API de campaña", () => {
     const options = { method: "PUT", headers: { "content-type": "application/json", "x-atlas-password": "wayan" }, body };
     await fetch(url, options);
     expect((await fetch(url, options)).status).toBe(409);
+  });
+});
+
+describe("Archivos estáticos", () => {
+  it("sirve las imágenes de ciudad como image/jpeg", async () => {
+    const directory = await mkdtemp(join(tmpdir(), "athas-static-"));
+    directories.push(directory);
+    await mkdir(join(directory, "cities"), { recursive: true });
+    await writeFile(
+      join(directory, "cities", "tyr.jpg"),
+      Buffer.from([0xff, 0xd8, 0xff, 0xd9]),
+    );
+    const server = createAtlasServer({
+      password: "wayan",
+      publicDir: directory,
+      statePath: join(directory, "state.json"),
+    });
+    servers.push(server);
+    const url = await server.listen();
+    const response = await fetch(`${url}/cities/tyr.jpg`);
+    expect(response.status).toBe(200);
+    expect(response.headers.get("content-type")).toBe("image/jpeg");
   });
 });
