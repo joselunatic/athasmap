@@ -50,7 +50,7 @@ export const poiSchema = z.object({
   notes: z.string().max(10000).default(""),
   source: z.string().max(1000).default("poi.json · catálogo original"),
   provenance: z
-    .enum(["catalogue", "user", "mapa", "externa", "externa_aproximada"])
+    .enum(["catalogue", "user", "mapa", "externa", "externa_aproximada", "manual"])
     .default("catalogue"),
   water: z.enum(["unknown", "none", "limited", "available"]).default("unknown"),
   danger: z.enum(["unknown", "low", "medium", "high"]).default("unknown"),
@@ -70,6 +70,8 @@ export function provenanceLabel(provenance: PoiProvenance) {
       return "Fuente externa · ubicación aproximada";
     case "user":
       return "Creación de campaña";
+    case "manual":
+      return "Colocado a mano";
   }
 }
 const nodeSchema = z.object({
@@ -406,4 +408,12 @@ export function parseImport(raw: unknown, current: AtlasState): AtlasState {
 /** Aísla una categoría desde la leyenda del mapa. Sin `type`, no filtra nada. */
 export function singleOutCategory(pois: Poi[], type?: string): Poi[] {
   return type ? pois.filter((p) => p.type === type) : pois;
+}
+/** Cola de colocación: los lugares sin situar, los más importantes primero. */
+export function placementQueue(pois: Poi[]): Poi[] {
+  return pois
+    .filter((p) => !p.coordinates)
+    .sort(
+      (a, b) => b.importance - a.importance || a.name.localeCompare(b.name, "es"),
+    );
 }

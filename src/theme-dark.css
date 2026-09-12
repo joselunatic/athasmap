@@ -438,6 +438,120 @@
   background: rgba(211, 173, 101, 0.15);
 }
 
+/* ---------- Colocación asistida de pendientes ---------- */
+/* Arriba, como el aviso de modo: abajo lo tapa el toast de error (z-index 3000). */
+.place-bar {
+  position: absolute;
+  left: 50%;
+  top: 76px;
+  transform: translateX(-50%);
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: calc(100% - 40px);
+  padding: 10px 14px;
+  background: rgba(26, 21, 14, 0.94);
+  border: 1px solid rgba(216, 192, 142, 0.38);
+  border-radius: 13px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
+  animation: appear 0.18s ease-out;
+}
+.place-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.place-info strong {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #f1e7d0;
+  font-size: 13px;
+}
+.place-info small {
+  color: #b3a68c;
+  font-size: 11px;
+}
+.place-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+}
+.place-actions button {
+  color: #e8c583;
+  border-color: rgba(216, 192, 142, 0.4);
+  border-radius: 9px;
+  padding: 7px 11px;
+  font-size: 12px;
+}
+.place-actions button:hover:not(:disabled) {
+  background: rgba(211, 173, 101, 0.15);
+}
+.place-actions button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.place-actions button.primary:disabled {
+  background: #453931 !important;
+  border-color: #453931 !important;
+  color: #a2957f !important;
+}
+.draft-marker {
+  display: grid !important;
+  place-items: center;
+  border-radius: 50%;
+  /* Diana: centro oscuro con anillo y cruz claros, para no confundirse con los POIs. */
+  background: rgba(28, 22, 14, 0.5);
+  border: 3px solid #ffe3a6;
+  box-shadow:
+    0 0 0 2px rgba(28, 22, 14, 0.9),
+    0 0 0 11px rgba(255, 227, 166, 0.24),
+    0 3px 12px rgba(0, 0, 0, 0.55);
+  animation: draft-pulse 1.7s ease-in-out infinite;
+}
+.draft-marker span {
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(#ffe3a6, #ffe3a6) center / 2px 72% no-repeat,
+    linear-gradient(#ffe3a6, #ffe3a6) center / 72% 2px no-repeat;
+}
+@keyframes draft-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 2px rgba(28, 22, 14, 0.9),
+      0 0 0 11px rgba(255, 227, 166, 0.24),
+      0 3px 12px rgba(0, 0, 0, 0.55);
+  }
+  50% {
+    box-shadow:
+      0 0 0 2px rgba(28, 22, 14, 0.9),
+      0 0 0 19px rgba(255, 227, 166, 0.1),
+      0 3px 12px rgba(0, 0, 0, 0.55);
+  }
+}
+@media (max-width: 640px) {
+  .place-bar {
+    left: 8px;
+    right: 8px;
+    top: 62px;
+    transform: none;
+    max-width: none;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .place-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
 .map-onboarding {
   bottom: 46px;
   left: 50%;

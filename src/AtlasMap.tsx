@@ -13,6 +13,7 @@ import {
 
 type Props = {
   pois: Poi[];
+  draft?: Point;
   selected?: Poi;
   points: Point[];
   manual: boolean;
@@ -170,11 +171,23 @@ export default function AtlasMap(props: Props) {
       label.textContent = `${a.name} ↔ ${b.name} · ${value} ${e.unit ?? "(unidad pendiente)"} · tramo conceptual`;
       line.bindTooltip(label).addTo(layer);
     }
+    if (props.draft)
+      L.marker(toMap(props.draft), {
+        interactive: false,
+        zIndexOffset: 1000,
+        icon: L.divIcon({
+          className: "draft-marker",
+          html: "<span></span>",
+          iconSize: [40, 40],
+          iconAnchor: [20, 20],
+        }),
+      }).addTo(layer);
     return () => {
       layer.remove();
     };
   }, [
     props.pois,
+    props.draft,
     props.selected?.id,
     props.points,
     props.manual,

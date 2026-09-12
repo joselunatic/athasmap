@@ -25,6 +25,7 @@ import {
   mergeSeedState,
   fuzzyMatch,
   singleOutCategory,
+  placementQueue,
   cityGuideFor,
   type AtlasState,
   type Poi,
@@ -117,6 +118,9 @@ export default function App() {
   const [legendOpen, setLegendOpen] = useState(false),
     [dataOpen, setDataOpen] = useState(false);
   const [legendCategory, setLegendCategory] = useState<string>();
+  // Cola de colocación: ids pendientes, índice actual y posición provisional.
+  const [placement, setPlacement] = useState<{ ids: string[]; index: number }>();
+  const [draft, setDraft] = useState<Point>();
   const [cityId, setCityId] = useState<string>();
   const [deleteId, setDeleteId] = useState<string>(),
     [imported, setImported] = useState<AtlasState>();
@@ -132,6 +136,9 @@ export default function App() {
       (!pending || !p.coordinates),
   );
   const mapPois = singleOutCategory(filtered, legendCategory);
+  const placing = placement
+    ? state.pois.find((p) => p.id === placement.ids[placement.index])
+    : undefined;
   const result = journey(state.itinerary, state.travel);
   useEffect(() => {
     try {
@@ -164,6 +171,29 @@ export default function App() {
       cancelled = true;
     };
   }, []);
+  // Atajos del modo colocación: Enter confirma, S salta, Retroceso deshace, Esc sale.
+  useEffect(() => {
+    if (!placement) return;
+    const onKey = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (target && /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName)) return;
+      if (e.key === "Enter" && draft) {
+        e.preventDefault();
+        placeCurrent();
+      } else if (e.key === "s" || e.key === "S") {
+        e.preventDefault();
+        skipPlacement();
+      } else if (e.key === "Backspace") {
+        e.preventDefault();
+        undoPlacement();
+      } else if (e.key === "Escape") {
+        e.preventDefault();
+        exitPlacement();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  });
   function queueRemoteSave(next: AtlasState) {
     const password = remotePassword.current;
     if (!password) {
@@ -224,7 +254,77 @@ export default function App() {
     setMode(m);
     setMobileOpen(false);
   }
+  // Colocación asistida: elegir lugar → clic en el mapa → confirmar → siguiente.
+  function startPlacement() {
+    const ids = placementQueue(singleOutCategory(filtered, legendCategory)).map(
+      (p) => p.id,
+    );
+    if (!ids.length) {
+      setError("No queda ningún lugar sin situar con los filtros actuales.");
+      return;
+    }
+    setPlacement({ ids, index: 0 });
+    setDraft(undefined);
+    setMode(null);
+    setSelectedId(undefined);
+    setMobileOpen(false);
+  }
+  function placeCurrent() {
+    if (!placement || !placing || !draft) return;
+    if (
+      !commit({
+        ...state,
+        pois: state.pois.map((v) =>
+          v.id === placing.id
+            ? {
+                ...v,
+                coordinates: draft,
+                // La posición la aporta el DM, no una fuente: se declara como tal.
+                provenance: v.provenance === "user" ? "user" : "manual",
+                placementRadius: undefined,
+              }
+            : v,
+        ),
+      })
+    )
+      return;
+    skipPlacement();
+  }
+  function skipPlacement() {
+    setDraft(undefined);
+    setPlacement((p) => {
+      if (!p) return p;
+      const index = p.index + 1;
+      return index < p.ids.length ? { ...p, index } : undefined;
+    });
+  }
+  function undoPlacement() {
+    if (!placement || placement.index === 0) return;
+    const previous = state.pois.find(
+      (p) => p.id === placement.ids[placement.index - 1],
+    );
+    if (!previous?.coordinates) return;
+    if (
+      !commit({
+        ...state,
+        pois: state.pois.map((v) =>
+          v.id === previous.id ? { ...v, coordinates: null } : v,
+        ),
+      })
+    )
+      return;
+    setPlacement({ ...placement, index: placement.index - 1 });
+    setDraft(undefined);
+  }
+  function exitPlacement() {
+    setPlacement(undefined);
+    setDraft(undefined);
+  }
   function onPick(p: Point) {
+    if (placement) {
+      setDraft(p);
+      return;
+    }
     if (mode?.kind === "place") {
       if (
         commit({
@@ -650,6 +750,15 @@ export default function App() {
                     </span>
                     <span>→</span>
                   </button>
+                  {unplaced > 0 && (
+                    <button
+                      className="primary full"
+                      onClick={startPlacement}
+                      title="Coloca uno tras otro: elige el punto en el mapa y confirma"
+                    >
+                      Colocar sin situar →
+                    </button>
+                  )}
                   <div className="list-heading">
                     <span>{filtered.length} LUGARES</span>
                     <button
@@ -982,10 +1091,11 @@ export default function App() {
         <main className="map-workspace">
           <AtlasMap
             pois={mapPois}
+            draft={draft}
             selected={selected}
             points={state.itinerary}
             manual={state.routeKind === "manual"}
-            pick={!!mode}
+            pick={!!mode || !!placement}
             network={state.network}
             home={home}
             onPick={onPick}
@@ -1082,6 +1192,50 @@ export default function App() {
               </aside>
             )}
           </div>
+          {placement && placing && (
+            <div className="place-bar" role="status">
+              <div className="place-info">
+                <strong>
+                  <span
+                    className={`list-symbol ${placing.type}`}
+                    aria-hidden="true"
+                  >
+                    {symbols[placing.type]}
+                  </span>
+                  {placing.name}
+                </strong>
+                <small>
+                  {placement.index + 1} / {placement.ids.length} ·{" "}
+                  {draft
+                    ? "ajusta el punto o confirma"
+                    : "toca el mapa donde va"}
+                </small>
+              </div>
+              <div className="place-actions">
+                <button
+                  className="primary"
+                  disabled={!draft}
+                  onClick={placeCurrent}
+                  title="Confirmar (Enter)"
+                >
+                  Confirmar
+                </button>
+                <button onClick={skipPlacement} title="Dejar sin situar (S)">
+                  Saltar
+                </button>
+                <button
+                  onClick={undoPlacement}
+                  disabled={placement.index === 0}
+                  title="Volver al anterior (Retroceso)"
+                >
+                  Deshacer
+                </button>
+                <button onClick={exitPlacement} title="Salir (Esc)">
+                  Salir
+                </button>
+              </div>
+            </div>
+          )}
           {mode && (
             <div className="mode-banner" role="status">
               <span>

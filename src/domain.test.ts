@@ -17,6 +17,7 @@ import {
   fuzzyMatch,
   normalizeText,
   singleOutCategory,
+  placementQueue,
   cityGuides,
   cityGuideFor,
   parseImport,
@@ -354,6 +355,31 @@ describe("Aislar una categoría desde la leyenda", () => {
     expect(forts.length).toBe(20);
     expect(forts.every((p) => p.type === "fortress")).toBe(true);
     expect(singleOutCategory(pois, "village").length).toBe(42);
+  });
+});
+
+describe("Cola de colocación de pendientes", () => {
+  it("solo incluye los lugares sin posición", () => {
+    const pois = initialState().pois;
+    const queue = placementQueue(pois);
+    expect(queue.length).toBe(102);
+    expect(queue.every((p) => !p.coordinates)).toBe(true);
+  });
+  it("los ordena por importancia descendente", () => {
+    const queue = placementQueue(initialState().pois);
+    for (let i = 1; i < queue.length; i++)
+      expect(queue[i - 1].importance).toBeGreaterThanOrEqual(
+        queue[i].importance,
+      );
+  });
+  it("no muta la lista original", () => {
+    const pois = initialState().pois;
+    const before = pois.map((p) => p.id).join();
+    placementQueue(pois);
+    expect(pois.map((p) => p.id).join()).toBe(before);
+  });
+  it("declara «Colocado a mano» la procedencia manual", () => {
+    expect(provenanceLabel("manual")).toBe("Colocado a mano");
   });
 });
 
