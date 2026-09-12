@@ -24,6 +24,7 @@ import {
   setEndpoint,
   mergeSeedState,
   fuzzyMatch,
+  singleOutCategory,
   cityGuideFor,
   type AtlasState,
   type Poi,
@@ -115,6 +116,7 @@ export default function App() {
     [home, setHome] = useState(0);
   const [legendOpen, setLegendOpen] = useState(false),
     [dataOpen, setDataOpen] = useState(false);
+  const [legendCategory, setLegendCategory] = useState<string>();
   const [cityId, setCityId] = useState<string>();
   const [deleteId, setDeleteId] = useState<string>(),
     [imported, setImported] = useState<AtlasState>();
@@ -129,6 +131,7 @@ export default function App() {
       p.importance >= importance &&
       (!pending || !p.coordinates),
   );
+  const mapPois = singleOutCategory(filtered, legendCategory);
   const result = journey(state.itinerary, state.travel);
   useEffect(() => {
     try {
@@ -978,7 +981,7 @@ export default function App() {
         </aside>
         <main className="map-workspace">
           <AtlasMap
-            pois={filtered}
+            pois={mapPois}
             selected={selected}
             points={state.itinerary}
             manual={state.routeKind === "manual"}
@@ -1036,13 +1039,46 @@ export default function App() {
                 aria-label="Leyenda de lugares"
               >
                 {categories.map((c) => (
-                  <div key={c.id} className="legend-row">
+                  <button
+                    key={c.id}
+                    type="button"
+                    className={`legend-row ${legendCategory === c.id ? "active" : ""}`}
+                    aria-pressed={legendCategory === c.id}
+                    title={
+                      legendCategory === c.id
+                        ? "Volver a mostrar todas las categorías"
+                        : `Mostrar solo ${c.label}`
+                    }
+                    onClick={() =>
+                      setLegendCategory((active) =>
+                        active === c.id ? undefined : c.id,
+                      )
+                    }
+                  >
                     <span className={`list-symbol ${c.id}`}>
                       {symbols[c.id]}
                     </span>
                     {c.label}
-                  </div>
+                  </button>
                 ))}
+                {legendCategory ? (
+                  <div className="legend-note">
+                    <span>
+                      Solo{" "}
+                      {categories.find((c) => c.id === legendCategory)?.label}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setLegendCategory(undefined)}
+                    >
+                      Ver todo
+                    </button>
+                  </div>
+                ) : (
+                  <p className="legend-note hint">
+                    Toca una categoría para verla sola
+                  </p>
+                )}
               </aside>
             )}
           </div>

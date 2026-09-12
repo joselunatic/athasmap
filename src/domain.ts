@@ -403,3 +403,7 @@ export function parseImport(raw: unknown, current: AtlasState): AtlasState {
     throw new Error("El archivo no contiene POIs ni red de viaje.");
   return stateSchema.parse({ ...current, ...partial });
 }
+/** Aísla una categoría desde la leyenda del mapa. Sin `type`, no filtra nada. */
+export function singleOutCategory(pois: Poi[], type?: string): Poi[] {
+  return type ? pois.filter((p) => p.type === type) : pois;
+}

@@ -16,6 +16,7 @@ import {
   loadState,
   fuzzyMatch,
   normalizeText,
+  singleOutCategory,
   cityGuides,
   cityGuideFor,
   parseImport,
@@ -338,6 +339,21 @@ describe("Guías de ciudad", () => {
     expect(linked.length).toBe(13);
     for (const g of linked)
       expect(["city_state", "city", "town"]).toContain(byId.get(g.id)!.type);
+  });
+});
+
+describe("Aislar una categoría desde la leyenda", () => {
+  it("sin categoría devuelve la lista intacta", () => {
+    const pois = initialState().pois;
+    expect(singleOutCategory(pois)).toHaveLength(pois.length);
+    expect(singleOutCategory(pois)).toBe(pois);
+  });
+  it("con categoría deja solo esos POIs", () => {
+    const pois = initialState().pois;
+    const forts = singleOutCategory(pois, "fortress");
+    expect(forts.length).toBe(20);
+    expect(forts.every((p) => p.type === "fortress")).toBe(true);
+    expect(singleOutCategory(pois, "village").length).toBe(42);
   });
 });
 
